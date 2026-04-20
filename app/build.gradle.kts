@@ -62,6 +62,10 @@ dependencies {
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.androidx.fragment)
+    implementation(libs.androidx.cardview)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.play.services.ads)
     kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     testImplementation("junit:junit:4.13.2")
@@ -70,4 +74,7 @@ dependencies {
 
     // Görsel yükleme kütüphanesi
     implementation("io.coil-kt:coil:2.6.0")
+
+    //Harita
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
 }
