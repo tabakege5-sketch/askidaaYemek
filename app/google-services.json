@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "473810366659",
+    "project_id": "askida-yemek-projesi",
+    "storage_bucket": "askida-yemek-projesi.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473810366659:android:45070253d290ca6d567276",
+        "android_client_info": {
+          "package_name": "com.example.askidaayemek"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC32kVOz9CDVfBBnuWoURKQKy52sTOYMck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/naw_graph"
+    app:startDestination="@id/girisLoginFragment">
+
+    <fragment
+        android:id="@+id/girisLoginFragment"
+        android:name="com.example.askidaayemek.girisLoginFragment"
+        android:label="fragment_giris_login"
+        tools:layout="@layout/fragment_giris_login" >
+        <action
+            android:id="@+id/action_girisLoginFragment_to_haritaFragment"
+            app:destination="@id/haritaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/haritaFragment"
+        android:name="com.example.askidaayemek.haritaFragment"
+        android:label="fragment_harita"
+        tools:layout="@layout/fragment_harita" >
+        <action
+            android:id="@+id/action_haritaFragment_to_ilanDetaylariFragment"
+            app:destination="@id/ilanDetaylariFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ilanDetaylariFragment"
+        android:name="com.example.askidaayemek.ilanDetaylariFragment"
+        android:label="fragment_ilan_detaylari"
+        tools:layout="@layout/fragment_ilan_detaylari" />
+</navigation>
