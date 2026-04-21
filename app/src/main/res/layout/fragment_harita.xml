@@ -9,10 +9,9 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/haritalar"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="-88dp" />
+        android:layout_height="match_parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/kartGorunum"
@@ -27,22 +26,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:paddingHorizontal="16dp">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@android:drawable/ic_menu_search" />
 
             <TextView
                 android:id="@+id/aramaTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="310dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="Burada ara"
+                android:layout_marginStart="2dp"
+                android:text="Dükkan arayın"
                 android:textSize="20sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/konumFloatingActionsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/outline_add_location_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

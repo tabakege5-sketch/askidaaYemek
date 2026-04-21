@@ -107,6 +107,8 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sifremiUnuttumTextView">
 
         <View
@@ -126,7 +128,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="#9E9E9E"/>
+            android:background="#9E9E9E" />
     </LinearLayout>
 
     <TextView

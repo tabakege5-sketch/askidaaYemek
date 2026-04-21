@@ -3,26 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/naw_graph"
-    app:startDestination="@id/girisLoginFragment">
+    app:startDestination="@id/ilanDetaylariFragment">
 
     <fragment
         android:id="@+id/girisLoginFragment"
         android:name="com.example.askidaayemek.girisLoginFragment"
         android:label="fragment_giris_login"
-        tools:layout="@layout/fragment_giris_login" >
-        <action
-            android:id="@+id/action_girisLoginFragment_to_haritaFragment"
-            app:destination="@id/haritaFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_giris_login" />
     <fragment
         android:id="@+id/haritaFragment"
         android:name="com.example.askidaayemek.haritaFragment"
         android:label="fragment_harita"
-        tools:layout="@layout/fragment_harita" >
-        <action
-            android:id="@+id/action_haritaFragment_to_ilanDetaylariFragment"
-            app:destination="@id/ilanDetaylariFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_harita" />
     <fragment
         android:id="@+id/ilanDetaylariFragment"
         android:name="com.example.askidaayemek.ilanDetaylariFragment"
