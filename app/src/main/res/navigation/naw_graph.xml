@@ -2,22 +2,31 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/naw_graph"
-    app:startDestination="@id/ilanDetaylariFragment">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/girisLoginFragment">
 
     <fragment
         android:id="@+id/girisLoginFragment"
-        android:name="com.example.askidaayemek.girisLoginFragment"
+        android:name="com.example.askidaayemek.view.girisLoginFragment"
         android:label="fragment_giris_login"
-        tools:layout="@layout/fragment_giris_login" />
+        tools:layout="@layout/fragment_giris_login" >
+        <action
+            android:id="@+id/action_girisLoginFragment_to_detayFragment"
+            app:destination="@id/detayFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/haritaFragment"
-        android:name="com.example.askidaayemek.haritaFragment"
+        android:name="com.example.askidaayemek.view.haritaFragment"
         android:label="fragment_harita"
         tools:layout="@layout/fragment_harita" />
+
     <fragment
-        android:id="@+id/ilanDetaylariFragment"
-        android:name="com.example.askidaayemek.ilanDetaylariFragment"
-        android:label="fragment_ilan_detaylari"
-        tools:layout="@layout/fragment_ilan_detaylari" />
-</navigation>
+        android:id="@+id/detayFragment"
+        android:name="com.example.askidaayemek.view.detayFragment"
+        android:label="detayFragment"
+        tools:layout="@layout/fragment_detay" >
+        <action
+            android:id="@+id/action_detayFragment_to_haritaFragment"
+            app:destination="@id/haritaFragment" />
+    </fragment> </navigation>
