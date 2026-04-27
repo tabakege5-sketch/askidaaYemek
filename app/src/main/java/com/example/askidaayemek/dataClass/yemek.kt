@@ -1,6 +1,7 @@
 package com.example.askidaayemek.dataClass
 
-data class kategori(
-    val isim: String,
+data class yemek(
+    val yemekIsmi: String,
+    val kategoriAdi: String,
     val gorselUrl: String = ""
 )

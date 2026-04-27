@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/haritaFragment"
-        android:icon="@android:drawable/ic_menu_agenda"
-        android:title="Harita" />
-    <item
         android:id="@+id/detayFragment"
-        android:icon="@android:drawable/ic_menu_mylocation"
+        android:icon="@android:drawable/ic_menu_agenda"
         android:title="Detaylar" />
+    <item
+        android:id="@+id/haritaFragment"
+        android:icon="@drawable/maplibre_marker_icon_default"
+        android:title="Harita" />
+
+    <item
+        android:id="@+id/ilanEkleFragment2"
+        android:icon="@drawable/maplibre_info_bg_selector"
+        android:title="İlan Ekle" />
+
 </menu>

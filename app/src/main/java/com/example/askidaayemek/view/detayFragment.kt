@@ -8,14 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.askidaayemek.adapter.kategoriAdapter
+import com.example.askidaayemek.adapter.yemekAdapter
 import com.example.askidaayemek.dataClass.kategori
+import com.example.askidaayemek.dataClass.yemek
 import com.example.askidaayemek.databinding.FragmentDetayBinding
-
 class detayFragment : Fragment() {
     private var _binding: FragmentDetayBinding? = null
     private val binding get() = _binding!!
+    private lateinit var tumYemekler: ArrayList<yemek>
+    private lateinit var altListeAdapter: yemekAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,37 +29,64 @@ class detayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        verileriHazirla()
 
-        binding.kategoriler.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
+        // 2. Ana Yemek Listesi Setup
+        altListeAdapter = yemekAdapter(tumYemekler)
+        binding.listeRecyclerWiew.layoutManager = LinearLayoutManager(requireContext())
+        binding.listeRecyclerWiew.adapter = altListeAdapter
         val kategoriListesi = arrayListOf(
+            kategori("Tümü"),
             kategori("Ana yemekler"),
             kategori("Çorbalar"),
             kategori("Tatlılar"),
             kategori("Hamur İşleri"),
             kategori("Ekmekler"),
-            kategori("Sıcak -Soğuk İçecekler")
+            kategori("Sıcak-Soğuk İçecekler")
         )
-        val adapter = kategoriAdapter(kategoriListesi) { secilen ->
+
+        val katAdapter = kategoriAdapter(kategoriListesi) { secilenKategori ->
+            if (secilenKategori.isim == "Tümü") {
+                altListeAdapter.listeyiGuncelle(tumYemekler)
+            } else {
+                val filtrelenmis = tumYemekler.filter {
+                    it.kategoriAdi.equals(secilenKategori.isim, ignoreCase = true)
+                }
+                altListeAdapter.listeyiGuncelle(ArrayList(filtrelenmis))
+            }
         }
-        binding.kategoriler.adapter = adapter
+
+        binding.kategoriler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.kategoriler.adapter = katAdapter
         binding.aramaTextEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            //Önce değiştirildi
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val aranan = s.toString().uppercase()
-                val filtrelenmis = kategoriListesi.filter {
-                    it.isim.uppercase().contains(aranan)
+                val aranan = s.toString().lowercase()
+                val filtrelenmis = tumYemekler.filter {
+                    it.yemekIsmi.lowercase().contains(aranan)
                 }
-                adapter.listeyiGuncelle(filtrelenmis)
+                altListeAdapter.listeyiGuncelle(ArrayList(filtrelenmis))
             }
             override fun afterTextChanged(s: Editable?) {}
-            //Sonrasında Değiştirili
         })
+    }
 
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.kategoriler)
+    private fun verileriHazirla() {
+        tumYemekler = ArrayList()
+
+        val kategoriler = listOf(
+            "Ana yemekler",
+            "Çorbalar",
+            "Tatlılar",
+            "Hamur İşleri",
+            "Ekmekler",
+            "Sıcak-Soğuk İçecekler"
+        )
+        for (katIsmi in kategoriler) {
+            for (i in 1..20) {
+                tumYemekler.add(yemek("$katIsmi  $i", katIsmi))
+            }
+        }
     }
 
     override fun onDestroyView() {

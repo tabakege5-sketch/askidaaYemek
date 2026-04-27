@@ -37,24 +37,26 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-        signInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            val data: Intent? = result.data
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                if (account != null) {
-                    firebaseAuthWithGoogle(account.idToken!!)
+        signInLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                val data: Intent? = result.data
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                try {
+                    val account = task.getResult(ApiException::class.java)
+                    if (account != null) {
+                        googleIleGirisYap(account.idToken!!)
+                    }
+                } catch (e: ApiException) {
+                    Log.e("GirişHatası", "Google hata kodu ${e.statusCode}")
+                    Toast.makeText(context, "Giriş Başarısız", Toast.LENGTH_SHORT).show()
                 }
-            } catch (e: ApiException) {
-                Log.e("GirişHatası", "Google hata kodu ${e.statusCode}")
-                Toast.makeText(context, "Google Girişi Başarısız Reis İnternetine Bak${e.message}", Toast.LENGTH_SHORT).show()
             }
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentGirisLoginBinding.bind(view)
+
         binding.girisButton.setOnClickListener {
             val email = binding.eMailText.text.toString().trim()
             val sifre = binding.editTextSifre.text.toString().trim()
@@ -64,32 +66,34 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
                     .addOnCompleteListener(requireActivity()) { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(context, "Hoş Geldin", Toast.LENGTH_SHORT).show()
-                            findNavController().navigate(R.id.haritaFragment)
+                            findNavController().navigate(R.id.action_girisLoginFragment_to_detayFragment)
                         } else {
-                            Toast.makeText(context, "Hata: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                context,
+                                "Hata: ${task.exception?.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
             } else {
-                Toast.makeText(context, "Email ve şifre boş bırakma KRAL", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Email ve şifreyi boş bırakma KRAL", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
+
         binding.textView.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             signInLauncher.launch(signInIntent)
         }
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String) {
+    private fun googleIleGirisYap(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    findNavController().navigate(R.id.haritaFragment)
-                } else {
-                    Toast.makeText(context, "Giriş Başarısız İnternetini Kontrol Et?", Toast.LENGTH_SHORT).show()
-                }
+        auth.signInWithCredential(credential).addOnCompleteListener(requireActivity()) { task ->
+            if (task.isSuccessful) {
+                findNavController().navigate(R.id.action_girisLoginFragment_to_detayFragment)
             }
-
+        }
     }
 
     override fun onDestroyView() {

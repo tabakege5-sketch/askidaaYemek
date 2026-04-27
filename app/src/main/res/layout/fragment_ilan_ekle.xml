@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+    android:padding="20dp">
+    <TextView
+        android:id="@+id/baslikYeniİlan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yeni Yemek İlanı Ekle"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:id="@+id/linearLayoutGrup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/baslikYeniİlan">
+        <EditText
+            android:id="@+id/urunIsmiTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Yemek İlan Başlığı"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/kategoriTuruTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Kategori Türü Seçiniz"
+            android:textStyle="italic"
+            android:drawableEnd="@android:drawable/arrow_down_float" />
+    </LinearLayout>
+    <EditText
+        android:id="@+id/ilanDetayVeAdresBilgisi"
+        android:layout_width="match_parent"
+        android:layout_height="325dp"
+        android:layout_marginTop="40dp"
+        android:gravity="top"
+        android:hint="Yemek Detayı ve Adres Bilgileri"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutGrup" />
+
+    <Button
+        android:id="@+id/ilanKaydetButton"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#9E9E9E"
+        android:text="İlanı Paylaş"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_menu_send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ilanDetayVeAdresBilgisi" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

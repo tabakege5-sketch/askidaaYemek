@@ -1,5 +1,6 @@
 package com.example.askidaayemek.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ class kategoriAdapter(
     class KategoriViewHolder(val binding: KategoriRecyclerViewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
+    @SuppressLint("NotifyDataSetChanged")
     fun listeyiGuncelle(yeniListe: List<kategori>) {
         kategoriListesi = yeniListe
         notifyDataSetChanged()

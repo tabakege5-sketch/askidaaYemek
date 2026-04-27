@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/girisLoginFragment"
         android:name="com.example.askidaayemek.view.girisLoginFragment"
-        android:label="fragment_giris_login"
+        android:label="Giriş Yap"
         tools:layout="@layout/fragment_giris_login" >
         <action
             android:id="@+id/action_girisLoginFragment_to_detayFragment"
@@ -16,17 +16,36 @@
     </fragment>
 
     <fragment
-        android:id="@+id/haritaFragment"
-        android:name="com.example.askidaayemek.view.haritaFragment"
-        android:label="fragment_harita"
-        tools:layout="@layout/fragment_harita" />
-
-    <fragment
         android:id="@+id/detayFragment"
         android:name="com.example.askidaayemek.view.detayFragment"
-        android:label="detayFragment"
+        android:label="Detaylar"
         tools:layout="@layout/fragment_detay" >
         <action
             android:id="@+id/action_detayFragment_to_haritaFragment"
             app:destination="@id/haritaFragment" />
-    </fragment> </navigation>
+    </fragment>
+
+    <fragment
+        android:id="@+id/haritaFragment"
+        android:name="com.example.askidaayemek.view.haritaFragment"
+        android:label="Harita"
+        tools:layout="@layout/fragment_harita" >
+        <action
+            android:id="@+id/action_haritaFragment_to_ilanEkleFragment2"
+            app:destination="@id/ilanEkleFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ilanEkleFragment2"
+        android:name="com.example.askidaayemek.view.ilanEkleFragment"
+        android:label="İlan Ekle"
+        tools:layout="@layout/fragment_ilan_ekle">
+        <action
+            android:id="@+id/action_ilanEkleFragment2_to_detayFragment"
+            app:destination="@id/detayFragment" />
+        <action
+            android:id="@+id/action_ilanEkleFragment2_to_haritaFragment"
+            app:destination="@id/haritaFragment" />
+    </fragment>
+
+</navigation>

@@ -64,6 +64,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-ads:23.0.0")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.androidx.fragment)
     kapt("com.github.bumptech.glide:compiler:4.16.0")
     implementation("io.coil-kt:coil:2.6.0")
 
