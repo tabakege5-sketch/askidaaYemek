@@ -30,8 +30,6 @@ class detayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         verileriHazirla()
-
-        // 2. Ana Yemek Listesi Setup
         altListeAdapter = yemekAdapter(tumYemekler)
         binding.listeRecyclerWiew.layoutManager = LinearLayoutManager(requireContext())
         binding.listeRecyclerWiew.adapter = altListeAdapter
