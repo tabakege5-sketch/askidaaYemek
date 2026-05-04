@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/girisLoginFragment">
+    app:startDestination="@id/tarihVeZamanFragment">
 
     <fragment
         android:id="@+id/girisLoginFragment"
@@ -13,18 +14,13 @@
         <action
             android:id="@+id/action_girisLoginFragment_to_detayFragment"
             app:destination="@id/detayFragment" />
+        <action
+            android:id="@+id/action_girisLoginFragment_to_urunAnaSayfa"
+            app:destination="@id/urunAnaSayfa" />
     </fragment>
-
-    <fragment
-        android:id="@+id/detayFragment"
-        android:name="com.example.askidaayemek.view.detayFragment"
-        android:label="Detaylar"
-        tools:layout="@layout/fragment_detay" >
         <action
             android:id="@+id/action_detayFragment_to_haritaFragment"
             app:destination="@id/haritaFragment" />
-    </fragment>
-
     <fragment
         android:id="@+id/haritaFragment"
         android:name="com.example.askidaayemek.view.haritaFragment"
@@ -66,5 +62,25 @@
         android:name="com.example.askidaayemek.view.urunPaylasanFragment"
         android:label="fragment_urun_paylasan"
         tools:layout="@layout/fragment_urun_paylasan" />
+    <fragment
+        android:id="@+id/urunAnaSayfa"
+        android:name="com.example.askidaayemek.view.urunAnaSayfa"
+        android:label="fragment_urun_ana_sayfa"
+        tools:layout="@layout/fragment_urun_ana_sayfa" />
+    <fragment
+        android:id="@+id/urunDetayfragment"
+        android:name="com.example.askidaayemek.view.urunDetayfragment"
+        android:label="fragment_urun_detayfragment"
+        tools:layout="@layout/fragment_urun_detayfragment" />
+    <fragment
+        android:id="@+id/tarihVeZamanFragment"
+        android:name="com.example.askidaayemek.view.tarihVeZamanFragment"
+        android:label="fragment_tarih_ve_zaman"
+        tools:layout="@layout/fragment_tarih_ve_zaman" />
+    <fragment
+        android:id="@+id/taleplerFragment"
+        android:name="com.example.askidaayemek.view.taleplerFragment"
+        android:label="fragment_talepler"
+        tools:layout="@layout/fragment_talepler" />
 
 </navigation>
