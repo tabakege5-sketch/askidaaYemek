@@ -31,8 +31,8 @@ class detayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         verileriHazirla()
         altListeAdapter = yemekAdapter(tumYemekler)
-        binding.listeRecyclerWiew.layoutManager = LinearLayoutManager(requireContext())
-        binding.listeRecyclerWiew.adapter = altListeAdapter
+        binding.kategoriRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.kategoriRecyclerView.adapter = altListeAdapter
         val kategoriListesi = arrayListOf(
             kategori("Tümü"),
             kategori("Ana yemekler"),
@@ -54,9 +54,9 @@ class detayFragment : Fragment() {
             }
         }
 
-        binding.kategoriler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.kategoriler.adapter = katAdapter
-        binding.aramaTextEditText.addTextChangedListener(object : TextWatcher {
+        binding.kategoriRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.kategoriRecyclerView.adapter = katAdapter
+        binding.kategoriAraEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val aranan = s.toString().lowercase()
@@ -86,7 +86,6 @@ class detayFragment : Fragment() {
             }
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -17,8 +17,8 @@ class yemekAdapter(private var yemekListesi: ArrayList<yemek>) :
 
     override fun onBindViewHolder(holder: YemekViewHolder, position: Int) {
         val yemek = yemekListesi[position]
-        holder.binding.yemekAdiTextView.text = yemek.yemekIsmi
-        holder.binding.kategoriTextView.text = yemek.kategoriAdi
+        holder.binding.kategoriAdiTextView.text = yemek.yemekIsmi
+        holder.binding.kategoriAdiTextView.text = yemek.kategoriAdi
     }
 
     override fun getItemCount(): Int = yemekListesi.size

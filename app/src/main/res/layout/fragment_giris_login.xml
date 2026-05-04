@@ -63,8 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="#212121"
-            android:hint="Email Adresinizi Giriniz"
+            android:hint="e-mail Giriniz"
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:textColorHint="#9E9E9E" />
@@ -74,40 +73,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#212121"
-            android:hint="Şifrenizi Giriniz"
+            android:hint="Parolanızı Giriniz"
             android:inputType="textPassword"
             android:padding="16dp"
             android:textColorHint="#9E9E9E" />
 
-        <Button
-            android:id="@+id/girisButton"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="#9E9E9E"
-            android:text="GİRİŞ YAP"
-            android:textColor="@color/white" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/sifremiUnuttumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:clickable="true"
         android:focusable="true"
         android:text="Şifremi Unuttum"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/loginGiris"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginGiris" />
 
     <LinearLayout
         android:id="@+id/veyaLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="184dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sifremiUnuttumTextView">
 
@@ -142,6 +135,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/veyaLayout"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.635" />
 
+    <Button
+        android:id="@+id/girisButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="56dp"
+        android:backgroundTint="#9E9E9E"
+        android:text="GİRİŞ YAP"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/kayitOlButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginGiris" />
+
+    <Button
+        android:id="@+id/kayitOlButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="140dp"
+        android:backgroundTint="#9E9E9E"
+        android:text="KAYIT OL"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginGiris">
+
+    </Button>
 </androidx.constraintlayout.widget.ConstraintLayout>

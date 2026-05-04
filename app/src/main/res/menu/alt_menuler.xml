@@ -3,7 +3,7 @@
     <item
         android:id="@+id/detayFragment"
         android:icon="@android:drawable/ic_menu_agenda"
-        android:title="Detaylar" />
+        android:title="Ana Sayfa" />
     <item
         android:id="@+id/haritaFragment"
         android:icon="@drawable/maplibre_marker_icon_default"

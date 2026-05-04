@@ -47,5 +47,24 @@
             android:id="@+id/action_ilanEkleFragment2_to_haritaFragment"
             app:destination="@id/haritaFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/parolaFragment"
+        android:name="com.example.askidaayemek.view.parolaFragment"
+        android:label="fragment_parola"
+        tools:layout="@layout/fragment_parola" />
+    <fragment
+        android:id="@+id/urunEkleFragment"
+        android:name="com.example.askidaayemek.view.urunEkleFragment"
+        android:label="fragment_urun_ekle"
+        tools:layout="@layout/fragment_urun_ekle" />
+    <fragment
+        android:id="@+id/kayitOlFragment"
+        android:name="com.example.askidaayemek.view.kayitOlFragment"
+        android:label="kayitOlFragment" />
+    <fragment
+        android:id="@+id/urunPaylasanFragment"
+        android:name="com.example.askidaayemek.view.urunPaylasanFragment"
+        android:label="fragment_urun_paylasan"
+        tools:layout="@layout/fragment_urun_paylasan" />
 
 </navigation>

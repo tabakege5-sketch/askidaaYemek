@@ -32,7 +32,7 @@ class kategoriAdapter(
 
     override fun onBindViewHolder(holder: KategoriViewHolder, position: Int) {
         val item = kategoriListesi[position]
-        holder.binding.kategoriAdiTextView.text = item.isim.uppercase()
+        holder.binding.stokMiktariTextView.text = item.isim.uppercase()
         holder.itemView.setOnClickListener {
             onItemClick(item)
         }
