@@ -4,83 +4,84 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/tarihVeZamanFragment">
+    app:startDestination="@id/yoneticiQrKodFragment">
 
     <fragment
         android:id="@+id/girisLoginFragment"
         android:name="com.example.askidaayemek.view.girisLoginFragment"
         android:label="Giriş Yap"
-        tools:layout="@layout/fragment_giris_login" >
-        <action
-            android:id="@+id/action_girisLoginFragment_to_detayFragment"
-            app:destination="@id/detayFragment" />
-        <action
-            android:id="@+id/action_girisLoginFragment_to_urunAnaSayfa"
-            app:destination="@id/urunAnaSayfa" />
-    </fragment>
-        <action
-            android:id="@+id/action_detayFragment_to_haritaFragment"
-            app:destination="@id/haritaFragment" />
+        tools:layout="@layout/fragment_giris_login" />
+
     <fragment
         android:id="@+id/haritaFragment"
         android:name="com.example.askidaayemek.view.haritaFragment"
         android:label="Harita"
-        tools:layout="@layout/fragment_harita" >
-        <action
-            android:id="@+id/action_haritaFragment_to_ilanEkleFragment2"
-            app:destination="@id/ilanEkleFragment2" />
-    </fragment>
+        tools:layout="@layout/fragment_harita" />
 
-    <fragment
-        android:id="@+id/ilanEkleFragment2"
-        android:name="com.example.askidaayemek.view.ilanEkleFragment"
-        android:label="İlan Ekle"
-        tools:layout="@layout/fragment_ilan_ekle">
-        <action
-            android:id="@+id/action_ilanEkleFragment2_to_detayFragment"
-            app:destination="@id/detayFragment" />
-        <action
-            android:id="@+id/action_ilanEkleFragment2_to_haritaFragment"
-            app:destination="@id/haritaFragment" />
-    </fragment>
     <fragment
         android:id="@+id/parolaFragment"
         android:name="com.example.askidaayemek.view.parolaFragment"
         android:label="fragment_parola"
         tools:layout="@layout/fragment_parola" />
+
     <fragment
         android:id="@+id/urunEkleFragment"
         android:name="com.example.askidaayemek.view.urunEkleFragment"
         android:label="fragment_urun_ekle"
         tools:layout="@layout/fragment_urun_ekle" />
+
     <fragment
         android:id="@+id/kayitOlFragment"
         android:name="com.example.askidaayemek.view.kayitOlFragment"
-        android:label="kayitOlFragment" />
+        android:label="Kayıt Ol"
+        tools:layout="@layout/fragment_kayit_ol" />
+
     <fragment
         android:id="@+id/urunPaylasanFragment"
         android:name="com.example.askidaayemek.view.urunPaylasanFragment"
         android:label="fragment_urun_paylasan"
         tools:layout="@layout/fragment_urun_paylasan" />
+
     <fragment
         android:id="@+id/urunAnaSayfa"
         android:name="com.example.askidaayemek.view.urunAnaSayfa"
         android:label="fragment_urun_ana_sayfa"
         tools:layout="@layout/fragment_urun_ana_sayfa" />
+
     <fragment
         android:id="@+id/urunDetayfragment"
         android:name="com.example.askidaayemek.view.urunDetayfragment"
         android:label="fragment_urun_detayfragment"
         tools:layout="@layout/fragment_urun_detayfragment" />
+
     <fragment
         android:id="@+id/tarihVeZamanFragment"
         android:name="com.example.askidaayemek.view.tarihVeZamanFragment"
         android:label="fragment_tarih_ve_zaman"
         tools:layout="@layout/fragment_tarih_ve_zaman" />
+
     <fragment
         android:id="@+id/taleplerFragment"
         android:name="com.example.askidaayemek.view.taleplerFragment"
         android:label="fragment_talepler"
         tools:layout="@layout/fragment_talepler" />
+
+    <fragment
+        android:id="@+id/yoneticiQrKodFragment"
+        android:name="com.example.askidaayemek.view.yoneticiQrKodFragment"
+        android:label="fragment_yonetici_qr_kod"
+        tools:layout="@layout/fragment_yonetici_qr_kod" />
+
+    <fragment
+        android:id="@+id/musteriQrKodFragment"
+        android:name="com.example.askidaayemek.view.musteriQrKodFragment"
+        tools:layout="@layout/fragment_musteri_qr_kod"
+        android:label="musteriQrKodFragment" />
+
+    <fragment
+        android:id="@+id/yonetenListeFragment"
+        android:name="com.example.askidaayemek.view.yonetenListeFragment"
+        android:label="fragment_yoneten_liste"
+        tools:layout="@layout/fragment_yoneten_liste" />
 
 </navigation>

@@ -10,8 +10,8 @@
         android:title="Harita" />
 
     <item
-        android:id="@+id/ilanEkleFragment2"
+        android:id="@+id/urunEkleFragment"
         android:icon="@drawable/maplibre_info_bg_selector"
-        android:title="İlan Ekle" />
+        android:title="Ürün Ekle" />
 
 </menu>

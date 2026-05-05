@@ -66,7 +66,6 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
                     .addOnCompleteListener(requireActivity()) { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(context, "Hoş Geldin", Toast.LENGTH_SHORT).show()
-                            findNavController().navigate(R.id.action_girisLoginFragment_to_detayFragment)
                         } else {
                             Toast.makeText(
                                 context,
@@ -91,7 +90,6 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener(requireActivity()) { task ->
             if (task.isSuccessful) {
-                findNavController().navigate(R.id.action_girisLoginFragment_to_detayFragment)
             }
         }
     }
