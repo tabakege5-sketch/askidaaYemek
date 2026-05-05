@@ -10,7 +10,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.askidaayemek.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +28,10 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.girisLoginFragment -> {
+                R.id.girisLoginFragment,
+                R.id.kayitOlFragment,
+                R.id.yoneticiKayitOl,
+                R.id.parolaFragment -> {
                     bottomNav.visibility = View.GONE
                 }
                 else -> {

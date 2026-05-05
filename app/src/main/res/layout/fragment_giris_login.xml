@@ -1,167 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    tools:context=".view.MainActivity">
+    android:fillViewport="true"
+    android:background="@color/white">
 
-    <LinearLayout
-        android:id="@+id/girisLinearLayout"
-        android:layout_width="200dp"
-        android:layout_height="180dp"
-        android:focusable="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            app:cardBackgroundColor="@android:color/transparent"
-            app:cardCornerRadius="60dp"
-            app:cardElevation="0dp">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerInside"
-                android:src="@color/black" />
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/hosgeldinTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Hoş Geldiniz"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/girisLinearLayout" />
-
-    <LinearLayout
-        android:id="@+id/loginGiris"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hosgeldinTextView">
-
-        <EditText
-            android:id="@+id/eMailText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="e-mail Giriniz"
-            android:inputType="textEmailAddress"
-            android:padding="16dp"
-            android:textColorHint="#9E9E9E" />
-
-        <EditText
-            android:id="@+id/editTextSifre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#212121"
-            android:hint="Parolanızı Giriniz"
-            android:inputType="textPassword"
-            android:padding="16dp"
-            android:textColorHint="#9E9E9E" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/sifremiUnuttumTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="Şifremi Unuttum"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginGiris" />
-
-    <LinearLayout
-        android:id="@+id/veyaLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sifremiUnuttumTextView">
+        android:padding="24dp"
+        tools:context=".view.MainActivity">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#9E9E9E" />
+        <LinearLayout
+            android:id="@+id/girisLinearLayout"
+            android:layout_width="200dp"
+            android:layout_height="180dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="60dp"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:src="@color/design_default_color_primary" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/veyaTextView"
+            android:id="@+id/hosgeldinTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:text="Veya" />
+            android:layout_marginTop="16dp"
+            android:text="Hoş Geldiniz"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/girisLinearLayout" />
 
-        <View
+        <LinearLayout
+            android:id="@+id/loginGiris"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#9E9E9E" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hosgeldinTextView">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Google ile Giriş Yap"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/veyaLayout"
-        app:layout_constraintVertical_bias="0.635" />
+            <EditText
+                android:id="@+id/eMailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="e-mail Giriniz"
+                android:inputType="textEmailAddress"
+                android:padding="16dp" />
 
-    <Button
-        android:id="@+id/girisButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="56dp"
-        android:backgroundTint="#9E9E9E"
-        android:text="GİRİŞ YAP"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/kayitOlButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginGiris" />
+            <EditText
+                android:id="@+id/editTextSifre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Parolanızı Giriniz"
+                android:inputType="textPassword"
+                android:padding="16dp" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/kayitOlButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="140dp"
-        android:backgroundTint="#9E9E9E"
-        android:text="KAYIT OL"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginGiris">
+        <TextView
+            android:id="@+id/sifremiUnuttumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Parolamı Unuttum"
+            android:textSize="19sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginGiris" />
 
-    </Button>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/girisButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#9E9E9E"
+            android:text="GİRİŞ YAP"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/sifremiUnuttumTextView" />
+
+        <Button
+            android:id="@+id/kayitOlButton"
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#9E9E9E"
+            android:text="KAYIT OL"
+            app:layout_constraintTop_toBottomOf="@+id/girisButton" />
+
+        <LinearLayout
+            android:id="@+id/veyaLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/kayitOlButton">
+
+            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#9E9E9E" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:text="Veya" />
+            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#9E9E9E" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/googleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Google ile Giriş Yap"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/veyaLayout" />
+
+        <Button
+            android:id="@+id/yoneticiOlButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            android:textColor="@color/white"
+            android:backgroundTint="#9E9E9E"
+            android:text="YÖNETİCİ GİRİŞİ"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/googleTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

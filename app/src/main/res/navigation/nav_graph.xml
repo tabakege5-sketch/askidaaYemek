@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/girisLoginFragment">
+
+    <fragment
+        android:id="@+id/girisLoginFragment"
+        android:name="com.example.askidaayemek.view.girisLoginFragment"
+        android:label="Giriş Yap"
+        tools:layout="@layout/fragment_giris_login">
+        <action
+            android:id="@+id/action_girisLoginFragment_to_kayitOlFragment"
+            app:destination="@id/kayitOlFragment" />
+        <action
+            android:id="@+id/action_girisLoginFragment_to_urunAnaSayfa"
+            app:destination="@id/urunAnaSayfa" />
+        <action
+            android:id="@+id/action_girisLoginFragment_to_parolaFragment"
+            app:destination="@id/parolaFragment" />
+        <action
+            android:id="@+id/action_girisLoginFragment_to_yonetenListeFragment"
+            app:destination="@id/yonetenListeFragment" />
+        <action
+            android:id="@+id/action_girisLoginFragment_to_yoneticiKayitOl"
+            app:destination="@id/yoneticiKayitOl" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/kayitOlFragment"
+        android:name="com.example.askidaayemek.view.kayitOlFragment"
+        android:label="Kayıt Ol"
+        tools:layout="@layout/fragment_kayit_ol">
+        <action
+            android:id="@+id/action_kayitOlFragment_to_urunAnaSayfa"
+            app:destination="@id/urunAnaSayfa" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/urunAnaSayfa"
+        android:name="com.example.askidaayemek.view.urunAnaSayfa"
+        android:label="Ana Sayfa"
+        tools:layout="@layout/fragment_urun_ana_sayfa">
+        <action
+            android:id="@+id/action_urunAnaSayfa_to_haritaFragment"
+            app:destination="@id/haritaFragment" />
+        <action
+            android:id="@+id/action_urunAnaSayfa_to_urunDetayfragment"
+            app:destination="@id/urunDetayfragment" />
+        <action
+            android:id="@+id/action_urunAnaSayfa_to_urunEkleFragment"
+            app:destination="@id/urunEkleFragment" />
+        <action
+            android:id="@+id/action_urunAnaSayfa_to_musteriQrKodFragment"
+            app:destination="@id/musteriQrKodFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/urunDetayfragment"
+        android:name="com.example.askidaayemek.view.urunDetayfragment"
+        android:label="Ürün Detayı"
+        tools:layout="@layout/fragment_urun_detayfragment">
+        <action
+            android:id="@+id/action_urunDetayfragment_to_tarihVeZamanFragment"
+            app:destination="@id/tarihVeZamanFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/urunEkleFragment"
+        android:name="com.example.askidaayemek.view.urunEkleFragment"
+        android:label="Ürün Ekle"
+        tools:layout="@layout/fragment_urun_ekle">
+        <action
+            android:id="@+id/action_urunEkleFragment_to_urunPaylasanFragment"
+            app:destination="@id/urunPaylasanFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/yonetenListeFragment"
+        android:name="com.example.askidaayemek.view.yonetenListeFragment"
+        android:label="Yönetici Paneli"
+        tools:layout="@layout/fragment_yoneten_liste">
+        <action
+            android:id="@+id/action_yonetenListeFragment_to_taleplerFragment"
+            app:destination="@id/taleplerFragment" />
+        <action
+            android:id="@+id/action_yonetenListeFragment_to_yoneticiQrKodFragment"
+            app:destination="@id/yoneticiQrKodFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/haritaFragment"
+        android:name="com.example.askidaayemek.view.haritaFragment"
+        android:label="Harita"
+        tools:layout="@layout/fragment_harita" />
+
+    <fragment
+        android:id="@+id/parolaFragment"
+        android:name="com.example.askidaayemek.view.parolaFragment"
+        android:label="Şifremi Unuttum"
+        tools:layout="@layout/fragment_parola" />
+
+    <fragment
+        android:id="@+id/urunPaylasanFragment"
+        android:name="com.example.askidaayemek.view.urunPaylasanFragment"
+        android:label="Ürünlerim"
+        tools:layout="@layout/fragment_urun_paylasan" />
+
+    <fragment
+        android:id="@+id/tarihVeZamanFragment"
+        android:name="com.example.askidaayemek.view.tarihVeZamanFragment"
+        android:label="Tarih ve Zaman"
+        tools:layout="@layout/fragment_tarih_ve_zaman" />
+
+    <fragment
+        android:id="@+id/taleplerFragment"
+        android:name="com.example.askidaayemek.view.taleplerFragment"
+        android:label="Talepler"
+        tools:layout="@layout/fragment_talepler" />
+
+    <fragment
+        android:id="@+id/yoneticiQrKodFragment"
+        android:name="com.example.askidaayemek.view.yoneticiQrKodFragment"
+        android:label="Yönetici QR"
+        tools:layout="@layout/fragment_yonetici_qr_kod" />
+
+    <fragment
+        android:id="@+id/musteriQrKodFragment"
+        android:name="com.example.askidaayemek.view.musteriQrKodFragment"
+        android:label="Müşteri QR"
+        tools:layout="@layout/fragment_musteri_qr_kod" />
+    <fragment
+        android:id="@+id/yoneticiKayitOl"
+        tools:layout="@layout/fragment_yonetici_kayit_ol"
+        android:name="com.example.askidaayemek.view.yoneticiKayitOl"
+        android:label="yoneticiKayitOl" />
+
+</navigation>
