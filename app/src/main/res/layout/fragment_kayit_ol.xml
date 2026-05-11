@@ -109,38 +109,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profilTipiTextView" />
-
-    <LinearLayout
-        android:id="@+id/guvenlikKoduLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextViewProfilTipi">
-
-        <EditText
-            android:id="@+id/guvenlikEfitText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Güvenlik Kodunu Giriniz"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/cevapEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Cevap:"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
     <LinearLayout
         android:id="@+id/googleInfoSection"
         android:layout_width="match_parent"
@@ -181,6 +149,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/secenekButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/editTextViewProfilTipi"
+        app:layout_constraintTop_toTopOf="@+id/editTextViewProfilTipi"
+        app:srcCompat="@android:drawable/arrow_down_float" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

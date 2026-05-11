@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_onayla"
+        android:title="Onayla"
+        android:icon="@android:drawable/checkbox_on_background" />
+
+    <item
+        android:id="@+id/menu_sil"
+        android:title="Sil"
+        android:icon="@android:drawable/ic_menu_delete" />
+
+</menu>

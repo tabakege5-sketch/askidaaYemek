@@ -1,0 +1,26 @@
+package com.example.askidaayemek.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.askidaayemek.databinding.ItemResimKaydirmaBinding
+
+class gorselKaydiriciAdapter(private val resimListesi: List<String>) : RecyclerView.Adapter<gorselKaydiriciAdapter.SliderViewHolder>() {
+
+    class SliderViewHolder(val binding: ItemResimKaydirmaBinding) : RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderViewHolder {
+        val binding = ItemResimKaydirmaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return SliderViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: SliderViewHolder, position: Int) {
+        Glide.with(holder.itemView.context)
+            .load(resimListesi[position])
+            .placeholder(android.R.drawable.ic_menu_gallery)
+            .into(holder.binding.yanaKaydRmaImageView)
+    }
+
+    override fun getItemCount(): Int = resimListesi.size
+}

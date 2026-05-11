@@ -22,26 +22,23 @@ class parolaFragment : Fragment(R.layout.fragment_parola) {
         _binding = FragmentParolaBinding.bind(view)
 
         auth = Firebase.auth
-
         binding.gonderButton.setOnClickListener {
             val email = binding.editTextText.text.toString().trim()
 
             if (email.isNotEmpty()) {
-                auth.sendPasswordResetEmail(email)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Toast.makeText(context, "Sıfırlama linki gönderildi kral!", Toast.LENGTH_LONG).show()
-                            findNavController().popBackStack()
-                        } else {
-                            Toast.makeText(context, "Hata: ${task.exception?.localizedMessage}", Toast.LENGTH_LONG).show()
-                        }
-                    }
+                auth.sendPasswordResetEmail(email).addOnSuccessListener {
+                    Toast.makeText(context, "Mailini kontrol et ", Toast.LENGTH_LONG).show()
+                    findNavController().navigateUp()
+                }.addOnFailureListener { e ->
+                    Toast.makeText(context, "Hata: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+                }
             } else {
-                Toast.makeText(context, "E-posta girmen lazım!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Lütfen e-mail adresinizi gir", Toast.LENGTH_SHORT).show()
             }
         }
+
         binding.textView4.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
     }
 

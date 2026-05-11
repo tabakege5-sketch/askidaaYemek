@@ -1,27 +1,28 @@
 package com.example.askidaayemek.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.askidaayemek.R
+import com.example.askidaayemek.databinding.FragmentMusteriQrKodBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
+class musteriQrKodFragment : Fragment(R.layout.fragment_musteri_qr_kod) {
 
-class musteriQrKodFragment : Fragment() {
+    private var _binding: FragmentMusteriQrKodBinding? = null
+    private val binding get() = _binding!!
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentMusteriQrKodBinding.bind(view)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
+        val currentUserUid = Firebase.auth.currentUser?.uid
+        binding.askDanQrAlmaTextView.text = "Benim Kodum: $currentUserUid"
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_musteri_qr_kod, container, false)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp">
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/urununImageView"
@@ -28,21 +28,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Ürün Adı"
-            android:textSize="20sp"
+            android:layout_marginEnd="8dp"
+            android:text="Ürün İsmi:"
+            android:textColor="#000000"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/iptalButton"
+            app:layout_constraintEnd_toStartOf="@+id/iptalImageButton"
             app:layout_constraintStart_toEndOf="@id/urununImageView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/urununImageView" />
 
         <TextView
-            android:id="@+id/itemTarih"
+            android:id="@+id/textViewTarih"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Teslimat Tarihi"
+            android:text="Tarih:"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/urununAdiTextView"
             app:layout_constraintStart_toStartOf="@id/urununAdiTextView"
             app:layout_constraintTop_toBottomOf="@id/urununAdiTextView" />
 
@@ -51,30 +53,30 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Saati: 14:30"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/itemTarih"
-            app:layout_constraintTop_toBottomOf="@id/itemTarih" />
+            android:text="Saat:"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/textViewTarih"
+            app:layout_constraintStart_toStartOf="@id/textViewTarih"
+            app:layout_constraintTop_toBottomOf="@id/textViewTarih" />
 
         <TextView
             android:id="@+id/durumuGosterTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Askıdan Alındı"
+            android:text="Durum: Askıdan Alındı"
             android:textSize="14sp"
-            android:textStyle="italic"
+            android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/saatTextView"
             app:layout_constraintTop_toBottomOf="@id/saatTextView" />
 
-        <Button
-            android:id="@+id/iptalButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="İptal Et"
-            android:textSize="12sp"
+        <ImageButton
+            android:id="@+id/iptalImageButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/arrow_down_float"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
