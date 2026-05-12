@@ -21,15 +21,19 @@ class talepAdapter(private val talepListesi: ArrayList<urun>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: talepHolder, position: Int) {
         val talepItem = talepListesi[position]
+
         holder.binding.urununAdiTextView.text = "Ürün İsmi: ${talepItem.urunAdi ?: "Belirtilmedi"}"
+        holder.binding.miktarTextView.text = "Miktar: ${talepItem.miktar ?: "Belirtilmedi"}" // Yeni eklendi
         holder.binding.textViewTarih.text = "Tarih: ${talepItem.tarih ?: "Belirtilmedi"}"
         holder.binding.saatTextView.text = "Saat: ${talepItem.saat ?: "Belirtilmedi"}"
-        holder.binding.durumuGosterTextView.text = "Durum: Askıdan Alındı"
+        holder.binding.durumuGosterTextView.text = "Durum: ${talepItem.durum ?: "Askıdan Alındı"}"
+
         Glide.with(holder.itemView.context)
             .load(talepItem.gorselUrl)
             .placeholder(android.R.drawable.ic_menu_gallery)
             .error(android.R.drawable.ic_menu_report_image)
             .into(holder.binding.urununImageView)
+
         holder.binding.iptalImageButton.setOnClickListener { view ->
             val popup = PopupMenu(holder.itemView.context, view)
             popup.menuInflater.inflate(R.menu.onay_iptal_menuler, popup.menu)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,7 +22,7 @@
         android:id="@+id/urunlerEditText"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Ürünler"
         android:inputType="text"
@@ -57,13 +58,14 @@
         android:id="@+id/mevcutKonumTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:padding="8dp"
+        android:padding="10dp"
         android:text="Mevcut Konum"
+        android:layout_marginTop="16dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/ekNotEditText"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/ekNotEditText"
-        app:layout_constraintTop_toBottomOf="@+id/ekNotEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/miktarEditText" />
 
     <Button
         android:id="@+id/vazgecButton"
@@ -88,5 +90,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/vazgecButton" />
+
+    <ImageButton
+        android:id="@+id/secImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/arrow_down_float"
+        app:layout_constraintEnd_toEndOf="@+id/urunlerEditText"
+        app:layout_constraintTop_toTopOf="@+id/urunlerEditText" />
+
+    <EditText
+        android:id="@+id/miktarEditText"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Miktar Giriniz:"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ekNotEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.services)
     alias(libs.plugins.androidx.navigation.safeargs)
     id("kotlin-kapt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -69,4 +70,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-}
+
+    implementation("com.google.zxing:core:3.5.3")
+
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")}

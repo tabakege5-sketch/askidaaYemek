@@ -8,9 +8,9 @@
         android:id="@+id/urunAraLinearLayouts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
-        android:padding="12dp"
-        android:layout_marginBottom="16dp">
+        android:padding="12dp">
 
         <EditText
             android:id="@+id/urunAraEditText"
@@ -20,8 +20,8 @@
             android:hint="Ürün Ara..." />
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@android:drawable/ic_menu_search" />
     </LinearLayout>
 
@@ -30,8 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/urunAraLinearLayouts"
-        android:scrollbars="none"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -39,53 +39,57 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/tumuButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tümü"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:text="Tümü" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/yemeklerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yemekler"
-                android:layout_marginEnd="8dp"/>
-
+                android:layout_marginEnd="8dp"
+                android:text="Yemekler" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/kiyafetlerButton"
                 android:layout_width="wrap_content"
-                android:text="Beyaz Eşyaları"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_height="wrap_content" />
+                android:text="Kıyafetler" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/beyazEsyaButton"
                 android:layout_width="wrap_content"
-                android:text="Bebek Eşyaları"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_height="wrap_content" />
+                android:text="Beyaz Eşyaları" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bebekEsyalarıButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Bebek Eşyaları" />
         </LinearLayout>
     </HorizontalScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/siraliRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/yanaKaydırmalıKategoriView"
-        android:layout_above="@id/FabLinearLayouts" />
+        android:layout_above="@id/FabLinearLayouts"
+        android:layout_below="@id/yanaKaydırmalıKategoriView" />
+
     <LinearLayout
         android:id="@+id/FabLinearLayouts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/askıdaQrAlmaFloatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="64dp"
-            android:layout_marginBottom="12dp"
-            android:src="@android:drawable/ic_menu_camera"
-            android:contentDescription="QR Kod Okut" />
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/urunDetayaGitFloatingActionButton"

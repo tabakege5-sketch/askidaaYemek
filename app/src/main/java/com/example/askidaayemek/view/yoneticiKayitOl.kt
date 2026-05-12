@@ -19,7 +19,7 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private val OZEL_YETKI_KODU = "egeninYeri1806"
+    private val OZEL_YETKI_KODU = "061858"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
