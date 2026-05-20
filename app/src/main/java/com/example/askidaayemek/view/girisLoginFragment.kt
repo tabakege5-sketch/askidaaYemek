@@ -1,5 +1,6 @@
 package com.example.askidaayemek.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -31,16 +32,15 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentGirisLoginBinding.bind(view)
-
         auth = Firebase.auth
         db = Firebase.firestore
 
-        alanlariTemizle()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
+
         binding.girisButton.setOnClickListener {
             val email = binding.eMailText.text.toString().trim()
             val sifre = binding.editTextSifre.text.toString().trim()
@@ -49,77 +49,116 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
                 binding.girisButton.isEnabled = false
                 auth.signInWithEmailAndPassword(email, sifre).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        alanlariTemizle()
-                        auth.currentUser?.uid?.let { kullaniciTipiniKontrolEtVeYonlendir(it) }
+                        val uid = auth.currentUser?.uid
+                        if (uid != null) {
+                            kullaniciTipiniKontrolEtVeYonlendir(uid)
+                        }
                     } else {
                         binding.girisButton.isEnabled = true
-                        Toast.makeText(context, "Hata VAR: ${task.exception?.localizedMessage}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            context,
+                            "Giriş Başarısız e-Mail veya Şifre Hatalı",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             } else {
-                Toast.makeText(context, "E-posta ve parola giriniz", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Lütfen bosluğu doldur", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.kayitOlButton.setOnClickListener {
+            findNavController().navigate(girisLoginFragmentDirections.actionGirisLoginFragmentToKayitOlFragment())
+        }
+
         binding.yoneticiOlButton.setOnClickListener {
             findNavController().navigate(girisLoginFragmentDirections.actionGirisLoginFragmentToYoneticiKayitOl())
         }
-        binding.sifremiUnuttumTextView.setOnClickListener {
-            findNavController().navigate(girisLoginFragmentDirections.actionGirisLoginFragmentToParolaFragment())
-        }
+
         binding.googleTextView.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, 100)
         }
-        binding.kayitOlButton.setOnClickListener {
-            findNavController().navigate(girisLoginFragmentDirections.actionGirisLoginFragmentToKayitOlFragment())
-        }
     }
+
+    private fun kullaniciTipiniKontrolEtVeYonlendir(uid: String) {
+        Log.d("LOGIN_DEBUG", "Giriş yapan UID: $uid")
+        val sharedPref =
+            requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
+
+        db.collection("Yoneticiler").document(uid).get()
+            .addOnSuccessListener { adminDoc ->
+                if (adminDoc.exists()) {
+                    Log.d("LOGIN_DEBUG", "Yönetici başarılı giriş yaptı ana sayfaya aktarılıyo")
+                    sharedPref.edit().putString("kullanici_rolu", "YONETICI").apply()
+
+                    findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
+                } else {
+                    db.collection("Kullanicilar").document(uid).get()
+                        .addOnSuccessListener { userDoc ->
+                            if (userDoc.exists()) {
+                                Log.d(
+                                    "LOGIN_DEBUG",
+                                    "Müşteri başarılı giriş yaptı ana sayfaya gidiyor"
+                                )
+                                sharedPref.edit().putString("kullanici_rolu", "MUSTERI").apply()
+
+                                findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
+                            } else {
+                                Log.d("LOGIN_DEBUG", "Kayıt bulunamadı kullanıcı oluşturuluyor")
+                                varsayilanKullaniciOlustur(uid)
+                            }
+                        }
+                        .addOnFailureListener {
+                            binding.girisButton.isEnabled = true
+                            sharedPref.edit().putString("kullanici_rolu", "MUSTERI").apply()
+                            findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
+                        }
+                }
+            }
+            .addOnFailureListener {
+                binding.girisButton.isEnabled = true
+                Toast.makeText(
+                    context,
+                    "Veritabanı hatası: ${it.localizedMessage}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    private fun varsayilanKullaniciOlustur(uid: String) {
+        val yeniKullanici = hashMapOf(
+            "e-posta" to auth.currentUser?.email,
+            "kullaniciTipi" to "Müşteri",
+            "uid" to uid
+        )
+        db.collection("Kullanicilar").document(uid).set(yeniKullanici)
+            .addOnSuccessListener {
+                val sharedPref =
+                    requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
+                sharedPref.edit().putString("kullanici_rolu", "MUSTERI").apply()
+
+                findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
+            }
+            .addOnFailureListener {
+                binding.girisButton.isEnabled = true
+            }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)!!
-                firebaseAuthWithGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                Log.e("HATA OLDU", "Google girişi iptal edildi: ${e.message}")
-            }
-        }
-    }
-
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                alanlariTemizle()
-                auth.currentUser?.uid?.let { kullaniciTipiniKontrolEtVeYonlendir(it) }
-            } else {
-                Toast.makeText(context, "Google Giriş Başarısız", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-    private fun kullaniciTipiniKontrolEtVeYonlendir(uid: String) {
-        db.collection("Yoneticiler").document(uid).get().addOnSuccessListener { document ->
-            if (document.exists()) {
-                findNavController().navigate(girisLoginFragmentDirections.actionGirisLoginFragmentToYonetenListeFragment())
-            } else {
-                db.collection("Kullanicilar").document(uid).get().addOnSuccessListener { userDoc ->
-                    if (userDoc.exists()) {
-                        findNavController().navigate(girisLoginFragmentDirections.actionGirisLoginFragmentToUrunAnaSayfa())
-                    } else {
-                        Toast.makeText(context, "Kayıt bulunamadı", Toast.LENGTH_SHORT).show()
-                    }
+                val credential = GoogleAuthProvider.getCredential(account.idToken!!, null)
+                auth.signInWithCredential(credential).addOnCompleteListener {
+                    if (it.isSuccessful) kullaniciTipiniKontrolEtVeYonlendir(auth.currentUser!!.uid)
                 }
+            } catch (e: Exception) {
+                Log.e("LOGIN_DEBUG", "Google Hatası: ${e.message}")
+                binding.girisButton.isEnabled = true
             }
-        }
-    }
-
-    private fun alanlariTemizle() {
-        if (_binding != null) {
-            binding.eMailText.setText("")
-            binding.editTextSifre.setText("")
-            binding.girisButton.isEnabled = true
-            binding.yoneticiOlButton.isEnabled = true
         }
     }
 

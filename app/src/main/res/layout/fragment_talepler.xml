@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="16dp"
-    tools:ignore="ExtraText">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    // tools:listitem="@layout/talep_layout"
-
-
-    <ImageButton
-        android:id="@+id/geriButtons"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/outline_arrow_back_24"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/taleplerToolBar"
+        android:layout_width="400dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/talepTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:text="Taleplerim"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/geriButtons"
-        app:layout_constraintStart_toEndOf="@id/geriButtons"
-        app:layout_constraintTop_toTopOf="@id/geriButtons" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/outline_arrow_back_24"
+        app:title="Taleplerim" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taleplerRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/geriButtons"/>
+        app:layout_constraintTop_toBottomOf="@id/taleplerToolBar"
+        tools:listitem="@layout/urun_recycler_row" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/askidaQrAlmaFlootingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.askidaayemek.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -18,18 +19,28 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.butonNavigasyon)
-        bottomNav.setupWithNavController(navController)
-
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            val sharedPref = getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
+            val rol = sharedPref.getString("kullanici_rolu", "MUSTERI")
+
             when (destination.id) {
                 R.id.girisLoginFragment,
                 R.id.kayitOlFragment,
                 R.id.musteriQrKodFragment,
-                R.id.parolaFragment -> {
+                R.id.parolaFragment,
+                R.id.yoneticiQrKodFragment -> {
                     bottomNav.visibility = View.GONE
                 }
+
                 else -> {
                     bottomNav.visibility = View.VISIBLE
+                    bottomNav.menu.clear()
+                    if (rol == "YONETICI") {
+                        bottomNav.inflateMenu(R.menu.yonetici_menuler)
+                    } else {
+                        bottomNav.inflateMenu(R.menu.musteri_menu)
+                    }
+                    bottomNav.setupWithNavController(navController)
                 }
             }
         }

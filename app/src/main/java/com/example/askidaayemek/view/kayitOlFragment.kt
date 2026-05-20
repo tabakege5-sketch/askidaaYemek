@@ -74,7 +74,8 @@ class kayitOlFragment : Fragment(R.layout.fragment_kayit_ol) {
         if (email.isNotEmpty() && sifre.isNotEmpty() && adSoyad.isNotEmpty() && profilTipi.isNotEmpty()) {
             auth.createUserWithEmailAndPassword(email, sifre).addOnSuccessListener {
                 val uid = auth.currentUser?.uid
-                val koleksiyonAdi = if (profilTipi == "yönetici" || profilTipi == "yonetici") "Yoneticiler" else "Kullanicilar"
+                val koleksiyonAdi =
+                    if (profilTipi == "yönetici" || profilTipi == "yonetici") "Yoneticiler" else "Kullanicilar"
                 kaydetVeYonlendir(uid, adSoyad, email, profilTipi, koleksiyonAdi)
             }.addOnFailureListener { e ->
                 Toast.makeText(context, e.localizedMessage, Toast.LENGTH_LONG).show()
@@ -84,7 +85,11 @@ class kayitOlFragment : Fragment(R.layout.fragment_kayit_ol) {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: android.content.Intent?) {
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: android.content.Intent?
+    ) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 150) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -105,17 +110,27 @@ class kayitOlFragment : Fragment(R.layout.fragment_kayit_ol) {
                 val adSoyad = auth.currentUser?.displayName ?: "Google Kullanıcısı"
                 val email = auth.currentUser?.email ?: ""
                 val secilenTip = binding.editTextViewProfilTipi.text.toString().lowercase()
-                val koleksiyonAdi = if (secilenTip == "yönetici" || secilenTip == "yonetici") "Yoneticiler" else "Kullanicilar"
+                val koleksiyonAdi =
+                    if (secilenTip == "yönetici" || secilenTip == "yonetici") "Yoneticiler" else "Kullanicilar"
 
                 kaydetVeYonlendir(uid, adSoyad, email, secilenTip, koleksiyonAdi)
             }
         }
     }
-    private fun kaydetVeYonlendir(uid: String?, ad: String, mail: String, tip: String, koleksiyon: String) {
+
+    private fun kaydetVeYonlendir(
+        uid: String?,
+        ad: String,
+        mail: String,
+        tip: String,
+        koleksiyon: String
+    ) {
         if (uid != null) {
-            val userMap = hashMapOf("adSoyad" to ad, "email" to mail, "profilTipi" to tip, "uid" to uid)
+            val userMap =
+                hashMapOf("adSoyad" to ad, "email" to mail, "profilTipi" to tip, "uid" to uid)
             db.collection(koleksiyon).document(uid).set(userMap).addOnSuccessListener {
-                Toast.makeText(context, "Kayıt Başarılı! Lütfen Giriş Yapın.", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Kayıt Başarılı Lütfen Giriş Yapın", Toast.LENGTH_LONG)
+                    .show()
                 findNavController().navigate(kayitOlFragmentDirections.actionKayitOlFragmentToGirisLoginFragment())
             }
         }

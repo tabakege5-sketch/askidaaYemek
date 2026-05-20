@@ -5,50 +5,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".view.urunPaylasanFragment">
 
-    <ImageButton
-        android:id="@+id/geriGitResimView"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Geri Dön"
-        android:src="@drawable/outline_arrow_back_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/yayinlananUrunTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Yayınlanan Ürünler"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/geriGitResimView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/geriGitResimView"
-        app:layout_constraintTop_toTopOf="@+id/geriGitResimView" />
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/yayinlananUrunlerToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="Yayınlanan Ürünler"
+        app:navigationIcon="@drawable/outline_arrow_back_24"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listeReceyclerVew"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@+id/paylasımYapButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/geriGitResimView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/yayinlananUrunlerToolBar" />
 
     <Button
         android:id="@+id/paylasımYapButton"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="16dp"
         android:text="Yeni Paylaşım Yap"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

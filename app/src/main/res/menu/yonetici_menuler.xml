@@ -6,7 +6,7 @@
         android:title="Ana Sayfa" />
 
     <item
-        android:id="@+id/taleplerFragment"
-        android:icon="@drawable/maplibre_info_icon_default"
-        android:title="Taleplerim" />
+        android:id="@+id/urunEkleFragment"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Ürün Ekle" />
 </menu>

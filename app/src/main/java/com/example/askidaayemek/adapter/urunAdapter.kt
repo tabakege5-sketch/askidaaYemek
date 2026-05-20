@@ -20,8 +20,6 @@ class urunAdapter(private val urunListesi: ArrayList<urun>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: urunHolder, position: Int) {
         val urunListe = urunListesi[position]
-
-        // Verileri Bağlama
         holder.binding.urunIsimleriTextView.text = urunListe.urunAdi
         holder.binding.urununAdediPorsiyonuTextView.text = urunListe.miktar
         holder.binding.urununKonumTextView.text = urunListe.konum
@@ -31,10 +29,11 @@ class urunAdapter(private val urunListesi: ArrayList<urun>) : RecyclerView.Adapt
             .placeholder(android.R.drawable.ic_menu_gallery)
             .into(holder.binding.urunlerinResmiImageView)
 
-        // Tıklama Olayı (HATA BURADAYDI)
         holder.itemView.setOnClickListener {
-            // Parantez içine 'urunListe' nesnesini ekledik
-            val action = urunAnaSayfaDirections.actionUrunAnaSayfaToUrunDetayfragment(urunListe)
+            val action = urunAnaSayfaDirections.actionUrunAnaSayfaToUrunDetayfragment(
+                secilenUrun = urunListe,
+                urunId = urunListe.urunId
+            )
             Navigation.findNavController(it).navigate(action)
         }
     }

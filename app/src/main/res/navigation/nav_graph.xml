@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/urunAnaSayfa">
+    app:startDestination="@id/girisLoginFragment">
+
     <fragment
         android:id="@+id/girisLoginFragment"
         android:name="com.example.askidaayemek.view.girisLoginFragment"
@@ -16,16 +17,11 @@
             android:id="@+id/action_girisLoginFragment_to_parolaFragment"
             app:destination="@id/parolaFragment" />
         <action
-            android:id="@+id/action_girisLoginFragment_to_yonetenListeFragment"
-            app:destination="@id/yonetenListeFragment" />
-        <action
             android:id="@+id/action_girisLoginFragment_to_yoneticiKayitOl"
             app:destination="@id/yoneticiKayitOl" />
         <action
             android:id="@+id/action_girisLoginFragment_to_urunAnaSayfa"
-            app:destination="@id/urunAnaSayfa"
-            app:popUpTo="@id/girisLoginFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/urunAnaSayfa" />
     </fragment>
 
     <fragment
@@ -78,6 +74,11 @@
             app:argType="com.example.askidaayemek.dataClass.urun"
             app:nullable="true" />
 
+        <argument
+            android:name="urunId"
+            app:argType="string"
+            app:nullable="true" />
+
         <action
             android:id="@+id/action_urunDetayfragment_to_tarihVeZamanFragment"
             app:destination="@id/tarihVeZamanFragment" />
@@ -90,6 +91,12 @@
         <action
             android:id="@+id/action_urunDetayfragment_to_musteriQrKodFragment"
             app:destination="@id/musteriQrKodFragment" />
+        <action
+            android:id="@+id/action_urunDetayfragment_to_urunEkleFragment"
+            app:destination="@id/urunEkleFragment" />
+        <action
+            android:id="@+id/action_urunDetayfragment_to_haritaFragment"
+            app:destination="@id/haritaFragment" />
     </fragment>
 
     <fragment
@@ -110,6 +117,13 @@
         android:name="com.example.askidaayemek.view.urunEkleFragment"
         android:label="Ürün Ekle"
         tools:layout="@layout/fragment_urun_ekle">
+
+        <argument
+            android:name="duzenlenecekUrun"
+            android:defaultValue="@null"
+            app:argType="com.example.askidaayemek.dataClass.urun"
+            app:nullable="true" />
+
         <action
             android:id="@+id/action_urunEkleFragment_to_urunPaylasanFragment"
             app:destination="@id/urunPaylasanFragment"
@@ -134,6 +148,9 @@
         <action
             android:id="@+id/action_taleplerFragment_to_musteriQrKodFragment"
             app:destination="@id/musteriQrKodFragment" />
+        <action
+            android:id="@+id/action_taleplerFragment_to_yoneticiQrKodFragment"
+            app:destination="@id/yoneticiQrKodFragment" />
     </fragment>
 
     <fragment
@@ -159,7 +176,11 @@
         android:id="@+id/musteriQrKodFragment"
         android:name="com.example.askidaayemek.view.musteriQrKodFragment"
         android:label="Müşteri QR"
-        tools:layout="@layout/fragment_musteri_qr_kod" />
+        tools:layout="@layout/fragment_musteri_qr_kod" >
+        <action
+            android:id="@+id/action_musteriQrKodFragment_to_urunAnaSayfa"
+            app:destination="@id/urunAnaSayfa" />
+    </fragment>
 
     <fragment
         android:id="@+id/haritaFragment"

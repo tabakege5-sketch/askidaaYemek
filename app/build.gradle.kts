@@ -23,7 +23,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -73,4 +76,7 @@ dependencies {
 
     implementation("com.google.zxing:core:3.5.3")
 
-    implementation("com.journeyapps:zxing-android-embedded:4.3.0")}
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+
+    implementation("com.google.android.gms:play-services-code-scanner:16.1.0")
+}

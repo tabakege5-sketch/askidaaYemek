@@ -1,5 +1,6 @@
 package com.example.askidaayemek.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -27,15 +28,18 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
 
         auth = Firebase.auth
         db = Firebase.firestore
+
         binding.yoneticiKayitBttonn.setOnClickListener {
             val adSoyad = binding.yonetininIsmiSoyIsmiEditText.text.toString().trim()
             val email = binding.yoneticiEmailEditText.text.toString().trim()
             val sifre = binding.yoneticiSifreEditText.text.toString().trim()
             val girilenKod = binding.yetkiKoduEditText.text.toString().trim()
+
             if (adSoyad.isEmpty() || email.isEmpty() || sifre.isEmpty() || girilenKod.isEmpty()) {
                 Toast.makeText(context, "Eksik bilgi bırakma kavdes", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
             if (girilenKod != OZEL_YETKI_KODU) {
                 Toast.makeText(context, "Geçersiz Kod", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -50,20 +54,38 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
                         "rol" to "yonetici",
                         "uid" to uid
                     )
-                    uid?.let {
-                        db.collection("Yoneticiler").document(it).set(yoneticiMap)
+
+                    uid?.let { currentUid ->
+                        db.collection("Yoneticiler").document(currentUid).set(yoneticiMap)
                             .addOnSuccessListener {
-                                Toast.makeText(context, "Yönetici Girişi Başarılı", Toast.LENGTH_SHORT).show()
-                                findNavController().navigateUp()
+                                Toast.makeText(
+                                    context,
+                                    "Yönetici Hesabı Oluşturuldu",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                val sharedPref = requireActivity().getSharedPreferences(
+                                    "AskidaYemekPref",
+                                    Context.MODE_PRIVATE
+                                )
+                                sharedPref.edit().putString("kullanici_rolu", "YONETICI").apply()
+                                findNavController().navigate(R.id.action_yoneticiKayitOl_to_urunAnaSayfa)
                             }
                             .addOnFailureListener { e ->
                                 binding.yoneticiKayitBttonn.isEnabled = true
-                                Toast.makeText(context, "Firestore Sorunu: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    context,
+                                    "Veritabanı Hatası: ${e.localizedMessage}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                     }
                 } else {
                     binding.yoneticiKayitBttonn.isEnabled = true
-                    Toast.makeText(context, "Hata: ${task.exception?.localizedMessage}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        context,
+                        "Kayıt Hatası: ${task.exception?.localizedMessage}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }

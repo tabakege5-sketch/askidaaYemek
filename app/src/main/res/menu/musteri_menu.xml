@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/urunAnaSayfa"
+        android:icon="@android:drawable/ic_menu_directions"
+        android:title="Ana Sayfa" />
+    <item
+        android:id="@+id/taleplerFragment"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Talepler" />
+</menu>
