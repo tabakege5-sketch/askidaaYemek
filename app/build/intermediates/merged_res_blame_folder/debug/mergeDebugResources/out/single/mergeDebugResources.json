@@ -1,0 +1,186 @@
+[
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_giris_login.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_giris_login.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_musteri_qr_kod.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_musteri_qr_kod.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_yonetici_qr_kod.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_yonetici_qr_kod.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_paylasim_listesi.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/paylasim_listesi.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/drawable_outline_add_location_24.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/drawable/outline_add_location_24.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/menu_yonetici_menuler.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/menu/yonetici_menuler.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_kayit_ol.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_kayit_ol.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_flooting_action_buttons.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/flooting_action_buttons.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/menu_musteri_menu.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/menu/musteri_menu.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_talepler.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_talepler.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_urun_detayfragment.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_detayfragment.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/menu_onay_iptal_menuler.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/menu/onay_iptal_menuler.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_urun_recycler_row.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/urun_recycler_row.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/drawable_outline_add_home_24.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/drawable/outline_add_home_24.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_activity_main.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_talep_layout.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/talep_layout.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_yoneten_liste.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_yoneten_liste.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/xml_backup_rules.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/menu_urunler_menu.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/menu/urunler_menu.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_tarih_ve_zaman.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_tarih_ve_zaman.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/menu_iptal_menu.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/menu/iptal_menu.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/menu_detay_menuler.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/menu/detay_menuler.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_item_resim_kaydirma.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/item_resim_kaydirma.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_harita.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_harita.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_yonetici_kayit_ol.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_yonetici_kayit_ol.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/drawable_outline_arrow_back_24.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/drawable/outline_arrow_back_24.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/navigation_nav_graph.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_urun_paylasan.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_paylasan.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_parola.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_parola.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_urun_ekle.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_ekle.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_urun_ana_sayfa.xml.flat",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_ana_sayfa.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.askidaayemek.app-main-60:/mipmap-hdpi/ic_launcher_round.webp"
+    }
+]

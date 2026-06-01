@@ -1,9 +1,11 @@
 package com.example.askidaayemek.view
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.ArrayList
 
 class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
     private var _binding: FragmentUrunAnaSayfaBinding? = null
@@ -26,12 +29,27 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
     private var tamListe = ArrayList<urun>()
     private var filtreliListe = ArrayList<urun>()
     private lateinit var adapter: urunAnaSayfaAdapter
+    private var kullaniciRolu: String = "MUSTERI"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentUrunAnaSayfaBinding.bind(view)
+
+        binding.anaSayfaToolbAR.post {
+            val params = binding.anaSayfaToolbAR.layoutParams as ViewGroup.MarginLayoutParams
+            params.topMargin = 100
+            binding.anaSayfaToolbAR.layoutParams = params
+        }
         db = Firebase.firestore
         auth = Firebase.auth
+        val sharedPref =
+            requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
+        kullaniciRolu = sharedPref.getString("kullanici_rolu", "MUSTERI") ?: "MUSTERI"
+        if (kullaniciRolu == "YONETICI") {
+            binding.urunDetayaGitFloatingActionButton.visibility = View.VISIBLE
+        } else {
+            binding.urunDetayaGitFloatingActionButton.visibility = View.GONE
+        }
 
         kullaniciBilgisiniGetir()
         binding.siraliRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -46,7 +64,10 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
         verileriGetir()
 
         binding.urunAraEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) { aramaYap(s.toString()) }
+            override fun afterTextChanged(s: Editable?) {
+                aramaYap(s.toString())
+            }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
@@ -63,19 +84,20 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
     }
 
     private fun kullaniciBilgisiniGetir() {
-        val uid = auth.currentUser?.uid
-        if (uid != null) {
-            db.collection("Kullanicilar").document(uid).get()
-                .addOnSuccessListener { document ->
-                    if (_binding != null && document != null && document.exists()) {
-                        val ad = document.getString("ad") ?: "Kullanıcı"
-                        binding.kullaniciAdiTextView.text = " $ad"
-                    }
+        val uid = auth.currentUser?.uid ?: return
+        val koleksiyon = if (kullaniciRolu == "YONETICI") "Yoneticiler" else "Kullanicilar"
+
+        db.collection(koleksiyon).document(uid).get()
+            .addOnSuccessListener { document ->
+                if (_binding != null && document != null && document.exists()) {
+                    val ad = document.getString("ad") ?: document.getString("e-posta")
+                        ?.substringBefore("@") ?: "Kullanıcı"
+                    binding.kullaniciAdiTextView.text = " $ad ($kullaniciRolu)"
                 }
-                .addOnFailureListener {
-                    if (_binding != null) binding.kullaniciAdiTextView.text = " Misafir"
-                }
-        }
+            }
+            .addOnFailureListener {
+                if (_binding != null) binding.kullaniciAdiTextView.text = " Misafir"
+            }
     }
 
     private fun aramaYap(text: String) {

@@ -10,6 +10,8 @@ import com.example.askidaayemek.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+    private var mevcutMenu: Int = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,31 +19,24 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentKonteynrView) as NavHostFragment
         val navController = navHostFragment.navController
-
         val bottomNav = findViewById<BottomNavigationView>(R.id.butonNavigasyon)
+        bottomNav.setupWithNavController(navController)
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val sharedPref = getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
             val rol = sharedPref.getString("kullanici_rolu", "MUSTERI")
+            val hedefMenu = if (rol == "YONETICI") R.menu.yonetici_menuler else R.menu.musteri_menu
+            val gizle = destination.id == R.id.girisLoginFragment ||
+                    destination.id == R.id.kayitOlFragment ||
+                    destination.id == R.id.musteriQrKodFragment ||
+                    destination.id == R.id.parolaFragment ||
+                    destination.id == R.id.yoneticiQrKodFragment
 
-            when (destination.id) {
-                R.id.girisLoginFragment,
-                R.id.kayitOlFragment,
-                R.id.musteriQrKodFragment,
-                R.id.parolaFragment,
-                R.id.yoneticiQrKodFragment -> {
-                    bottomNav.visibility = View.GONE
-                }
-
-                else -> {
-                    bottomNav.visibility = View.VISIBLE
-                    bottomNav.menu.clear()
-                    if (rol == "YONETICI") {
-                        bottomNav.inflateMenu(R.menu.yonetici_menuler)
-                    } else {
-                        bottomNav.inflateMenu(R.menu.musteri_menu)
-                    }
-                    bottomNav.setupWithNavController(navController)
-                }
+            bottomNav.visibility = if (gizle) View.GONE else View.VISIBLE
+            if (!gizle && mevcutMenu != hedefMenu) {
+                bottomNav.menu.clear()
+                bottomNav.inflateMenu(hedefMenu)
+                mevcutMenu = hedefMenu
             }
         }
     }

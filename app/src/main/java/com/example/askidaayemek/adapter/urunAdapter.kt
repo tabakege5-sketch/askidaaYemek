@@ -1,13 +1,14 @@
 package com.example.askidaayemek.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.askidaayemek.R
 import com.example.askidaayemek.databinding.PaylasimListesiBinding
 import com.example.askidaayemek.dataClass.urun
-import com.example.askidaayemek.view.urunAnaSayfaDirections
 
 class urunAdapter(private val urunListesi: ArrayList<urun>) : RecyclerView.Adapter<urunAdapter.urunHolder>() {
 
@@ -30,11 +31,13 @@ class urunAdapter(private val urunListesi: ArrayList<urun>) : RecyclerView.Adapt
             .into(holder.binding.urunlerinResmiImageView)
 
         holder.itemView.setOnClickListener {
-            val action = urunAnaSayfaDirections.actionUrunAnaSayfaToUrunDetayfragment(
-                secilenUrun = urunListe,
-                urunId = urunListe.urunId
+            val bundle = Bundle().apply {
+                putString("urunId", urunListe.urunId)
+            }
+            Navigation.findNavController(it).navigate(
+                R.id.action_urunAnaSayfa_to_urunDetayfragment,
+                bundle
             )
-            Navigation.findNavController(it).navigate(action)
         }
     }
 

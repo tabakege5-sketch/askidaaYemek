@@ -1,0 +1,82 @@
+[
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_giris_login.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_giris_login.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_kayit_ol.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_kayit_ol.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_musteri_qr_kod.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_musteri_qr_kod.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_talepler.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_talepler.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/item_resim_kaydirma.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/item_resim_kaydirma.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_urun_ana_sayfa.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_ana_sayfa.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_urun_detayfragment.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_detayfragment.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/paylasim_listesi.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/paylasim_listesi.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_urun_ekle.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_ekle.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_harita.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_harita.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_tarih_ve_zaman.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_tarih_ve_zaman.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_parola.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_parola.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_yoneten_liste.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_yoneten_liste.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_yonetici_qr_kod.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_yonetici_qr_kod.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/urun_recycler_row.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/urun_recycler_row.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_urun_paylasan.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_paylasan.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/fragment_yonetici_kayit_ol.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_yonetici_kayit_ol.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/activity_main.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/talep_layout.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/talep_layout.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-57:/layout/flooting_action_buttons.xml",
+        "source": "com.example.askidaayemek.app-main-60:/layout/flooting_action_buttons.xml"
+    }
+]

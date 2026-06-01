@@ -2,6 +2,7 @@ package com.example.askidaayemek.view
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -30,42 +31,47 @@ class urunPaylasanFragment : Fragment(R.layout.fragment_urun_paylasan) {
         _binding = FragmentUrunPaylasanBinding.bind(view)
         db = Firebase.firestore
         auth = Firebase.auth
+
+        binding.yayinlananUrunlerToolBar.post {
+            val params = binding.yayinlananUrunlerToolBar.layoutParams as ViewGroup.MarginLayoutParams
+            params.topMargin = 100
+            binding.yayinlananUrunlerToolBar.layoutParams = params
+        }
+
         binding.listeReceyclerVew.layoutManager = LinearLayoutManager(context)
+
         adapter = urunAnaSayfaAdapter(paylasilanUrunlerListesi) { secilenUrun ->
             val bundle = Bundle().apply {
                 putString("urunId", secilenUrun.urunId)
             }
-            findNavController().navigate(R.id.action_urunAnaSayfa_to_urunDetayfragment, bundle)
+            findNavController().navigate(R.id.action_urunPaylasan_to_urunDetay, bundle)
         }
         binding.listeReceyclerVew.adapter = adapter
 
         verileriGetir()
-
         binding.paylasMYapButton.setOnClickListener {
             findNavController().navigate(R.id.action_urunPaylasanFragment_to_urunEkleFragment)
         }
 
-        binding.yayinlananUrunlerToolBar.setOnClickListener {
+        binding.yayinlananUrunlerToolBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
     }
 
     private fun verileriGetir() {
         val currentUid = auth.currentUser?.uid ?: return
-
         db.collection("Urunler")
             .whereEqualTo("yukleyenUid", currentUid)
             .orderBy("tarih", Query.Direction.DESCENDING)
             .addSnapshotListener { value, error ->
-                if (error != null) {
-                    Toast.makeText(context, error.localizedMessage, Toast.LENGTH_SHORT).show()
-                    return@addSnapshotListener
-                }
-
+                if (error != null) return@addSnapshotListener
                 if (value != null && _binding != null) {
                     paylasilanUrunlerListesi.clear()
                     for (doc in value.documents) {
-                        doc.toObject(urun::class.java)?.let { paylasilanUrunlerListesi.add(it) }
+                        doc.toObject(urun::class.java)?.let {
+                            it.urunId = doc.id
+                            paylasilanUrunlerListesi.add(it)
+                        }
                     }
                     adapter.notifyDataSetChanged()
                 }

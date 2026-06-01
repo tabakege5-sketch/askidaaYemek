@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="mor_ana">#6200EE</color>
+    <color name="mor_soluk">#B39DDB</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">Askıda Yemek</string>
+    <string name="default_web_client_id" translatable="false">473810366659-8oceiic5eoa41id49toonqdier5oushu.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">473810366659</string>
+    <string name="google_api_key" translatable="false">AIzaSyC32kVOz9CDVfBBnuWoURKQKy52sTOYMck</string>
+    <string name="google_app_id" translatable="false">1:473810366659:android:45070253d290ca6d567276</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC32kVOz9CDVfBBnuWoURKQKy52sTOYMck</string>
+    <string name="google_storage_bucket" translatable="false">askida-yemek-projesi.firebasestorage.app</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="project_id" translatable="false">askida-yemek-projesi</string>
+    <style name="Base.Theme.AskidaaYemek" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.AskidaaYemek" parent="Base.Theme.AskidaaYemek"/>
+</resources>

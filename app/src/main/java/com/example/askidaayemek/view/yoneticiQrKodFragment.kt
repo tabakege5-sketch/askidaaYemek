@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -29,6 +30,12 @@ class yoneticiQrKodFragment : Fragment(R.layout.fragment_yonetici_qr_kod) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentYoneticiQrKodBinding.bind(view)
+
+        binding.yoneticiQrToolbar.post {
+            val params = binding.yoneticiQrToolbar.layoutParams as ViewGroup.MarginLayoutParams
+            params.topMargin = 100
+            binding.yoneticiQrToolbar.layoutParams = params
+        }
 
         binding.buttonTeslimEt.isEnabled = false
         binding.yoneticiQrToolbar.setNavigationOnClickListener {

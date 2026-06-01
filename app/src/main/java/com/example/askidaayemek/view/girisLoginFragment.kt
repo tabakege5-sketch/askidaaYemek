@@ -36,7 +36,7 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
         db = Firebase.firestore
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(getString(org.maplibre.android.R.string.maplibre_offline_error_region_definition_invalid))
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)

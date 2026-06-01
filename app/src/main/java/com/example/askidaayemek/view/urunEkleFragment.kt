@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Base64
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -31,6 +32,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
+
     private var _binding: FragmentUrunEkleBinding? = null
     private val binding get() = _binding!!
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
@@ -42,7 +44,14 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FragmentUrunEkleBinding.bind(view)
+
+        binding.urunEkleToolbar.post {
+            val params = binding.urunEkleToolbar.layoutParams as ViewGroup.MarginLayoutParams
+            params.topMargin = 100
+            binding.urunEkleToolbar.layoutParams = params
+        }
         registerLaunchers()
         binding.urunEkleToolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
@@ -54,18 +63,17 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
         guncellenecekUrun?.let { urun ->
             binding.urunEkleToolbar.title = "Ürünü Güncelle"
             binding.yayNlaButton.text = "GÜNCELLE"
-
             binding.urunlerEditText.setText(urun.urunKategori)
             binding.urunAdiEditText.setText(urun.urunAdi)
             binding.miktarEditText.setText(urun.miktar)
             binding.ekNotEditText.setText(urun.ekNot)
             binding.mevcutKonumTextView.text = urun.konum
-
             resimYukle(urun.gorselUrl)
         } ?: run {
             binding.urunEkleToolbar.title = "Ürün Ekle"
             binding.yayNlaButton.text = "YAYINLA"
         }
+
         binding.secImageButton.setOnClickListener { v ->
             val popup = PopupMenu(requireContext(), v)
             popup.menuInflater.inflate(R.menu.urunler_menu, popup.menu)
@@ -112,10 +120,7 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
             "ekNot" to binding.ekNotEditText.text.toString(),
             "konum" to binding.mevcutKonumTextView.text.toString()
         )
-
-        secilenGorselUri?.let { uri ->
-            uriToBase64(uri)?.let { guncelMap["gorselUrl"] = it }
-        }
+        secilenGorselUri?.let { uri -> uriToBase64(uri)?.let { guncelMap["gorselUrl"] = it } }
 
         db.collection("Urunler")
             .whereEqualTo("urunAdi", guncellenecekUrun?.urunAdi)
@@ -125,8 +130,7 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
                 for (doc in snapshot) {
                     db.collection("Urunler").document(doc.id).update(guncelMap)
                         .addOnSuccessListener {
-                            Toast.makeText(context, "Başarıyla Güncellendi", Toast.LENGTH_SHORT)
-                                .show()
+                            Toast.makeText(context, "Başarıyla Güncellendi", Toast.LENGTH_SHORT).show()
                             findNavController().popBackStack()
                         }
                 }
@@ -135,7 +139,6 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
 
     private fun yayinlaIslemi() {
         val user = auth.currentUser ?: return
-
         val urunKategori = binding.urunlerEditText.text.toString().trim()
         val urunAdi = binding.urunAdiEditText.text.toString().trim()
         val ekNot = binding.ekNotEditText.text.toString().trim()
@@ -143,32 +146,18 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
         val miktar = binding.miktarEditText.text.toString().trim()
 
         if (urunKategori.isEmpty() || urunAdi.isEmpty()) {
-            Toast.makeText(
-                requireContext(),
-                "Lütfen kategori ve ürün adını doldur",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(requireContext(), "Lütfen kategori ve ürün adını doldur", Toast.LENGTH_SHORT).show()
             return
         }
 
         binding.yayNlaButton.isEnabled = false
         val gorselVerisi = secilenGorselUri?.let { uriToBase64(it) } ?: ""
-
         veritabaninaKaydet(urunKategori, urunAdi, ekNot, konum, miktar, user.uid, gorselVerisi)
     }
 
-    private fun veritabaninaKaydet(
-        kategori: String,
-        ad: String,
-        not: String,
-        konum: String,
-        miktar: String,
-        uid: String,
-        gorselPath: String
-    ) {
+    private fun veritabaninaKaydet(kategori: String, ad: String, not: String, konum: String, miktar: String, uid: String, gorselPath: String) {
         val sdfSaat = SimpleDateFormat("HH:mm", Locale.getDefault())
         val suAnkiSaat = sdfSaat.format(Date())
-
         val urunMap = hashMapOf(
             "urunKategori" to kategori,
             "urunAdi" to ad,
@@ -188,8 +177,7 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
                 findNavController().popBackStack()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), "Hata: ${e.localizedMessage}", Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(requireContext(), "Hata: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
                 binding.yayNlaButton.isEnabled = true
             }
     }
@@ -202,19 +190,12 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 40, outputStream)
             val byteArray = outputStream.toByteArray()
             Base64.encodeToString(byteArray, Base64.DEFAULT)
-        } catch (e: Exception) {
-            null
-        }
+        } catch (e: Exception) { null }
     }
 
     private fun gorselSec() {
-        val storagePermission =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) Manifest.permission.READ_MEDIA_IMAGES else Manifest.permission.READ_EXTERNAL_STORAGE
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                storagePermission
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
+        val storagePermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) Manifest.permission.READ_MEDIA_IMAGES else Manifest.permission.READ_EXTERNAL_STORAGE
+        if (ContextCompat.checkSelfPermission(requireContext(), storagePermission) != PackageManager.PERMISSION_GRANTED) {
             permissionLauncher.launch(storagePermission)
         } else {
             val intentToGallery = Intent(Intent.ACTION_PICK)
@@ -224,21 +205,19 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
     }
 
     private fun registerLaunchers() {
-        activityResultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                    secilenGorselUri = result.data?.data
-                    binding.urunFotografiImageView.setImageURI(secilenGorselUri)
-                }
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                secilenGorselUri = result.data?.data
+                binding.urunFotografiImageView.setImageURI(secilenGorselUri)
             }
-        permissionLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-                if (isGranted) {
-                    val intentToGallery = Intent(Intent.ACTION_PICK)
-                    intentToGallery.type = "image/*"
-                    activityResultLauncher.launch(intentToGallery)
-                }
+        }
+        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                val intentToGallery = Intent(Intent.ACTION_PICK)
+                intentToGallery.type = "image/*"
+                activityResultLauncher.launch(intentToGallery)
             }
+        }
     }
 
     override fun onDestroyView() {

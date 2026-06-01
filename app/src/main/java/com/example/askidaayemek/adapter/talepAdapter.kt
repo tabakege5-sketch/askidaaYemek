@@ -8,6 +8,8 @@ import com.bumptech.glide.Glide
 import com.example.askidaayemek.R
 import com.example.askidaayemek.databinding.TalepLayoutBinding
 import com.example.askidaayemek.dataClass.urun
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class talepAdapter(
     private val talepListesi: ArrayList<urun>,
@@ -28,7 +30,13 @@ class talepAdapter(
 
         holder.binding.urununAdiTextView.text = "Ürün İsmi: ${talepItem.urunAdi ?: "Belirtilmedi"}"
         holder.binding.miktarTextView.text = "Miktar: ${talepItem.miktar ?: "Belirtilmedi"}"
-        holder.binding.textViewTarih.text = "Tarih: ${talepItem.tarih ?: "Belirtilmedi"}"
+
+        // Tarih Formatlama
+        val timestamp = talepItem.tarih as? com.google.firebase.Timestamp
+        val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        val tarihStr = timestamp?.toDate()?.let { sdf.format(it) } ?: "Tarih yok"
+
+        holder.binding.textViewTarih.text = "Tarih: $tarihStr"
         holder.binding.saatTextView.text = "Saat: ${talepItem.saat ?: "Belirtilmedi"}"
         holder.binding.durumuGosterTextView.text = "Durum: ${talepItem.durum ?: "Beklemede"}"
 
@@ -47,7 +55,7 @@ class talepAdapter(
             popup.menuInflater.inflate(R.menu.onay_iptal_menuler, popup.menu)
 
             popup.setOnMenuItemClickListener { item ->
-                val currentPosition = holder.bindingAdapterPosition
+                val currentPosition = holder.adapterPosition
                 if (currentPosition != RecyclerView.NO_POSITION) {
                     when (item.itemId) {
                         R.id.menu_onayla -> {
@@ -67,7 +75,10 @@ class talepAdapter(
             popup.show()
         }
     }
-    override fun getItemCount(): Int = talepListesi.size
+
+    override fun getItemCount(): Int {
+        return talepListesi.size
+    }
 
     fun siraliElemanSil(position: Int) {
         if (position >= 0 && position < talepListesi.size) {

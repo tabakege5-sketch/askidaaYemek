@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity // Eklendi
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController // Eklendi
 import com.example.askidaayemek.databinding.FragmentHaritaBinding
 import org.maplibre.android.MapLibre
 import org.maplibre.android.annotations.MarkerOptions
@@ -34,8 +36,16 @@ class haritaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.haritaView.onCreate(savedInstanceState)
 
+        val activity = activity as? AppCompatActivity
+        activity?.setSupportActionBar(binding.haritaToolbar)
+        activity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.haritaToolbar.title = "Harita"
+        binding.haritaToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.haritaView.onCreate(savedInstanceState)
         binding.haritaView.getMapAsync { map ->
             mapLibreMap = map
             map.setStyle(Style.Builder().fromUri("https://tiles.openfreemap.org/styles/liberty")) {
@@ -61,10 +71,8 @@ class haritaFragment : Fragment() {
 
     private fun mekanBulVeDetayliIsaretle(mekanAdi: String) {
         val geocoder = Geocoder(requireContext(), Locale("tr"))
-
         try {
             val sonuclar = geocoder.getFromLocationName("$mekanAdi Ankara", 1)
-
             if (!sonuclar.isNullOrEmpty()) {
                 val adresNesnesi = sonuclar[0]
                 val konum = LatLng(adresNesnesi.latitude, adresNesnesi.longitude)
@@ -79,7 +87,6 @@ class haritaFragment : Fragment() {
                             .snippet(tamAdres)
                     )
                     map.selectMarker(marker)
-
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(konum, 16.0))
                 }
             } else {
@@ -91,28 +98,20 @@ class haritaFragment : Fragment() {
         }
     }
 
-    override fun onStart()  //Başlama
-    {
-        super.onStart();
-        binding.haritaView.onStart()
+    override fun onStart() {
+        super.onStart(); binding.haritaView.onStart()
     }
 
-    override fun onResume() //Sürdürme
-    {
-        super.onResume();
-        binding.haritaView.onResume()
+    override fun onResume() {
+        super.onResume(); binding.haritaView.onResume()
     }
 
-    override fun onPause() //Duraklatma
-    {
-        super.onPause();
-        binding.haritaView.onPause()
+    override fun onPause() {
+        super.onPause(); binding.haritaView.onPause()
     }
 
-    override fun onStop() //Durmak
-    {
-        super.onStop();
-        binding.haritaView.onStop()
+    override fun onStop() {
+        super.onStop(); binding.haritaView.onStop()
     }
 
     override fun onDestroyView() {

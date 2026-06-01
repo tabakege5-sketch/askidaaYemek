@@ -1,0 +1,34 @@
+package com.example.askidaayemek.view
+
+import android.os.Bundle
+import androidx.navigation.ActionOnlyNavDirections
+import androidx.navigation.NavDirections
+import com.example.askidaayemek.R
+import kotlin.Int
+import kotlin.String
+
+public class urunAnaSayfaDirections private constructor() {
+  private data class ActionUrunAnaSayfaToUrunDetayfragment(
+    public val urunId: String?,
+  ) : NavDirections {
+    public override val actionId: Int = R.id.action_urunAnaSayfa_to_urunDetayfragment
+
+    public override val arguments: Bundle
+      get() {
+        val result = Bundle()
+        result.putString("urunId", this.urunId)
+        return result
+      }
+  }
+
+  public companion object {
+    public fun actionUrunAnaSayfaToUrunDetayfragment(urunId: String?): NavDirections =
+        ActionUrunAnaSayfaToUrunDetayfragment(urunId)
+
+    public fun actionUrunAnaSayfaToTaleplerFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_urunAnaSayfa_to_taleplerFragment)
+
+    public fun actionUrunAnaSayfaToUrunPaylasanFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_urunAnaSayfa_to_urunPaylasanFragment)
+  }
+}

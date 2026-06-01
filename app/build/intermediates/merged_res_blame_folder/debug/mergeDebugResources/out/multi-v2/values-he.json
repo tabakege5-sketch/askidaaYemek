@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.askidaayemek.app-mergeDebugResources-56:/values-he/values-he.xml",
+            "map": [
+                {
+                    "source": "/Users/stajyer/.gradle/caches/8.10.2/transforms/215b44473136d243d35ec0b3c3471dce/transformed/android-sdk-11.0.0/res/values-he/values-he.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,179,270,388,493,647,763",
+                        "endColumns": "123,90,117,104,153,115,138",
+                        "endOffsets": "174,265,383,488,642,758,897"
+                    }
+                }
+            ]
+        }
+    ]
+}
