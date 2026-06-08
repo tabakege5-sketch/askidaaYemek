@@ -1,9 +1,9 @@
 package com.example.askidaayemek.view
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -14,8 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -36,7 +35,7 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
         db = Firebase.firestore
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(org.maplibre.android.R.string.maplibre_offline_error_region_definition_invalid))
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
@@ -45,26 +44,37 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
             val email = binding.eMailText.text.toString().trim()
             val sifre = binding.editTextSifre.text.toString().trim()
 
-            if (email.isNotEmpty() && sifre.isNotEmpty()) {
-                binding.girisButton.isEnabled = false
-                auth.signInWithEmailAndPassword(email, sifre).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val uid = auth.currentUser?.uid
-                        if (uid != null) {
-                            kullaniciTipiniKontrolEtVeYonlendir(uid)
-                        }
+            if (email.isEmpty() || sifre.isEmpty()) {
+                Toast.makeText(context, "Lütfen tüm boşlukları doldur!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            binding.girisButton.isEnabled = false
+            (activity as? MainActivity)?.gosterLoading(true)
+
+            auth.signInWithEmailAndPassword(email, sifre)
+                .addOnSuccessListener {
+                    val uid = auth.currentUser?.uid
+                    if (uid != null) {
+                        kullaniciTipiniKontrolEtVeYonlendir(uid)
                     } else {
+                        (activity as? MainActivity)?.gosterLoading(false)
                         binding.girisButton.isEnabled = true
-                        Toast.makeText(
-                            context,
-                            "Giriş Başarısız e-Mail veya Şifre Hatalı",
-                            Toast.LENGTH_LONG
-                        ).show()
                     }
                 }
-            } else {
-                Toast.makeText(context, "Lütfen bosluğu doldur", Toast.LENGTH_SHORT).show()
-            }
+                .addOnFailureListener { e ->
+                    (activity as? MainActivity)?.gosterLoading(false)
+                    binding.girisButton.isEnabled = true
+
+                    val hataMesaji = when (e) {
+                        is FirebaseAuthInvalidUserException -> "Bu e-posta adresi sistemde kayıtlı değil"
+                        is FirebaseAuthInvalidCredentialsException -> "Şifreniz hatalı"
+                        is FirebaseAuthEmailException -> "Geçersiz e-posta formatı"
+                        is FirebaseAuthWeakPasswordException -> "Şifreniz çok zayıf"
+                        is FirebaseAuthUserCollisionException -> "Bu e-posta ile zaten bir hesap var"
+                        else -> "Giriş yapılamadı: ${e.localizedMessage}"
+                    }
+                    hataGoster("Giriş Hatası", hataMesaji)
+                }
         }
 
         binding.kayitOlButton.setOnClickListener {
@@ -81,49 +91,39 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
         }
     }
 
+    private fun hataGoster(baslik: String, mesaj: String) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(baslik)
+            .setMessage(mesaj)
+            .setPositiveButton("Tamam") { dialog, _ -> dialog.dismiss() }
+            .show()
+    }
+
     private fun kullaniciTipiniKontrolEtVeYonlendir(uid: String) {
-        Log.d("LOGIN_DEBUG", "Giriş yapan UID: $uid")
         val sharedPref =
             requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
 
         db.collection("Yoneticiler").document(uid).get()
             .addOnSuccessListener { adminDoc ->
                 if (adminDoc.exists()) {
-                    Log.d("LOGIN_DEBUG", "Yönetici başarılı giriş yaptı ana sayfaya aktarılıyo")
+                    (activity as? MainActivity)?.gosterLoading(false)
                     sharedPref.edit().putString("kullanici_rolu", "YONETICI").apply()
-
                     findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
                 } else {
                     db.collection("Kullanicilar").document(uid).get()
                         .addOnSuccessListener { userDoc ->
+                            (activity as? MainActivity)?.gosterLoading(false)
                             if (userDoc.exists()) {
-                                Log.d(
-                                    "LOGIN_DEBUG",
-                                    "Müşteri başarılı giriş yaptı ana sayfaya gidiyor"
-                                )
                                 sharedPref.edit().putString("kullanici_rolu", "MUSTERI").apply()
-
                                 findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
                             } else {
-                                Log.d("LOGIN_DEBUG", "Kayıt bulunamadı kullanıcı oluşturuluyor")
                                 varsayilanKullaniciOlustur(uid)
                             }
                         }
-                        .addOnFailureListener {
-                            binding.girisButton.isEnabled = true
-                            sharedPref.edit().putString("kullanici_rolu", "MUSTERI").apply()
-                            findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
-                        }
+                        .addOnFailureListener { (activity as? MainActivity)?.gosterLoading(false) }
                 }
             }
-            .addOnFailureListener {
-                binding.girisButton.isEnabled = true
-                Toast.makeText(
-                    context,
-                    "Veritabanı hatası: ${it.localizedMessage}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            .addOnFailureListener { (activity as? MainActivity)?.gosterLoading(false) }
     }
 
     private fun varsayilanKullaniciOlustur(uid: String) {
@@ -134,15 +134,12 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
         )
         db.collection("Kullanicilar").document(uid).set(yeniKullanici)
             .addOnSuccessListener {
-                val sharedPref =
-                    requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
-                sharedPref.edit().putString("kullanici_rolu", "MUSTERI").apply()
-
+                (activity as? MainActivity)?.gosterLoading(false)
+                requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
+                    .edit().putString("kullanici_rolu", "MUSTERI").apply()
                 findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
             }
-            .addOnFailureListener {
-                binding.girisButton.isEnabled = true
-            }
+            .addOnFailureListener { (activity as? MainActivity)?.gosterLoading(false) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -156,7 +153,6 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
                     if (it.isSuccessful) kullaniciTipiniKontrolEtVeYonlendir(auth.currentUser!!.uid)
                 }
             } catch (e: Exception) {
-                Log.e("LOGIN_DEBUG", "Google Hatası: ${e.message}")
                 binding.girisButton.isEnabled = true
             }
         }

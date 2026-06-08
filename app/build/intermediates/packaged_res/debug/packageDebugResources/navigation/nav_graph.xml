@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://tools.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/girisLoginFragment">
+    app:startDestination="@id/urunAnaSayfa">
 
     <fragment
         android:id="@+id/girisLoginFragment"
@@ -40,11 +40,14 @@
         android:label="Yönetici Kayıt Ol"
         tools:layout="@layout/fragment_yonetici_kayit_ol">
         <action
-            android:id="@+id/action_yoneticiKayitOl_to_urunAnaSayfa"
+            android:id="@+id/action_text_yoneticiKayitOl_to_urunAnaSayfa"
             app:destination="@id/urunAnaSayfa" />
         <action
             android:id="@+id/action_yoneticiKayitOl_to_girisLoginFragment"
             app:destination="@id/girisLoginFragment" />
+        <action
+            android:id="@+id/action_yoneticiKayitOl_to_urunAnaSayfa"
+            app:destination="@id/urunAnaSayfa" />
     </fragment>
 
     <fragment
@@ -61,6 +64,12 @@
         <action
             android:id="@+id/action_urunAnaSayfa_to_urunPaylasanFragment"
             app:destination="@id/urunPaylasanFragment" />
+        <action
+            android:id="@+id/action_urunAnaSayfa_to_musteriQrKodFragment"
+            app:destination="@id/musteriQrKodFragment" />
+        <action
+            android:id="@+id/action_urunAnaSayfa_to_yoneticiQrKodFragment"
+            app:destination="@id/yoneticiQrKodFragment" />
     </fragment>
 
     <fragment
@@ -72,12 +81,24 @@
             android:name="urunId"
             app:argType="string"
             app:nullable="true" />
-        <action android:id="@+id/action_urunDetayfragment_to_tarihVeZamanFragment" app:destination="@id/tarihVeZamanFragment" />
-        <action android:id="@+id/action_urunDetayfragment_to_taleplerFragment" app:destination="@id/taleplerFragment" />
-        <action android:id="@+id/action_urunDetayfragment_to_yoneticiQrKodFragment" app:destination="@id/yoneticiQrKodFragment" />
-        <action android:id="@+id/action_urunDetayfragment_to_musteriQrKodFragment" app:destination="@id/musteriQrKodFragment" />
-        <action android:id="@+id/action_urunDetayfragment_to_urunEkleFragment" app:destination="@id/urunEkleFragment" />
-        <action android:id="@+id/action_urunDetayfragment_to_haritaFragment" app:destination="@id/haritaFragment" />
+        <action
+            android:id="@+id/action_urunDetayfragment_to_tarihVeZamanFragment"
+            app:destination="@id/tarihVeZamanFragment" />
+        <action
+            android:id="@+id/action_urunDetayfragment_to_taleplerFragment"
+            app:destination="@id/taleplerFragment" />
+        <action
+            android:id="@+id/action_urunDetayfragment_to_yoneticiQrKodFragment"
+            app:destination="@id/yoneticiQrKodFragment" />
+        <action
+            android:id="@+id/action_urunDetayfragment_to_musteriQrKodFragment"
+            app:destination="@id/musteriQrKodFragment" />
+        <action
+            android:id="@+id/action_urunDetayfragment_to_urunEkleFragment"
+            app:destination="@id/urunEkleFragment" />
+        <action
+            android:id="@+id/action_urunDetayfragment_to_haritaFragment"
+            app:destination="@id/haritaFragment" />
     </fragment>
 
     <fragment
@@ -85,11 +106,9 @@
         android:name="com.example.askidaayemek.view.urunPaylasanFragment"
         android:label="Ürünlerim"
         tools:layout="@layout/fragment_urun_paylasan">
-
         <action
             android:id="@+id/action_urunPaylasan_to_urunDetay"
             app:destination="@id/urunDetayfragment" />
-
         <action
             android:id="@+id/action_urunPaylasanFragment_to_urunEkleFragment"
             app:destination="@id/urunEkleFragment" />
@@ -103,18 +122,19 @@
         android:name="com.example.askidaayemek.view.urunEkleFragment"
         android:label="Ürün Ekle"
         tools:layout="@layout/fragment_urun_ekle">
-
         <argument
             android:name="urunId"
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
-
         <action
             android:id="@+id/action_urunEkleFragment_to_urunPaylasanFragment"
             app:destination="@id/urunPaylasanFragment"
             app:popUpTo="@id/urunPaylasanFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_urunEkleFragment_to_haritaFragment"
+            app:destination="@id/haritaFragment" />
     </fragment>
 
     <fragment
@@ -164,13 +184,19 @@
         android:id="@+id/yoneticiQrKodFragment"
         android:name="com.example.askidaayemek.view.yoneticiQrKodFragment"
         android:label="Yönetici QR"
-        tools:layout="@layout/fragment_yonetici_qr_kod" />
+        tools:layout="@layout/fragment_yonetici_qr_kod">
+        <action
+            android:id="@+id/action_yoneticiQrKodFragment_to_urunAnaSayfa"
+            app:destination="@id/urunAnaSayfa"
+            app:popUpTo="@id/urunAnaSayfa"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/musteriQrKodFragment"
         android:name="com.example.askidaayemek.view.musteriQrKodFragment"
         android:label="Müşteri QR"
-        tools:layout="@layout/fragment_musteri_qr_kod" >
+        tools:layout="@layout/fragment_musteri_qr_kod">
         <action
             android:id="@+id/action_musteriQrKodFragment_to_urunAnaSayfa"
             app:destination="@id/urunAnaSayfa"
@@ -182,12 +208,24 @@
         android:id="@+id/haritaFragment"
         android:name="com.example.askidaayemek.view.haritaFragment"
         android:label="Harita"
-        tools:layout="@layout/fragment_harita" />
+        tools:layout="@layout/fragment_harita" >
+        <action
+            android:id="@+id/action_haritaFragment_to_urunEkleFragment"
+            app:destination="@id/urunEkleFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/parolaFragment"
         android:name="com.example.askidaayemek.view.parolaFragment"
         android:label="Şifremi Unuttum"
         tools:layout="@layout/fragment_parola" />
+    <fragment
+        android:id="@+id/profilFragment"
+        android:name="com.example.askidaayemek.view.profilFragment"
+        android:label="profilFragment" >
+        <action
+            android:id="@+id/action_profilFragment_to_girisLoginFragment"
+            app:destination="@id/girisLoginFragment" />
+    </fragment>
 
 </navigation>

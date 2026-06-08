@@ -1,32 +1,33 @@
 package com.example.askidaayemek.view
 
-import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity // Eklendi
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController // Eklendi
+import androidx.navigation.fragment.findNavController
+import com.example.askidaayemek.R
 import com.example.askidaayemek.databinding.FragmentHaritaBinding
 import org.maplibre.android.MapLibre
+import org.maplibre.android.annotations.Marker
 import org.maplibre.android.annotations.MarkerOptions
 import org.maplibre.android.camera.CameraUpdateFactory
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.Style
-import java.util.Locale
 
 class haritaFragment : Fragment() {
 
     private var _binding: FragmentHaritaBinding? = null
     private val binding get() = _binding!!
     private var mapLibreMap: MapLibreMap? = null
+    private var currentMarker: Marker? = null
+    private var isYoneticiModu = false
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         MapLibre.getInstance(requireContext())
@@ -36,65 +37,66 @@ class haritaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as? MainActivity)?.gosterLoading(true)
 
-        val activity = activity as? AppCompatActivity
-        activity?.setSupportActionBar(binding.haritaToolbar)
-        activity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.haritaToolbar.title = "Harita"
-        binding.haritaToolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
+        binding.haritaToolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+        val oncekiFragment = findNavController().previousBackStackEntry?.destination?.id
+        isYoneticiModu = (oncekiFragment == R.id.urunEkleFragment)
 
         binding.haritaView.onCreate(savedInstanceState)
         binding.haritaView.getMapAsync { map ->
             mapLibreMap = map
-            map.setStyle(Style.Builder().fromUri("https://tiles.openfreemap.org/styles/liberty")) {
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(39.9334, 32.8597), 11.0))
-            }
-        }
+            map.setStyle(
+                Style.Builder().fromUri("https://tiles.openfreemap.org/styles/liberty")
+            ) { style ->
+                (activity as? MainActivity)?.gosterLoading(false)
 
-        binding.aramaButonu.setOnClickListener {
-            val arananMekan = binding.aramaEditText.text.toString().trim()
-            if (arananMekan.isNotEmpty()) {
-                mekanBulVeDetayliIsaretle(arananMekan)
-                binding.aramaEditText.setText("")
-            }
-        }
+                val ankara = LatLng(39.9334, 32.8597)
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(ankara, 12.0))
 
-        binding.aramaEditText.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                binding.aramaButonu.performClick()
-                true
-            } else false
+                arguments?.getString("hedefKonum")?.split(",")?.let { coords ->
+                    if (coords.size == 2) {
+                        val lat = coords[0].trim().toDoubleOrNull() ?: 39.9334
+                        val lng = coords[1].trim().toDoubleOrNull() ?: 32.8597
+                        iğneEkle(LatLng(lat, lng), "Ürün Konumu")
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lng), 15.0))
+                    }
+                }
+
+                if (isYoneticiModu) {
+                    map.addOnMapClickListener { latLng ->
+                        iğneEkle(latLng, "Seçilen Konum")
+                        true
+                    }
+                    map.addOnMapLongClickListener { _ ->
+                        iğneSil()
+                        true
+                    }
+                }
+            }
         }
     }
 
-    private fun mekanBulVeDetayliIsaretle(mekanAdi: String) {
-        val geocoder = Geocoder(requireContext(), Locale("tr"))
-        try {
-            val sonuclar = geocoder.getFromLocationName("$mekanAdi Ankara", 1)
-            if (!sonuclar.isNullOrEmpty()) {
-                val adresNesnesi = sonuclar[0]
-                val konum = LatLng(adresNesnesi.latitude, adresNesnesi.longitude)
-                val tamAdres = adresNesnesi.getAddressLine(0)
+    private fun iğneEkle(latLng: LatLng, title: String) {
+        mapLibreMap?.let { map ->
+            currentMarker?.let { map.removeMarker(it) }
+            currentMarker = map.addMarker(MarkerOptions().position(latLng).title(title))
+            map.selectMarker(currentMarker!!)
 
-                mapLibreMap?.let { map ->
-                    map.clear()
-                    val marker = map.addMarker(
-                        MarkerOptions()
-                            .position(konum)
-                            .title(mekanAdi.uppercase())
-                            .snippet(tamAdres)
-                    )
-                    map.selectMarker(marker)
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(konum, 16.0))
-                }
-            } else {
-                Toast.makeText(context, "Adres bulunamadı Reis", Toast.LENGTH_SHORT).show()
+            if (isYoneticiModu) {
+                Toast.makeText(context, "Konum belirlendi!", Toast.LENGTH_SHORT).show()
             }
-        } catch (e: Exception) {
-            Toast.makeText(context, "İnternetin Gitti yeniden bağlan KRAL", Toast.LENGTH_SHORT)
-                .show()
+        }
+    }
+
+    private fun iğneSil() {
+        if (!isYoneticiModu) return
+        mapLibreMap?.let { map ->
+            currentMarker?.let {
+                map.removeMarker(it)
+                currentMarker = null
+                Toast.makeText(context, "Konum silindi.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -115,8 +117,7 @@ class haritaFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
-        binding.haritaView.onDestroy()
-        _binding = null
+        (activity as? MainActivity)?.gosterLoading(false)
+        super.onDestroyView(); binding.haritaView.onDestroy(); _binding = null
     }
 }

@@ -4,17 +4,19 @@ package com.example.askidaayemek.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.askidaayemek.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -24,61 +26,62 @@ public final class FragmentKayitOlBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final EditText adSoyadEditTextView;
+  public final TextInputEditText adSoyadEditTextView;
 
   @NonNull
-  public final TextView adSoyadTextView;
+  public final TextInputLayout adSoyadLayout;
 
   @NonNull
-  public final EditText ePostaEditText;
+  public final TextInputEditText ePostaEditText;
 
   @NonNull
-  public final EditText editTextViewProfilTipi;
+  public final AutoCompleteTextView editTextViewProfilTipi;
 
   @NonNull
-  public final LinearLayout googleInfoSection;
+  public final TextInputLayout emailLayout;
+
+  @NonNull
+  public final LinearLayout googleLinearLayout;
 
   @NonNull
   public final Button kaydolButton;
 
   @NonNull
+  public final Toolbar kayitOlToolBar;
+
+  @NonNull
   public final TextView kisiselBilgilerTextView;
 
   @NonNull
-  public final EditText parolaEditText;
+  public final TextInputLayout parolaLayout;
 
   @NonNull
-  public final TextView parolaTextView;
+  public final TextInputEditText parolalarEditText;
 
   @NonNull
-  public final TextView profilTipiTextView;
-
-  @NonNull
-  public final ImageButton secenekButton;
-
-  @NonNull
-  public final TextView textViewEposta;
+  public final TextInputLayout profilTipiLayout;
 
   private FragmentKayitOlBinding(@NonNull ConstraintLayout rootView,
-      @NonNull EditText adSoyadEditTextView, @NonNull TextView adSoyadTextView,
-      @NonNull EditText ePostaEditText, @NonNull EditText editTextViewProfilTipi,
-      @NonNull LinearLayout googleInfoSection, @NonNull Button kaydolButton,
-      @NonNull TextView kisiselBilgilerTextView, @NonNull EditText parolaEditText,
-      @NonNull TextView parolaTextView, @NonNull TextView profilTipiTextView,
-      @NonNull ImageButton secenekButton, @NonNull TextView textViewEposta) {
+      @NonNull TextInputEditText adSoyadEditTextView, @NonNull TextInputLayout adSoyadLayout,
+      @NonNull TextInputEditText ePostaEditText,
+      @NonNull AutoCompleteTextView editTextViewProfilTipi, @NonNull TextInputLayout emailLayout,
+      @NonNull LinearLayout googleLinearLayout, @NonNull Button kaydolButton,
+      @NonNull Toolbar kayitOlToolBar, @NonNull TextView kisiselBilgilerTextView,
+      @NonNull TextInputLayout parolaLayout, @NonNull TextInputEditText parolalarEditText,
+      @NonNull TextInputLayout profilTipiLayout) {
     this.rootView = rootView;
     this.adSoyadEditTextView = adSoyadEditTextView;
-    this.adSoyadTextView = adSoyadTextView;
+    this.adSoyadLayout = adSoyadLayout;
     this.ePostaEditText = ePostaEditText;
     this.editTextViewProfilTipi = editTextViewProfilTipi;
-    this.googleInfoSection = googleInfoSection;
+    this.emailLayout = emailLayout;
+    this.googleLinearLayout = googleLinearLayout;
     this.kaydolButton = kaydolButton;
+    this.kayitOlToolBar = kayitOlToolBar;
     this.kisiselBilgilerTextView = kisiselBilgilerTextView;
-    this.parolaEditText = parolaEditText;
-    this.parolaTextView = parolaTextView;
-    this.profilTipiTextView = profilTipiTextView;
-    this.secenekButton = secenekButton;
-    this.textViewEposta = textViewEposta;
+    this.parolaLayout = parolaLayout;
+    this.parolalarEditText = parolalarEditText;
+    this.profilTipiLayout = profilTipiLayout;
   }
 
   @Override
@@ -109,32 +112,38 @@ public final class FragmentKayitOlBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.adSoyadEditTextView;
-      EditText adSoyadEditTextView = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText adSoyadEditTextView = ViewBindings.findChildViewById(rootView, id);
       if (adSoyadEditTextView == null) {
         break missingId;
       }
 
-      id = R.id.adSoyadTextView;
-      TextView adSoyadTextView = ViewBindings.findChildViewById(rootView, id);
-      if (adSoyadTextView == null) {
+      id = R.id.adSoyadLayout;
+      TextInputLayout adSoyadLayout = ViewBindings.findChildViewById(rootView, id);
+      if (adSoyadLayout == null) {
         break missingId;
       }
 
       id = R.id.ePostaEditText;
-      EditText ePostaEditText = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText ePostaEditText = ViewBindings.findChildViewById(rootView, id);
       if (ePostaEditText == null) {
         break missingId;
       }
 
       id = R.id.editTextViewProfilTipi;
-      EditText editTextViewProfilTipi = ViewBindings.findChildViewById(rootView, id);
+      AutoCompleteTextView editTextViewProfilTipi = ViewBindings.findChildViewById(rootView, id);
       if (editTextViewProfilTipi == null) {
         break missingId;
       }
 
-      id = R.id.googleInfoSection;
-      LinearLayout googleInfoSection = ViewBindings.findChildViewById(rootView, id);
-      if (googleInfoSection == null) {
+      id = R.id.emailLayout;
+      TextInputLayout emailLayout = ViewBindings.findChildViewById(rootView, id);
+      if (emailLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.googleLinearLayout;
+      LinearLayout googleLinearLayout = ViewBindings.findChildViewById(rootView, id);
+      if (googleLinearLayout == null) {
         break missingId;
       }
 
@@ -144,46 +153,40 @@ public final class FragmentKayitOlBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.kayitOlToolBar;
+      Toolbar kayitOlToolBar = ViewBindings.findChildViewById(rootView, id);
+      if (kayitOlToolBar == null) {
+        break missingId;
+      }
+
       id = R.id.kisiselBilgilerTextView;
       TextView kisiselBilgilerTextView = ViewBindings.findChildViewById(rootView, id);
       if (kisiselBilgilerTextView == null) {
         break missingId;
       }
 
-      id = R.id.parolaEditText;
-      EditText parolaEditText = ViewBindings.findChildViewById(rootView, id);
-      if (parolaEditText == null) {
+      id = R.id.parolaLayout;
+      TextInputLayout parolaLayout = ViewBindings.findChildViewById(rootView, id);
+      if (parolaLayout == null) {
         break missingId;
       }
 
-      id = R.id.parolaTextView;
-      TextView parolaTextView = ViewBindings.findChildViewById(rootView, id);
-      if (parolaTextView == null) {
+      id = R.id.parolalarEditText;
+      TextInputEditText parolalarEditText = ViewBindings.findChildViewById(rootView, id);
+      if (parolalarEditText == null) {
         break missingId;
       }
 
-      id = R.id.profilTipiTextView;
-      TextView profilTipiTextView = ViewBindings.findChildViewById(rootView, id);
-      if (profilTipiTextView == null) {
-        break missingId;
-      }
-
-      id = R.id.secenekButton;
-      ImageButton secenekButton = ViewBindings.findChildViewById(rootView, id);
-      if (secenekButton == null) {
-        break missingId;
-      }
-
-      id = R.id.textViewEposta;
-      TextView textViewEposta = ViewBindings.findChildViewById(rootView, id);
-      if (textViewEposta == null) {
+      id = R.id.profilTipiLayout;
+      TextInputLayout profilTipiLayout = ViewBindings.findChildViewById(rootView, id);
+      if (profilTipiLayout == null) {
         break missingId;
       }
 
       return new FragmentKayitOlBinding((ConstraintLayout) rootView, adSoyadEditTextView,
-          adSoyadTextView, ePostaEditText, editTextViewProfilTipi, googleInfoSection, kaydolButton,
-          kisiselBilgilerTextView, parolaEditText, parolaTextView, profilTipiTextView,
-          secenekButton, textViewEposta);
+          adSoyadLayout, ePostaEditText, editTextViewProfilTipi, emailLayout, googleLinearLayout,
+          kaydolButton, kayitOlToolBar, kisiselBilgilerTextView, parolaLayout, parolalarEditText,
+          profilTipiLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

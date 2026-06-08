@@ -55,12 +55,16 @@ class yoneticiQrKodFragment : Fragment(R.layout.fragment_yonetici_qr_kod) {
             binding.qrKodImageView.setImageBitmap(bitmap)
             anlikMusteriTakibi(testAdminId)
         }
+
         binding.buttonTeslimEt.setOnClickListener {
             if (!aktifTalepId.isNullOrEmpty()) {
                 binding.buttonTeslimEt.isEnabled = false
+                (activity as? MainActivity)?.gosterLoading(true) // Loading Başlatıldı
+
                 val batch = db.batch()
                 val talepRef = db.collection("Talepler").document(aktifTalepId!!)
                 batch.delete(talepRef)
+
                 if (!asilUrunId.isNullOrEmpty()) {
                     val urunRef = db.collection("Urunler").document(asilUrunId!!)
 
@@ -76,16 +80,16 @@ class yoneticiQrKodFragment : Fragment(R.layout.fragment_yonetici_qr_kod) {
                                 batch.update(urunRef, "miktar", yeniMiktar.toString())
                             }
                         }
+
                         batch.commit()
                             .addOnSuccessListener {
-                                Toast.makeText(
-                                    context,
-                                    "Teslimat yapıldı ve stok güncellendi!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                findNavController().popBackStack()
+                                (activity as? MainActivity)?.gosterLoading(false) // Loading Kapatıldı
+                                Toast.makeText(context, "Teslimat yapıldı!", Toast.LENGTH_SHORT)
+                                    .show()
+                                navigateToAnaSayfa()
                             }
                             .addOnFailureListener { e ->
+                                (activity as? MainActivity)?.gosterLoading(false) // Loading Kapatıldı
                                 binding.buttonTeslimEt.isEnabled = true
                                 Toast.makeText(
                                     context,
@@ -94,15 +98,23 @@ class yoneticiQrKodFragment : Fragment(R.layout.fragment_yonetici_qr_kod) {
                                 ).show()
                             }
                     }.addOnFailureListener {
+                        (activity as? MainActivity)?.gosterLoading(false) // Loading Kapatıldı
                         batch.commit()
-                        findNavController().popBackStack()
+                        navigateToAnaSayfa()
                     }
                 } else {
                     batch.commit().addOnSuccessListener {
-                        findNavController().popBackStack()
+                        (activity as? MainActivity)?.gosterLoading(false) // Loading Kapatıldı
+                        navigateToAnaSayfa()
                     }
                 }
             }
+        }
+    }
+
+    private fun navigateToAnaSayfa() {
+        if (isAdded) {
+            findNavController().navigate(R.id.action_yoneticiQrKodFragment_to_urunAnaSayfa)
         }
     }
 
@@ -113,10 +125,8 @@ class yoneticiQrKodFragment : Fragment(R.layout.fragment_yonetici_qr_kod) {
             .whereEqualTo("onaylayacakAdminUid", adminId)
             .whereEqualTo("durum", "Okutuldu")
             .addSnapshotListener { value, error ->
-                if (error != null) {
-                    Log.e("FirebaseError", "Dinleyici hatası: ${error.localizedMessage}")
-                    return@addSnapshotListener
-                }
+                if (error != null || !isAdded) return@addSnapshotListener
+
                 if (value != null && !value.isEmpty && value.documents.isNotEmpty()) {
                     val document = value.documents[0]
                     aktifTalepId = document.id
@@ -158,6 +168,7 @@ class yoneticiQrKodFragment : Fragment(R.layout.fragment_yonetici_qr_kod) {
     }
 
     override fun onDestroyView() {
+        (activity as? MainActivity)?.gosterLoading(false)
         snapshotListener?.remove()
         snapshotListener = null
         super.onDestroyView()

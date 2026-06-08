@@ -6,6 +6,11 @@
         android:title="Ana Sayfa" />
     <item
         android:id="@+id/taleplerFragment"
-        android:icon="@android:drawable/ic_menu_agenda"
+        android:icon="@drawable/maplibre_info_bg_selector"
         android:title="Talepler" />
+
+    <item
+        android:icon="@drawable/outline_admin_panel_settings_24"
+        android:id="@+id/profilFragment"
+        android:title="Ayarlar" />
 </menu>

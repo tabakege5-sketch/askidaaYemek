@@ -7,7 +7,7 @@ import java.io.Serializable
 
 @Parcelize
 data class urun(
-    var urunId: String? = null, // KRİTİK EKLEME: Firestore'dan gelen döküman ID'sini (UUID) burada tutacağız!
+    var urunId: String? = null,
     var urunAdi: String? = null,
     var miktar: String? = null,
     var konum: String? = null,

@@ -19,6 +19,8 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature
         android:glEsVersion="0x00030000"
@@ -28,19 +30,32 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
     <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION" />
     <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID" />
     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <permission
         android:name="com.example.askidaayemek.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.example.askidaayemek.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" /> <!-- TODO replace above two with next line after Android 4.2 -->
+    <!-- <uses-feature android:name="android.hardware.camera.any"/> -->
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.screen.landscape"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -63,13 +78,17 @@
 
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:clearTaskOnLaunch="true"
             android:exported="false"
-            android:hardwareAccelerated="false"
-            android:screenOrientation="fullSensor" />
+            android:hardwareAccelerated="true"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="com.example.askidaayemek.view.MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -77,44 +96,6 @@
             </intent-filter>
         </activity>
 
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.example.askidaayemek.androidx-startup"
-            android:exported="false" >
-            <meta-data
-                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-                android:value="androidx.startup" />
-        </provider>
-        <!--
-        This activity is an invisible delegate activity to start scanner activity
-        and receive result, so it's unnecessary to support screen orientation and
-        we can avoid any side effect from activity recreation in any case.
-        -->
-        <activity
-            android:name="com.google.mlkit.vision.codescanner.internal.GmsBarcodeScanningDelegateActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <!--
-            Service handling Google Sign-In user revocation. For apps that do not integrate with
-            Google Sign-In, this service will never be started.
-        -->
-        <service
-            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-            android:exported="true"
-            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-            android:visibleToInstantApps="true" />
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"
             android:directBootAware="true"
@@ -201,6 +182,48 @@
         </activity>
 
         <service
+            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+            android:enabled="true"
+            android:exported="false" >
+            <meta-data
+                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+        </service>
+
+        <activity
+            android:name="androidx.credentials.playservices.HiddenActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:enabled="true"
+            android:exported="false"
+            android:fitsSystemWindows="true"
+            android:theme="@style/Theme.Hidden" >
+        </activity>
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--
+            Service handling Google Sign-In user revocation. For apps that do not integrate with
+            Google Sign-In, this service will never be started.
+        -->
+        <service
+            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+            android:exported="true"
+            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+            android:visibleToInstantApps="true" />
+        <!--
+        This activity is an invisible delegate activity to start scanner activity
+        and receive result, so it's unnecessary to support screen orientation and
+        we can avoid any side effect from activity recreation in any case.
+        -->
+        <activity
+            android:name="com.google.mlkit.vision.codescanner.internal.GmsBarcodeScanningDelegateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <service
             android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
             android:directBootAware="true"
             android:exported="false" >
@@ -250,14 +273,29 @@
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <uses-library
-            android:name="android.ext.adservices"
-            android:required="false" />
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="com.example.askidaayemek.androidx-startup"
+            android:exported="false" >
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
         <uses-library
             android:name="androidx.window.extensions"
             android:required="false" />
         <uses-library
             android:name="androidx.window.sidecar"
+            android:required="false" />
+        <uses-library
+            android:name="android.ext.adservices"
             android:required="false" />
 
         <meta-data

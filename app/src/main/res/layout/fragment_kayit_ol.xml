@@ -1,161 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="24dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/kisiselBilgilerTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="HESAP BİLGİLERİ"
-        android:textSize="26sp"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/kayitOlToolBar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:title="Kayıt Sayfası"
+        app:titleTextColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/adSoyadTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Ad Soyad:"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kisiselBilgilerTextView" />
-
-    <EditText
-        android:id="@+id/adSoyadEditTextView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:padding="12dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/adSoyadTextView" />
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/kayitOlToolBar"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <TextView
-        android:id="@+id/textViewEposta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="e-posta:"
-        android:textColor="#666"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/adSoyadEditTextView" />
-
-    <EditText
-        android:id="@+id/ePostaEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:padding="12dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewEposta" />
-
-    <TextView
-        android:id="@+id/parolaTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Parola:"
-        android:textColor="#666"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ePostaEditText" />
-
-    <EditText
-        android:id="@+id/parolaEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/parolaTextView" />
-
-    <TextView
-        android:id="@+id/profilTipiTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Profil Tipi:"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/parolaEditText" />
-
-    <EditText
-        android:id="@+id/editTextViewProfilTipi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profilTipiTextView" />
-    <LinearLayout
-        android:id="@+id/googleInfoSection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="80dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="8dp"
-            android:src="@color/black"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark_focused" />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Google ile giriş Yap"
-            android:textSize="17sp" />
-    </LinearLayout>
+            android:padding="24dp">
 
-    <Button
-        android:id="@+id/kaydolButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:text="DEVAM ET"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/kisiselBilgilerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HESAP BİLGİLERİ"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/secenekButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/editTextViewProfilTipi"
-        app:layout_constraintTop_toTopOf="@+id/editTextViewProfilTipi"
-        app:srcCompat="@android:drawable/arrow_down_float" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/adSoyadLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/kisiselBilgilerTextView">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/adSoyadEditTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ad Soyad" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/adSoyadLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ePostaEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="E-posta"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/parolaLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:passwordToggleEnabled="true"
+                app:layout_constraintTop_toBottomOf="@id/emailLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/parolalarEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Parola"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profilTipiLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                app:endIconMode="dropdown_menu"
+                app:layout_constraintTop_toBottomOf="@id/parolaLayout">
+
+                <AutoCompleteTextView
+                    android:id="@+id/editTextViewProfilTipi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Profil Tipi"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/kaydolButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:text="DEVAM ET"
+                app:layout_constraintTop_toBottomOf="@id/profilTipiLayout" />
+
+            <LinearLayout
+                android:id="@+id/googleLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/kaydolButton">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="8dp"
+                    app:srcCompat="@drawable/googleg_standard_color_18" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Google ile giriş Yap"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

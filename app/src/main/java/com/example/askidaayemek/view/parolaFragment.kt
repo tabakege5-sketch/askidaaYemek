@@ -26,12 +26,21 @@ class parolaFragment : Fragment(R.layout.fragment_parola) {
             val email = binding.editTextText.text.toString().trim()
 
             if (email.isNotEmpty()) {
-                auth.sendPasswordResetEmail(email).addOnSuccessListener {
-                    Toast.makeText(context, "Mailini kontrol et ", Toast.LENGTH_LONG).show()
-                    findNavController().navigateUp()
-                }.addOnFailureListener { e ->
-                    Toast.makeText(context, "Hata: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
-                }
+                binding.gonderButton.isEnabled = false
+                (activity as? MainActivity)?.gosterLoading(true)
+
+                auth.sendPasswordResetEmail(email)
+                    .addOnSuccessListener {
+                        (activity as? MainActivity)?.gosterLoading(false)
+                        Toast.makeText(context, "Mailini kontrol et", Toast.LENGTH_LONG).show()
+                        findNavController().navigateUp()
+                    }
+                    .addOnFailureListener { e ->
+                        (activity as? MainActivity)?.gosterLoading(false)
+                        binding.gonderButton.isEnabled = true
+                        Toast.makeText(context, "Hata: ${e.localizedMessage}", Toast.LENGTH_LONG)
+                            .show()
+                    }
             } else {
                 Toast.makeText(context, "Lütfen e-mail adresinizi gir", Toast.LENGTH_SHORT).show()
             }
@@ -43,6 +52,7 @@ class parolaFragment : Fragment(R.layout.fragment_parola) {
     }
 
     override fun onDestroyView() {
+        (activity as? MainActivity)?.gosterLoading(false)
         super.onDestroyView()
         _binding = null
     }

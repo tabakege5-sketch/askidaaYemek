@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/white">
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,7 +21,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
             <androidx.cardview.widget.CardView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -31,12 +28,18 @@
                 app:cardCornerRadius="60dp"
                 app:cardElevation="0dp">
 
-                <ImageView
-                    android:id="@+id/imageView"
+                <TextView
+                    android:id="@+id/logoTextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerInside"
-                    android:src="@color/design_default_color_primary" />
+                    android:background="@drawable/ic_as_text_white"
+                    android:gravity="center"
+                    android:text="ASKIDA\nYEMEK"
+                    android:textAlignment="center"
+                    android:textColor="@color/design_default_color_secondary_variant"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
@@ -63,22 +66,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/hosgeldinTextView">
 
-            <EditText
-                android:id="@+id/eMailText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:hint="e-mail Giriniz"
-                android:inputType="textEmailAddress"
-                android:padding="16dp" />
+                android:layout_marginBottom="16dp">
 
-            <EditText
-                android:id="@+id/editTextSifre"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/eMailText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="e-mail Giriniz"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sifreLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Parolanızı Giriniz"
-                android:inputType="textPassword"
-                android:padding="16dp" />
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextSifre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Parolanızı Giriniz"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <TextView
@@ -105,11 +120,11 @@
         <Button
             android:id="@+id/kayitOlButton"
             android:layout_width="match_parent"
-            android:textColor="@color/white"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="#9E9E9E"
             android:text="KAYIT OL"
+            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/girisButton" />
 
         <LinearLayout
@@ -121,9 +136,23 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/kayitOlButton">
 
-            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#9E9E9E" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:text="Veya" />
-            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#9E9E9E" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#9E9E9E" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="Veya" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#9E9E9E" />
         </LinearLayout>
 
         <TextView
@@ -131,9 +160,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:alpha="0.5"
             android:text="Google ile Giriş Yap"
             android:textSize="20sp"
-            android:alpha="0.5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/veyaLayout" />
@@ -144,9 +173,9 @@
             android:layout_height="60dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="24dp"
-            android:textColor="@color/white"
             android:backgroundTint="#9E9E9E"
             android:text="YÖNETİCİ GİRİŞİ"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/googleTextView" />
 

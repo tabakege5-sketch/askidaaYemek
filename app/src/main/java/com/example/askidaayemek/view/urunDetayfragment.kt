@@ -1,5 +1,6 @@
 package com.example.askidaayemek.view
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -11,7 +12,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.example.askidaayemek.R
 import com.example.askidaayemek.dataClass.urun
 import com.example.askidaayemek.databinding.FragmentUrunDetayfragmentBinding
@@ -37,41 +37,73 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
             binding.urunDetayToolbar.layoutParams = params
         }
 
-        val gelenUrunId = arguments?.getString("urunId")
+        binding.urunDetayToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
-        binding.urunDetayToolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+        binding.konumTextView.setOnClickListener {
+            mevcutUrun?.konum?.let { konumString ->
+                val bundle = Bundle().apply {
+                    putString("hedefKonum", konumString)
+                }
+                findNavController().navigate(
+                    R.id.action_urunDetayfragment_to_haritaFragment,
+                    bundle
+                )
+            }
+        }
 
         val sharedPref =
             requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
         val rol = sharedPref.getString("kullanici_rolu", "MUSTERI")
+
         binding.duzenleSilPaylasImageButton.visibility =
             if (rol == "YONETICI") View.VISIBLE else View.GONE
+
+        val gelenUrunId = arguments?.getString("urunId")
+
         if (!gelenUrunId.isNullOrEmpty()) {
-            db.collection("Urunler").document(gelenUrunId).get().addOnSuccessListener { doc ->
-                if (isAdded && _binding != null && doc.exists()) {
-                    mevcutUrun = doc.toObject(urun::class.java)?.apply { urunId = doc.id }
-                    mevcutUrun?.let { urun ->
-                        binding.urunDetayToolbar.title = urun.urunAdi ?: "Ürün Detayı"
-                        binding.miktarTextView.text = "Stok: ${urun.miktar ?: "0"}"
-                        binding.aciklamaTextView.text = "Açıklama: ${urun.ekNot ?: "Bilgi yok"}"
-                        binding.konumTextView.text = urun.konum ?: "Konum belirtilmemiş"
-                        resimYukle(urun.gorselUrl)
+            (activity as? MainActivity)?.gosterLoading(true)
+            db.collection("Urunler").document(gelenUrunId).get()
+                .addOnSuccessListener { doc ->
+                    (activity as? MainActivity)?.gosterLoading(false)
+
+                    if (isAdded && _binding != null && doc.exists()) {
+                        mevcutUrun = doc.toObject(urun::class.java)?.apply {
+                            urunId = doc.id
+                        }
+
+                        mevcutUrun?.let { urun ->
+                            binding.urunDetayToolbar.title = urun.urunAdi ?: "Ürün Detayı"
+                            binding.miktarTextView.text = "Stok: ${urun.miktar ?: "0"}"
+                            binding.aciklamaTextView.text = "Açıklama: ${urun.ekNot ?: "Bilgi yok"}"
+                            binding.konumTextView.text = urun.konum ?: "Konum: Belirtilmemiş"
+                            resimYukle(urun.gorselUrl)
+                        }
                     }
                 }
-            }
+                .addOnFailureListener {
+                    (activity as? MainActivity)?.gosterLoading(false)
+                    Toast.makeText(context, "Ürün yüklenemedi", Toast.LENGTH_SHORT).show()
+                }
         }
+
         binding.duzenleSilPaylasImageButton.setOnClickListener { v ->
             val popup = PopupMenu(requireContext(), v)
             popup.menuInflater.inflate(R.menu.detay_menuler, popup.menu)
+
             popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.menu_paylas -> {
-                        paylas(mevcutUrun); true
+                        paylas(mevcutUrun)
+                        true
                     }
 
                     R.id.menu_duzenle -> {
-                        mevcutUrun?.let {
-                            val bundle = Bundle().apply { putString("urunId", it.urunId) }
+                        mevcutUrun?.let { urun ->
+                            val bundle = Bundle().apply {
+                                putParcelable("duzenlenecekUrun", urun)
+                            }
                             findNavController().navigate(
                                 R.id.action_urunDetayfragment_to_urunEkleFragment,
                                 bundle
@@ -81,12 +113,7 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
                     }
 
                     R.id.menu_sil -> {
-                        mevcutUrun?.urunId?.let { id ->
-                            db.collection("Urunler").document(id).delete().addOnSuccessListener {
-                                Toast.makeText(context, "Silindi", Toast.LENGTH_SHORT).show()
-                                findNavController().popBackStack()
-                            }
-                        }
+                        silmeOnayIletisimiGoster()
                         true
                     }
 
@@ -95,20 +122,17 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
             }
             popup.show()
         }
+
         binding.askDanAllButton.setOnClickListener {
-            val uid = auth.currentUser?.uid ?: return@setOnClickListener Toast.makeText(
-                context,
-                "Giriş yapın!",
-                Toast.LENGTH_SHORT
-            ).show()
+            val currentUser = auth.currentUser
+            if (currentUser == null) {
+                Toast.makeText(context, "Önce giriş yapmalısın!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-
-            val miktarStr = binding.miktarTextInput.text.toString()
-            val talepEdilenMiktar = miktarStr.toIntOrNull() ?: 0
-
+            val talepEdilenMiktar = binding.miktarTextInput.text.toString().toIntOrNull() ?: 0
             if (talepEdilenMiktar <= 0) {
-                Toast.makeText(context, "Lütfen geçerli bir miktar girin", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, "Geçerli bir miktar girin", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -119,10 +143,12 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
                         .show()
                     return@setOnClickListener
                 }
+
                 if (binding.hemenRadioButton.isChecked) {
-                    binding.askDanAllButton.isEnabled = false
+                    (activity as? MainActivity)?.gosterLoading(true)
+
                     val talep = hashMapOf(
-                        "urunId" to urun.urunId,
+                        "asilIlanId" to urun.urunId,
                         "urunAdi" to urun.urunAdi,
                         "miktar" to talepEdilenMiktar.toString(),
                         "konum" to urun.konum,
@@ -130,14 +156,39 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
                         "tarih" to Timestamp.now(),
                         "durum" to "Beklemede",
                         "talepTipi" to "Hemen Al",
-                        "yukleyenUid" to uid
+                        "musteriUid" to currentUser.uid,
+                        "yukleyenUid" to (urun.yukleyenUid ?: "")
                     )
-                    db.collection("Talepler").add(talep).addOnSuccessListener {
-                        Toast.makeText(context, "Talep oluşturuldu", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_urunDetayfragment_to_taleplerFragment)
-                    }
+
+                    db.collection("Talepler").add(talep)
+                        .addOnSuccessListener { docReference ->
+                            (activity as? MainActivity)?.gosterLoading(false)
+                            Toast.makeText(
+                                requireContext(),
+                                "Talep oluşturuldu QR kod açılıyor",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            val bundle = Bundle().apply {
+                                putString(
+                                    "urunId",
+                                    docReference.id
+                                )
+                                putString("urunAdi", urun.urunAdi)
+                            }
+                            findNavController().navigate(
+                                R.id.action_urunDetayfragment_to_musteriQrKodFragment,
+                                bundle
+                            )
+                        }
+                        .addOnFailureListener {
+                            (activity as? MainActivity)?.gosterLoading(false)
+                            Toast.makeText(context, "Talep oluşturulamadı", Toast.LENGTH_SHORT)
+                                .show()
+                        }
                 } else {
-                    val bundle = Bundle().apply { putString("urunId", urun.urunId) }
+                    val bundle = Bundle().apply {
+                        putString("urunId", urun.urunId)
+                    }
                     findNavController().navigate(
                         R.id.action_urunDetayfragment_to_tarihVeZamanFragment,
                         bundle
@@ -147,37 +198,55 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
         }
     }
 
+    private fun silmeOnayIletisimiGoster() {
+        val urunAdi = mevcutUrun?.urunAdi ?: "Bu ürünü"
+        AlertDialog.Builder(requireContext())
+            .setTitle("Ürünü Sil")
+            .setMessage("$urunAdi silmek istediğinize emin misiniz?")
+            .setPositiveButton("Sil") { _, _ ->
+                mevcutUrun?.urunId?.let { id ->
+                    (activity as? MainActivity)?.gosterLoading(true)
+                    db.collection("Urunler").document(id).delete()
+                        .addOnSuccessListener {
+                            (activity as? MainActivity)?.gosterLoading(false)
+                            Toast.makeText(context, "Ürün silindi", Toast.LENGTH_SHORT).show()
+                            findNavController().popBackStack()
+                        }
+                        .addOnFailureListener {
+                            (activity as? MainActivity)?.gosterLoading(false)
+                            Toast.makeText(context, "Ürün silinemedi", Toast.LENGTH_SHORT).show()
+                        }
+                }
+            }
+            .setNegativeButton("Vazgeç", null)
+            .create()
+            .show()
+    }
+
     private fun resimYukle(gorselData: String?) {
         if (!gorselData.isNullOrEmpty()) {
-            if (gorselData.startsWith("http")) {
-                Glide.with(this).load(gorselData).error(R.drawable.ic_launcher_background)
-                    .into(binding.detayImageView)
-            } else {
-                try {
-                    val bytes = Base64.decode(gorselData, Base64.DEFAULT)
-                    binding.detayImageView.setImageBitmap(
-                        BitmapFactory.decodeByteArray(
-                            bytes,
-                            0,
-                            bytes.size
-                        )
-                    )
-                } catch (e: Exception) {
-                    binding.detayImageView.setImageResource(R.drawable.ic_launcher_background)
-                }
+            try {
+                val bytes = Base64.decode(gorselData, Base64.DEFAULT)
+                binding.detayImageView.setImageBitmap(
+                    BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                )
+            } catch (e: Exception) {
+                binding.detayImageView.setImageResource(android.R.drawable.stat_notify_error)
             }
         }
     }
 
     private fun paylas(urun: urun?) {
         val msg = "${urun?.urunAdi ?: "Ürün"} - Hemen al: ${urun?.konum ?: ""}"
-        val i = Intent().apply {
-            action = Intent.ACTION_SEND; putExtra(Intent.EXTRA_TEXT, msg); type = "text/plain"
+        val i = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, msg)
         }
-        startActivity(Intent.createChooser(i, "Paylaş"))
+        startActivity(Intent.createChooser(i, "Paylaşım Yapın"))
     }
 
     override fun onDestroyView() {
+        (activity as? MainActivity)?.gosterLoading(false)
         super.onDestroyView()
         _binding = null
     }

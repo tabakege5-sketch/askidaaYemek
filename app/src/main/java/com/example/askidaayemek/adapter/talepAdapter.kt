@@ -1,10 +1,11 @@
 package com.example.askidaayemek.adapter
 
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.askidaayemek.R
 import com.example.askidaayemek.databinding.TalepLayoutBinding
 import com.example.askidaayemek.dataClass.urun
@@ -31,20 +32,46 @@ class talepAdapter(
         holder.binding.urununAdiTextView.text = "Ürün İsmi: ${talepItem.urunAdi ?: "Belirtilmedi"}"
         holder.binding.miktarTextView.text = "Miktar: ${talepItem.miktar ?: "Belirtilmedi"}"
 
-        // Tarih Formatlama
         val timestamp = talepItem.tarih as? com.google.firebase.Timestamp
-        val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-        val tarihStr = timestamp?.toDate()?.let { sdf.format(it) } ?: "Tarih yok"
+        if (timestamp != null) {
+            val dateObject = timestamp.toDate()
 
-        holder.binding.textViewTarih.text = "Tarih: $tarihStr"
-        holder.binding.saatTextView.text = "Saat: ${talepItem.saat ?: "Belirtilmedi"}"
+            val tarihFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val saatFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+            holder.binding.textViewTarih.text = "Tarih: ${tarihFormat.format(dateObject)}"
+            holder.binding.saatTextView.text = "Saat: ${saatFormat.format(dateObject)}"
+        } else {
+            holder.binding.textViewTarih.text = "Tarih: Tarih yok"
+            holder.binding.saatTextView.text = "Saat: Belirtilmedi"
+        }
+
         holder.binding.durumuGosterTextView.text = "Durum: ${talepItem.durum ?: "Beklemede"}"
 
-        Glide.with(holder.itemView.context)
-            .load(talepItem.gorselUrl)
-            .placeholder(android.R.drawable.ic_menu_gallery)
-            .error(android.R.drawable.ic_menu_report_image)
-            .into(holder.binding.urununImageView)
+        val gorselData = talepItem.gorselUrl
+        if (!gorselData.isNullOrEmpty()) {
+            try {
+                val temizBase64 = if (gorselData.contains(",")) {
+                    gorselData.substringAfter(",")
+                } else {
+                    gorselData
+                }
+
+                val bytes = Base64.decode(temizBase64, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+                if (bitmap != null) {
+                    holder.binding.urununImageView.setImageBitmap(bitmap)
+                } else {
+                    holder.binding.urununImageView.setImageResource(android.R.drawable.ic_menu_gallery)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                holder.binding.urununImageView.setImageResource(android.R.drawable.ic_menu_report_image)
+            }
+        } else {
+            holder.binding.urununImageView.setImageResource(android.R.drawable.ic_menu_gallery)
+        }
 
         holder.itemView.setOnClickListener {
             onItemClick(talepItem)
@@ -62,10 +89,12 @@ class talepAdapter(
                             onOnaylaClick(talepItem)
                             true
                         }
+
                         R.id.menu_sil -> {
                             onIptalClick(talepItem, currentPosition)
                             true
                         }
+
                         else -> false
                     }
                 } else {

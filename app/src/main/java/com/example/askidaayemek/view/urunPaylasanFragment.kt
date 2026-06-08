@@ -33,7 +33,8 @@ class urunPaylasanFragment : Fragment(R.layout.fragment_urun_paylasan) {
         auth = Firebase.auth
 
         binding.yayinlananUrunlerToolBar.post {
-            val params = binding.yayinlananUrunlerToolBar.layoutParams as ViewGroup.MarginLayoutParams
+            val params =
+                binding.yayinlananUrunlerToolBar.layoutParams as ViewGroup.MarginLayoutParams
             params.topMargin = 100
             binding.yayinlananUrunlerToolBar.layoutParams = params
         }
@@ -49,6 +50,7 @@ class urunPaylasanFragment : Fragment(R.layout.fragment_urun_paylasan) {
         binding.listeReceyclerVew.adapter = adapter
 
         verileriGetir()
+
         binding.paylasMYapButton.setOnClickListener {
             findNavController().navigate(R.id.action_urunPaylasanFragment_to_urunEkleFragment)
         }
@@ -60,10 +62,13 @@ class urunPaylasanFragment : Fragment(R.layout.fragment_urun_paylasan) {
 
     private fun verileriGetir() {
         val currentUid = auth.currentUser?.uid ?: return
+        (activity as? MainActivity)?.gosterLoading(true)
+
         db.collection("Urunler")
             .whereEqualTo("yukleyenUid", currentUid)
             .orderBy("tarih", Query.Direction.DESCENDING)
             .addSnapshotListener { value, error ->
+                (activity as? MainActivity)?.gosterLoading(false)
                 if (error != null) return@addSnapshotListener
                 if (value != null && _binding != null) {
                     paylasilanUrunlerListesi.clear()
@@ -79,6 +84,7 @@ class urunPaylasanFragment : Fragment(R.layout.fragment_urun_paylasan) {
     }
 
     override fun onDestroyView() {
+        (activity as? MainActivity)?.gosterLoading(false)
         super.onDestroyView()
         _binding = null
     }

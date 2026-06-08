@@ -24,7 +24,6 @@ class tarihVeZamanFragment : Fragment() {
     private val auth = FirebaseAuth.getInstance()
     private var mevcutUrun: urun? = null
 
-    // 1. onCreateView içerisinde inflate etmeyi unutma!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,10 +39,14 @@ class tarihVeZamanFragment : Fragment() {
         Log.d("DEBUG_TEST", "Gelen UrunID: $urunId")
 
         if (!urunId.isNullOrEmpty()) {
+            (activity as? MainActivity)?.gosterLoading(true)
             db.collection("Urunler").document(urunId).get().addOnSuccessListener { doc ->
+                (activity as? MainActivity)?.gosterLoading(false)
                 if (doc.exists()) {
                     mevcutUrun = doc.toObject(urun::class.java)?.apply { this.urunId = doc.id }
                 }
+            }.addOnFailureListener {
+                (activity as? MainActivity)?.gosterLoading(false)
             }
         }
 
@@ -53,10 +56,8 @@ class tarihVeZamanFragment : Fragment() {
             secilenTarih = "$dayOfMonth.${month + 1}.$year"
         }
 
-        // 2. Butonun çalıştığından emin olmak için direkt listener
         binding.secimiKaydetButton.setOnClickListener {
             Log.d("DEBUG_TEST", "Kaydet butonuna basıldı!")
-            Toast.makeText(context, "Kaydet butonuna basıldı!", Toast.LENGTH_SHORT).show()
 
             val currentMusteriUid = auth.currentUser?.uid
             if (currentMusteriUid == null) {
@@ -75,23 +76,34 @@ class tarihVeZamanFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            (activity as? MainActivity)?.gosterLoading(true)
+
             val yeniTalepMap = hashMapOf(
-                "urunId" to (mevcutUrun!!.urunId ?: ""),
+                "asilIlanId" to (mevcutUrun!!.urunId ?: ""),
                 "urunAdi" to (mevcutUrun!!.urunAdi ?: ""),
                 "yukleyenUid" to (mevcutUrun!!.yukleyenUid ?: ""),
                 "musteriUid" to currentMusteriUid,
+                "miktar" to (mevcutUrun!!.miktar ?: "1"),
+                "gorselUrl" to (mevcutUrun!!.gorselUrl ?: ""),
+                "konum" to (mevcutUrun!!.konum ?: ""),
+                "saat" to (mevcutUrun!!.saat ?: ""),
+                "secilenTarih" to secilenTarih,
+                "acıklama" to ekBilgi,
                 "tarih" to Timestamp.now(),
                 "durum" to "Beklemede"
             )
-
             db.collection("Talepler").add(yeniTalepMap).addOnSuccessListener {
+                (activity as? MainActivity)?.gosterLoading(false)
                 Toast.makeText(context, "Talep oluşturuldu", Toast.LENGTH_LONG).show()
                 findNavController().navigate(R.id.action_tarihVeZamanFragment_to_taleplerFragment)
+            }.addOnFailureListener {
+                (activity as? MainActivity)?.gosterLoading(false)
             }
         }
     }
 
     override fun onDestroyView() {
+        (activity as? MainActivity)?.gosterLoading(false)
         super.onDestroyView()
         _binding = null
     }

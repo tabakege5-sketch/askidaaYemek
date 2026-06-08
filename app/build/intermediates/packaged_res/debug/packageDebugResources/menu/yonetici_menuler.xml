@@ -4,17 +4,22 @@
     <item
         android:id="@+id/urunAnaSayfa"
         android:icon="@android:drawable/ic_menu_agenda"
-        android:title="" />
+        android:title="Ana Sayfa" />
 
     <item
         android:id="@+id/urunEkleFragment"
         android:icon="@android:drawable/ic_menu_add"
-        android:title="" />
+        android:title="Urun Ekle" />
 
     <item
-        android:id="@+id/taleplerFragment"
-        android:icon="@android:drawable/ic_dialog_info"
-        android:title="">
+        android:id="@+id/yonetenListeFragment"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="Liste">
     </item>
+
+    <item
+        android:icon="@drawable/outline_admin_panel_settings_24"
+        android:id="@+id/profilFragment"
+        android:title="Ayarlar" />
 
 </menu>

@@ -32,34 +32,44 @@ class kayitOlFragment : Fragment(R.layout.fragment_kayit_ol) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentKayitOlBinding.bind(view)
+        binding.kayitOlToolBar.setNavigationIcon(R.drawable.outline_arrow_back_24)
+        binding.kayitOlToolBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         auth = Firebase.auth
         db = Firebase.firestore
 
-        binding.googleInfoSection.isEnabled = false
-        binding.googleInfoSection.alpha = 0.5f
+        binding.googleLinearLayout.isEnabled = false
+        binding.googleLinearLayout.alpha = 0.5f
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-        binding.secenekButton.setOnClickListener {
-            val popup = PopupMenu(requireContext(), binding.secenekButton)
+
+        val popupAcici = View.OnClickListener {
+            val popup = PopupMenu(requireContext(), binding.editTextViewProfilTipi)
             popup.menu.add("Müşteri")
             popup.menu.add("Yönetici")
             popup.setOnMenuItemClickListener { item ->
                 binding.editTextViewProfilTipi.setText(item.title)
-                binding.googleInfoSection.isEnabled = true
-                binding.googleInfoSection.alpha = 1.0f
+                binding.googleLinearLayout.isEnabled = true
+                binding.googleLinearLayout.alpha = 1.0f
                 true
             }
             popup.show()
         }
+
+        binding.editTextViewProfilTipi.setOnClickListener(popupAcici)
+
         binding.kaydolButton.setOnClickListener {
             normalKayitYap()
         }
-        binding.googleInfoSection.setOnClickListener {
+
+        binding.googleLinearLayout.setOnClickListener {
+            (activity as? MainActivity)?.gosterLoading(true)
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, 100)
         }
@@ -68,20 +78,23 @@ class kayitOlFragment : Fragment(R.layout.fragment_kayit_ol) {
     private fun normalKayitYap() {
         val adSoyad = binding.adSoyadEditTextView.text.toString().trim()
         val email = binding.ePostaEditText.text.toString().trim()
-        val sifre = binding.parolaEditText.text.toString().trim()
-        val profilTipi = binding.editTextViewProfilTipi.text.toString().trim().lowercase()
+        val sifre = binding.parolalarEditText.text.toString().trim()
+        val profilTipi = binding.editTextViewProfilTipi.text.toString().trim()
 
         if (email.isNotEmpty() && sifre.isNotEmpty() && adSoyad.isNotEmpty() && profilTipi.isNotEmpty()) {
+            (activity as? MainActivity)?.gosterLoading(true)
+
             auth.createUserWithEmailAndPassword(email, sifre).addOnSuccessListener {
                 val uid = auth.currentUser?.uid
                 val koleksiyonAdi =
-                    if (profilTipi == "yönetici" || profilTipi == "yonetici") "Yoneticiler" else "Kullanicilar"
+                    if (profilTipi.equals("yönetici", true)) "Yoneticiler" else "Kullanicilar"
                 kaydetVeYonlendir(uid, adSoyad, email, profilTipi, koleksiyonAdi)
             }.addOnFailureListener { e ->
+                (activity as? MainActivity)?.gosterLoading(false)
                 Toast.makeText(context, e.localizedMessage, Toast.LENGTH_LONG).show()
             }
         } else {
-            Toast.makeText(context, "tüm alanları doldur", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Tüm alanları doldur", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -91,12 +104,13 @@ class kayitOlFragment : Fragment(R.layout.fragment_kayit_ol) {
         data: android.content.Intent?
     ) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 150) {
+        if (requestCode == 100) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)!!
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
+                (activity as? MainActivity)?.gosterLoading(false)
                 Log.e(TAG, "Google Hatası: ${e.message}")
             }
         }
@@ -109,11 +123,13 @@ class kayitOlFragment : Fragment(R.layout.fragment_kayit_ol) {
                 val uid = auth.currentUser?.uid
                 val adSoyad = auth.currentUser?.displayName ?: "Google Kullanıcısı"
                 val email = auth.currentUser?.email ?: ""
-                val secilenTip = binding.editTextViewProfilTipi.text.toString().lowercase()
+                val secilenTip = binding.editTextViewProfilTipi.text.toString()
                 val koleksiyonAdi =
-                    if (secilenTip == "yönetici" || secilenTip == "yonetici") "Yoneticiler" else "Kullanicilar"
+                    if (secilenTip.equals("yönetici", true)) "Yoneticiler" else "Kullanicilar"
 
                 kaydetVeYonlendir(uid, adSoyad, email, secilenTip, koleksiyonAdi)
+            } else {
+                (activity as? MainActivity)?.gosterLoading(false)
             }
         }
     }
@@ -129,14 +145,17 @@ class kayitOlFragment : Fragment(R.layout.fragment_kayit_ol) {
             val userMap =
                 hashMapOf("adSoyad" to ad, "email" to mail, "profilTipi" to tip, "uid" to uid)
             db.collection(koleksiyon).document(uid).set(userMap).addOnSuccessListener {
-                Toast.makeText(context, "Kayıt Başarılı Lütfen Giriş Yapın", Toast.LENGTH_LONG)
-                    .show()
+                (activity as? MainActivity)?.gosterLoading(false)
+                Toast.makeText(context, "Kayıt Başarılı", Toast.LENGTH_LONG).show()
                 findNavController().navigate(kayitOlFragmentDirections.actionKayitOlFragmentToGirisLoginFragment())
+            }.addOnFailureListener {
+                (activity as? MainActivity)?.gosterLoading(false)
             }
         }
     }
 
     override fun onDestroyView() {
+        (activity as? MainActivity)?.gosterLoading(false)
         super.onDestroyView()
         _binding = null
     }

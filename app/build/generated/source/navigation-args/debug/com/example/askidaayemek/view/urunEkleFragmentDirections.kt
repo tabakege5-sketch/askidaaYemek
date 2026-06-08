@@ -8,5 +8,8 @@ public class urunEkleFragmentDirections private constructor() {
   public companion object {
     public fun actionUrunEkleFragmentToUrunPaylasanFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_urunEkleFragment_to_urunPaylasanFragment)
+
+    public fun actionUrunEkleFragmentToHaritaFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_urunEkleFragment_to_haritaFragment)
   }
 }

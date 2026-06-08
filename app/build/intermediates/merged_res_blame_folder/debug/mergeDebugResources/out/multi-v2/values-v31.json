@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.askidaayemek.app-mergeDebugResources-56:/values-v31/values-v31.xml",
+            "outputFile": "com.example.askidaayemek.app-mergeDebugResources-60:/values-v31/values-v31.xml",
             "map": [
                 {
                     "source": "/Users/stajyer/.gradle/caches/8.10.2/transforms/748070455c6343398ffce161a7690de8/transformed/material-1.11.0/res/values-v31/values-v31.xml",

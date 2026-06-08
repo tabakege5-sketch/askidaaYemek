@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +27,22 @@ public final class FragmentUrunEkleBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final LinearLayout buttonContainer;
+
+  @NonNull
   public final EditText ekNotEditText;
+
+  @NonNull
+  public final View focusHirsizi;
+
+  @NonNull
+  public final FrameLayout fotografContainer;
+
+  @NonNull
+  public final View kilitKatmani;
+
+  @NonNull
+  public final ConstraintLayout mainRoot;
 
   @NonNull
   public final TextView mevcutKonumTextView;
@@ -35,6 +52,9 @@ public final class FragmentUrunEkleBinding implements ViewBinding {
 
   @NonNull
   public final ImageButton secImageButton;
+
+  @NonNull
+  public final TextView textUrunEkle;
 
   @NonNull
   public final EditText urunAdiEditText;
@@ -55,16 +75,25 @@ public final class FragmentUrunEkleBinding implements ViewBinding {
   public final Button yayNlaButton;
 
   private FragmentUrunEkleBinding(@NonNull ConstraintLayout rootView,
-      @NonNull EditText ekNotEditText, @NonNull TextView mevcutKonumTextView,
-      @NonNull EditText miktarEditText, @NonNull ImageButton secImageButton,
+      @NonNull LinearLayout buttonContainer, @NonNull EditText ekNotEditText,
+      @NonNull View focusHirsizi, @NonNull FrameLayout fotografContainer,
+      @NonNull View kilitKatmani, @NonNull ConstraintLayout mainRoot,
+      @NonNull TextView mevcutKonumTextView, @NonNull EditText miktarEditText,
+      @NonNull ImageButton secImageButton, @NonNull TextView textUrunEkle,
       @NonNull EditText urunAdiEditText, @NonNull MaterialToolbar urunEkleToolbar,
       @NonNull ImageView urunFotografiImageView, @NonNull EditText urunlerEditText,
       @NonNull Button vazgecButton, @NonNull Button yayNlaButton) {
     this.rootView = rootView;
+    this.buttonContainer = buttonContainer;
     this.ekNotEditText = ekNotEditText;
+    this.focusHirsizi = focusHirsizi;
+    this.fotografContainer = fotografContainer;
+    this.kilitKatmani = kilitKatmani;
+    this.mainRoot = mainRoot;
     this.mevcutKonumTextView = mevcutKonumTextView;
     this.miktarEditText = miktarEditText;
     this.secImageButton = secImageButton;
+    this.textUrunEkle = textUrunEkle;
     this.urunAdiEditText = urunAdiEditText;
     this.urunEkleToolbar = urunEkleToolbar;
     this.urunFotografiImageView = urunFotografiImageView;
@@ -100,11 +129,37 @@ public final class FragmentUrunEkleBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.buttonContainer;
+      LinearLayout buttonContainer = ViewBindings.findChildViewById(rootView, id);
+      if (buttonContainer == null) {
+        break missingId;
+      }
+
       id = R.id.ekNotEditText;
       EditText ekNotEditText = ViewBindings.findChildViewById(rootView, id);
       if (ekNotEditText == null) {
         break missingId;
       }
+
+      id = R.id.focusHirsizi;
+      View focusHirsizi = ViewBindings.findChildViewById(rootView, id);
+      if (focusHirsizi == null) {
+        break missingId;
+      }
+
+      id = R.id.fotografContainer;
+      FrameLayout fotografContainer = ViewBindings.findChildViewById(rootView, id);
+      if (fotografContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.kilitKatmani;
+      View kilitKatmani = ViewBindings.findChildViewById(rootView, id);
+      if (kilitKatmani == null) {
+        break missingId;
+      }
+
+      ConstraintLayout mainRoot = (ConstraintLayout) rootView;
 
       id = R.id.mevcutKonumTextView;
       TextView mevcutKonumTextView = ViewBindings.findChildViewById(rootView, id);
@@ -121,6 +176,12 @@ public final class FragmentUrunEkleBinding implements ViewBinding {
       id = R.id.secImageButton;
       ImageButton secImageButton = ViewBindings.findChildViewById(rootView, id);
       if (secImageButton == null) {
+        break missingId;
+      }
+
+      id = R.id.textUrunEkle;
+      TextView textUrunEkle = ViewBindings.findChildViewById(rootView, id);
+      if (textUrunEkle == null) {
         break missingId;
       }
 
@@ -160,9 +221,10 @@ public final class FragmentUrunEkleBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentUrunEkleBinding((ConstraintLayout) rootView, ekNotEditText,
-          mevcutKonumTextView, miktarEditText, secImageButton, urunAdiEditText, urunEkleToolbar,
-          urunFotografiImageView, urunlerEditText, vazgecButton, yayNlaButton);
+      return new FragmentUrunEkleBinding((ConstraintLayout) rootView, buttonContainer,
+          ekNotEditText, focusHirsizi, fotografContainer, kilitKatmani, mainRoot,
+          mevcutKonumTextView, miktarEditText, secImageButton, textUrunEkle, urunAdiEditText,
+          urunEkleToolbar, urunFotografiImageView, urunlerEditText, vazgecButton, yayNlaButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

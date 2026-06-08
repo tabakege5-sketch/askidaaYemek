@@ -30,5 +30,11 @@ public class urunAnaSayfaDirections private constructor() {
 
     public fun actionUrunAnaSayfaToUrunPaylasanFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_urunAnaSayfa_to_urunPaylasanFragment)
+
+    public fun actionUrunAnaSayfaToMusteriQrKodFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_urunAnaSayfa_to_musteriQrKodFragment)
+
+    public fun actionUrunAnaSayfaToYoneticiQrKodFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_urunAnaSayfa_to_yoneticiQrKodFragment)
   }
 }

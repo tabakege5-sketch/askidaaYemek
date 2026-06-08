@@ -1,7 +1,6 @@
 package com.example.askidaayemek.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -30,7 +29,8 @@ class musteriQrKodFragment : Fragment(R.layout.fragment_musteri_qr_kod) {
         _binding = FragmentMusteriQrKodBinding.bind(view)
 
         binding.musteriQrKodOkutmaToolBar.post {
-            val params = binding.musteriQrKodOkutmaToolBar.layoutParams as ViewGroup.MarginLayoutParams
+            val params =
+                binding.musteriQrKodOkutmaToolBar.layoutParams as ViewGroup.MarginLayoutParams
             params.topMargin = 100
             binding.musteriQrKodOkutmaToolBar.layoutParams = params
         }
@@ -39,49 +39,37 @@ class musteriQrKodFragment : Fragment(R.layout.fragment_musteri_qr_kod) {
             findNavController().popBackStack()
         }
 
-        val secilenUrunAdi = arguments?.getString("urunAdi") ?: "Test Yemeği"
         secilenUrunId = arguments?.getString("urunId")
-
+        val secilenUrunAdi = arguments?.getString("urunAdi") ?: "Test Yemeği"
         binding.urununIsmi.text = "Ürünün İsmi: $secilenUrunAdi"
+
         val currentUser = Firebase.auth.currentUser
-
-        binding.btnTeslimatiOnayla.isEnabled = true
-        binding.btnTeslimatiOnayla.text = "Barkod Okutmak İçin Kamerayı Aç"
-
         if (currentUser != null) {
+            (activity as? MainActivity)?.gosterLoading(true)
             db.collection("Kullanicilar").document(currentUser.uid).get()
-                .addOnSuccessListener { document ->
-                    if (_binding != null && document != null && document.exists()) {
-                        kullaniciAdSoyad = document.getString("adSoyad") ?: "Bilinmeyen Kullanıcı"
+                .addOnSuccessListener { doc ->
+                    (activity as? MainActivity)?.gosterLoading(false)
+                    if (_binding != null && doc.exists()) {
+                        kullaniciAdSoyad = doc.getString("adSoyad") ?: "Bilinmeyen Kullanıcı"
                         binding.isimSoyIsimTextView.text = "Ad - Soyad: $kullaniciAdSoyad"
                     }
                     hizliQrTarayiciyiAc()
-                }
-                .addOnFailureListener {
-                    binding.isimSoyIsimTextView.text = "Ad - Soyad: $kullaniciAdSoyad"
+                }.addOnFailureListener {
+                    (activity as? MainActivity)?.gosterLoading(false)
                     hizliQrTarayiciyiAc()
                 }
         } else {
-            kullaniciAdSoyad = "Gerçek Telefon Test Kullanıcısı"
-            binding.isimSoyIsimTextView.text = "Ad - Soyad: $kullaniciAdSoyad"
             hizliQrTarayiciyiAc()
         }
-        binding.btnTeslimatiOnayla.setOnClickListener {
+
+        binding.buttonnTeslimatiOnayla.setOnClickListener {
             if (tarananAdminUuid.isNullOrEmpty()) {
                 hizliQrTarayiciyiAc()
                 return@setOnClickListener
             }
 
-            if (secilenUrunId.isNullOrEmpty()) {
-                Toast.makeText(
-                    context,
-                    "Hata: Seçilen ürünün ID bilgisi alınamadı",
-                    Toast.LENGTH_LONG
-                ).show()
-                return@setOnClickListener
-            }
-
-            binding.btnTeslimatiOnayla.isEnabled = false
+            binding.buttonnTeslimatiOnayla.isEnabled = false
+            (activity as? MainActivity)?.gosterLoading(true)
 
             db.collection("Talepler").document(secilenUrunId!!)
                 .update(
@@ -92,66 +80,41 @@ class musteriQrKodFragment : Fragment(R.layout.fragment_musteri_qr_kod) {
                     )
                 )
                 .addOnSuccessListener {
-                    Toast.makeText(
-                        context,
-                        "Teslimat Onaylandı! Ana Sayfaya Yönlendiriliyorsunuz.",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    findNavController().navigate(R.id.action_musteriQrKodFragment_to_urunAnaSayfa)
+                    (activity as? MainActivity)?.gosterLoading(false)
+                    if (_binding != null) {
+                        Toast.makeText(context, "İşlem Tamamlandı!", Toast.LENGTH_SHORT).show()
+                        findNavController().popBackStack(R.id.urunAnaSayfa, false)
+                    }
                 }
                 .addOnFailureListener { e ->
-                    binding.btnTeslimatiOnayla.isEnabled = true
-                    Toast.makeText(context, "Hata: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+                    (activity as? MainActivity)?.gosterLoading(false)
+                    binding.buttonnTeslimatiOnayla.isEnabled = true
+                    Toast.makeText(context, "Hata: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         }
     }
 
     private fun hizliQrTarayiciyiAc() {
         if (_binding == null) return
-
-        val options = GmsBarcodeScannerOptions.Builder()
-            .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
-            .enableAutoZoom()
-            .build()
-
+        val options =
+            GmsBarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_QR_CODE).build()
         val scanner = GmsBarcodeScanning.getClient(requireContext(), options)
-        binding.btnTeslimatiOnayla.text = "Kamera Açık, Barkod Bekleniyor..."
 
         scanner.startScan()
             .addOnSuccessListener { barcode ->
-                val okunanVeri = barcode.rawValue
-
-                if (!okunanVeri.isNullOrEmpty()) {
-                    if (okunanVeri.startsWith("ADMIN_")) {
-                        tarananAdminUuid = okunanVeri.substring(6)
-                        binding.btnTeslimatiOnayla.isEnabled = true
-                        binding.btnTeslimatiOnayla.text = "Teslimatı Onayla ve Tamamla"
-
-                        Toast.makeText(
-                            context,
-                            "Barkod Okundu! Şimdi aşağıdaki butona basarak onaylayın.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        Toast.makeText(context, "Geçersiz Yönetici Barkodu!", Toast.LENGTH_SHORT).show()
-                        tarananAdminUuid = null
-                        binding.btnTeslimatiOnayla.isEnabled = true
-                        binding.btnTeslimatiOnayla.text = "Hatalı Barkod! Tekrar Aramak İçin Tıklayın"
-                    }
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.e("QR_TARAMA", "Tarama iptal veya hata: ${e.localizedMessage}")
-                if (_binding != null) {
-                    tarananAdminUuid = null
-                    binding.btnTeslimatiOnayla.isEnabled = true
-                    binding.btnTeslimatiOnayla.text = "Tarama İptal Edildi! Yeniden Taramak İçin Tıklayın"
-                    Toast.makeText(context, "Tarama İptal Edildi", Toast.LENGTH_SHORT).show()
+                val data = barcode.rawValue
+                if (!data.isNullOrEmpty() && data.startsWith("ADMIN_")) {
+                    tarananAdminUuid = data.substring(6)
+                    binding.buttonnTeslimatiOnayla.text = "Teslimatı Onayla ve Tamamla"
+                    binding.buttonnTeslimatiOnayla.isEnabled = true
+                } else {
+                    Toast.makeText(context, "Geçersiz Barkod", Toast.LENGTH_SHORT).show()
                 }
             }
     }
 
     override fun onDestroyView() {
+        (activity as? MainActivity)?.gosterLoading(false)
         super.onDestroyView()
         _binding = null
     }

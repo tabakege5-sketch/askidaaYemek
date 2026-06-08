@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -15,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.askidaayemek.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -24,10 +24,13 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
   private final ScrollView rootView;
 
   @NonNull
-  public final EditText eMailText;
+  public final TextInputEditText eMailText;
 
   @NonNull
-  public final EditText editTextSifre;
+  public final TextInputEditText editTextSifre;
+
+  @NonNull
+  public final TextInputLayout emailLayout;
 
   @NonNull
   public final Button girisButton;
@@ -42,13 +45,16 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
   public final TextView hosgeldinTextView;
 
   @NonNull
-  public final ImageView imageView;
-
-  @NonNull
   public final Button kayitOlButton;
 
   @NonNull
   public final LinearLayout loginGiris;
+
+  @NonNull
+  public final TextView logoTextView;
+
+  @NonNull
+  public final TextInputLayout sifreLayout;
 
   @NonNull
   public final TextView sifremiUnuttumTextView;
@@ -59,23 +65,26 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
   @NonNull
   public final Button yoneticiOlButton;
 
-  private FragmentGirisLoginBinding(@NonNull ScrollView rootView, @NonNull EditText eMailText,
-      @NonNull EditText editTextSifre, @NonNull Button girisButton,
+  private FragmentGirisLoginBinding(@NonNull ScrollView rootView,
+      @NonNull TextInputEditText eMailText, @NonNull TextInputEditText editTextSifre,
+      @NonNull TextInputLayout emailLayout, @NonNull Button girisButton,
       @NonNull LinearLayout girisLinearLayout, @NonNull TextView googleTextView,
-      @NonNull TextView hosgeldinTextView, @NonNull ImageView imageView,
-      @NonNull Button kayitOlButton, @NonNull LinearLayout loginGiris,
-      @NonNull TextView sifremiUnuttumTextView, @NonNull LinearLayout veyaLayout,
-      @NonNull Button yoneticiOlButton) {
+      @NonNull TextView hosgeldinTextView, @NonNull Button kayitOlButton,
+      @NonNull LinearLayout loginGiris, @NonNull TextView logoTextView,
+      @NonNull TextInputLayout sifreLayout, @NonNull TextView sifremiUnuttumTextView,
+      @NonNull LinearLayout veyaLayout, @NonNull Button yoneticiOlButton) {
     this.rootView = rootView;
     this.eMailText = eMailText;
     this.editTextSifre = editTextSifre;
+    this.emailLayout = emailLayout;
     this.girisButton = girisButton;
     this.girisLinearLayout = girisLinearLayout;
     this.googleTextView = googleTextView;
     this.hosgeldinTextView = hosgeldinTextView;
-    this.imageView = imageView;
     this.kayitOlButton = kayitOlButton;
     this.loginGiris = loginGiris;
+    this.logoTextView = logoTextView;
+    this.sifreLayout = sifreLayout;
     this.sifremiUnuttumTextView = sifremiUnuttumTextView;
     this.veyaLayout = veyaLayout;
     this.yoneticiOlButton = yoneticiOlButton;
@@ -109,14 +118,20 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.eMailText;
-      EditText eMailText = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText eMailText = ViewBindings.findChildViewById(rootView, id);
       if (eMailText == null) {
         break missingId;
       }
 
       id = R.id.editTextSifre;
-      EditText editTextSifre = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText editTextSifre = ViewBindings.findChildViewById(rootView, id);
       if (editTextSifre == null) {
+        break missingId;
+      }
+
+      id = R.id.emailLayout;
+      TextInputLayout emailLayout = ViewBindings.findChildViewById(rootView, id);
+      if (emailLayout == null) {
         break missingId;
       }
 
@@ -144,12 +159,6 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.imageView;
-      ImageView imageView = ViewBindings.findChildViewById(rootView, id);
-      if (imageView == null) {
-        break missingId;
-      }
-
       id = R.id.kayitOlButton;
       Button kayitOlButton = ViewBindings.findChildViewById(rootView, id);
       if (kayitOlButton == null) {
@@ -159,6 +168,18 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
       id = R.id.loginGiris;
       LinearLayout loginGiris = ViewBindings.findChildViewById(rootView, id);
       if (loginGiris == null) {
+        break missingId;
+      }
+
+      id = R.id.logoTextView;
+      TextView logoTextView = ViewBindings.findChildViewById(rootView, id);
+      if (logoTextView == null) {
+        break missingId;
+      }
+
+      id = R.id.sifreLayout;
+      TextInputLayout sifreLayout = ViewBindings.findChildViewById(rootView, id);
+      if (sifreLayout == null) {
         break missingId;
       }
 
@@ -181,8 +202,9 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
       }
 
       return new FragmentGirisLoginBinding((ScrollView) rootView, eMailText, editTextSifre,
-          girisButton, girisLinearLayout, googleTextView, hosgeldinTextView, imageView,
-          kayitOlButton, loginGiris, sifremiUnuttumTextView, veyaLayout, yoneticiOlButton);
+          emailLayout, girisButton, girisLinearLayout, googleTextView, hosgeldinTextView,
+          kayitOlButton, loginGiris, logoTextView, sifreLayout, sifremiUnuttumTextView, veyaLayout,
+          yoneticiOlButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

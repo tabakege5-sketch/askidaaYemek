@@ -4,6 +4,7 @@ plugins {
     id("kotlin-parcelize")
     id("com.google.gms.google-services")
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -42,39 +43,44 @@ android {
 }
 
 dependencies {
+    // Coroutines & Lifecycle
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+
+    // UI & Core
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    
 
+    // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-    
 
-    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-database-ktx")
-
-
     implementation("com.google.android.gms:play-services-auth:21.0.0")
 
-
+    // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 
-
+    // Harita ve QR
+    // Sadece SDK'yı tutuyoruz, plugin'i sildik çünkü hata veriyordu
     implementation("org.maplibre.gl:android-sdk:11.0.0")
-
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
 
     implementation("com.google.android.gms:play-services-code-scanner:16.1.0")
-
-
     implementation("com.google.zxing:core:3.5.3")
 
+    // Test
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 }

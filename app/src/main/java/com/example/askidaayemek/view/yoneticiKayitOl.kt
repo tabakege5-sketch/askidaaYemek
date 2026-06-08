@@ -25,6 +25,10 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentYoneticiKayitOlBinding.bind(view)
+        binding.yoneticiToolbar.setNavigationIcon(R.drawable.outline_arrow_back_24)
+        binding.yoneticiToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         auth = Firebase.auth
         db = Firebase.firestore
@@ -36,7 +40,7 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
             val girilenKod = binding.yetkiKoduEditText.text.toString().trim()
 
             if (adSoyad.isEmpty() || email.isEmpty() || sifre.isEmpty() || girilenKod.isEmpty()) {
-                Toast.makeText(context, "Eksik bilgi bırakma kavdes", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Eksik bilgi bırakma kardes", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -44,7 +48,10 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
                 Toast.makeText(context, "Geçersiz Kod", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
             binding.yoneticiKayitBttonn.isEnabled = false
+            (activity as? MainActivity)?.gosterLoading(true)
+
             auth.createUserWithEmailAndPassword(email, sifre).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val uid = auth.currentUser?.uid
@@ -58,6 +65,7 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
                     uid?.let { currentUid ->
                         db.collection("Yoneticiler").document(currentUid).set(yoneticiMap)
                             .addOnSuccessListener {
+                                (activity as? MainActivity)?.gosterLoading(false)
                                 Toast.makeText(
                                     context,
                                     "Yönetici Hesabı Oluşturuldu",
@@ -71,6 +79,7 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
                                 findNavController().navigate(R.id.action_yoneticiKayitOl_to_urunAnaSayfa)
                             }
                             .addOnFailureListener { e ->
+                                (activity as? MainActivity)?.gosterLoading(false)
                                 binding.yoneticiKayitBttonn.isEnabled = true
                                 Toast.makeText(
                                     context,
@@ -80,6 +89,7 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
                             }
                     }
                 } else {
+                    (activity as? MainActivity)?.gosterLoading(false)
                     binding.yoneticiKayitBttonn.isEnabled = true
                     Toast.makeText(
                         context,
@@ -92,6 +102,7 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
     }
 
     override fun onDestroyView() {
+        (activity as? MainActivity)?.gosterLoading(false)
         super.onDestroyView()
         _binding = null
     }

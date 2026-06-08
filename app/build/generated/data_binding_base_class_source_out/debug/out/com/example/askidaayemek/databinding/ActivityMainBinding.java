@@ -4,6 +4,7 @@ package com.example.askidaayemek.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -27,15 +28,20 @@ public final class ActivityMainBinding implements ViewBinding {
   public final FragmentContainerView fragmentKonteynrView;
 
   @NonNull
-  public final ConstraintLayout main;
+  public final ProgressBar loadingBar;
+
+  @NonNull
+  public final ConstraintLayout mainLayout;
 
   private ActivityMainBinding(@NonNull ConstraintLayout rootView,
       @NonNull BottomNavigationView butonNavigasyon,
-      @NonNull FragmentContainerView fragmentKonteynrView, @NonNull ConstraintLayout main) {
+      @NonNull FragmentContainerView fragmentKonteynrView, @NonNull ProgressBar loadingBar,
+      @NonNull ConstraintLayout mainLayout) {
     this.rootView = rootView;
     this.butonNavigasyon = butonNavigasyon;
     this.fragmentKonteynrView = fragmentKonteynrView;
-    this.main = main;
+    this.loadingBar = loadingBar;
+    this.mainLayout = mainLayout;
   }
 
   @Override
@@ -77,10 +83,16 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      ConstraintLayout main = (ConstraintLayout) rootView;
+      id = R.id.loadingBar;
+      ProgressBar loadingBar = ViewBindings.findChildViewById(rootView, id);
+      if (loadingBar == null) {
+        break missingId;
+      }
+
+      ConstraintLayout mainLayout = (ConstraintLayout) rootView;
 
       return new ActivityMainBinding((ConstraintLayout) rootView, butonNavigasyon,
-          fragmentKonteynrView, main);
+          fragmentKonteynrView, loadingBar, mainLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

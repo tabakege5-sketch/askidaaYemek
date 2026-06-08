@@ -36,22 +36,22 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
         _binding = FragmentUrunAnaSayfaBinding.bind(view)
 
         binding.anaSayfaToolbAR.post {
-            val params = binding.anaSayfaToolbAR.layoutParams as ViewGroup.MarginLayoutParams
-            params.topMargin = 100
-            binding.anaSayfaToolbAR.layoutParams = params
+            if (_binding != null) {
+                val params = binding.anaSayfaToolbAR.layoutParams as ViewGroup.MarginLayoutParams
+                params.topMargin = 100
+                binding.anaSayfaToolbAR.layoutParams = params
+            }
         }
         db = Firebase.firestore
         auth = Firebase.auth
+
         val sharedPref =
             requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
         kullaniciRolu = sharedPref.getString("kullanici_rolu", "MUSTERI") ?: "MUSTERI"
-        if (kullaniciRolu == "YONETICI") {
-            binding.urunDetayaGitFloatingActionButton.visibility = View.VISIBLE
-        } else {
-            binding.urunDetayaGitFloatingActionButton.visibility = View.GONE
-        }
 
+        arayuzuRoleGoreDuzenle()
         kullaniciBilgisiniGetir()
+
         binding.siraliRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = urunAnaSayfaAdapter(filtreliListe) { secilenUrun ->
             val bundle = Bundle().apply {
@@ -59,8 +59,8 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
             }
             findNavController().navigate(R.id.action_urunAnaSayfa_to_urunDetayfragment, bundle)
         }
-
         binding.siraliRecyclerView.adapter = adapter
+
         verileriGetir()
 
         binding.urunAraEditText.addTextChangedListener(object : TextWatcher {
@@ -75,27 +75,95 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
         binding.tumuButton.setOnClickListener { kategoriFiltrele("Tümü") }
         binding.yemeklerButton.setOnClickListener { kategoriFiltrele("Yemekler") }
         binding.kiyafetlerButton.setOnClickListener { kategoriFiltrele("Kıyafetler") }
-        binding.beyazEsyaButton.setOnClickListener { kategoriFiltrele("beyaz Eşyaları") }
+        binding.beyazEsyaButton.setOnClickListener { kategoriFiltrele("Beyaz Eşya") }
         binding.bebekEsyasiButton.setOnClickListener { kategoriFiltrele("Bebek Eşyaları") }
 
         binding.urunDetayaGitFloatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_urunAnaSayfa_to_urunPaylasanFragment)
         }
+
+
+        binding.qrGitButton.setOnClickListener {
+            findNavController().navigate(R.id.action_urunAnaSayfa_to_yoneticiQrKodFragment)
+        }
+    }
+
+    private fun listeyiGuncelleVeMesajKontrolEt() {
+        adapter.notifyDataSetChanged()
+        if (filtreliListe.isEmpty()) {
+            binding.sonucBulunamadiTextView.visibility = View.VISIBLE
+        } else {
+            binding.sonucBulunamadiTextView.visibility = View.GONE
+        }
+    }
+
+    private fun arayuzuRoleGoreDuzenle() {
+        if (_binding == null) return
+        binding.anaSayfaToolbAR.menu.clear()
+        if (kullaniciRolu == "YONETICI") {
+            binding.urunDetayaGitFloatingActionButton.visibility = View.VISIBLE
+            binding.qrGitButton.visibility = View.VISIBLE
+            binding.anaSayfaToolbAR.inflateMenu(R.menu.yonetici_menuler)
+        } else {
+            binding.urunDetayaGitFloatingActionButton.visibility = View.GONE
+            binding.qrGitButton.visibility = View.GONE
+            binding.anaSayfaToolbAR.inflateMenu(R.menu.musteri_menu)
+        }
+
+        binding.anaSayfaToolbAR.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.taleplerFragment -> {
+                    findNavController().navigate(R.id.action_urunAnaSayfa_to_taleplerFragment)
+                    true
+                }
+
+                R.id.urunEkleFragment -> {
+                    findNavController().navigate(R.id.action_urunAnaSayfa_to_urunPaylasanFragment)
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 
     private fun kullaniciBilgisiniGetir() {
         val uid = auth.currentUser?.uid ?: return
-        val koleksiyon = if (kullaniciRolu == "YONETICI") "Yoneticiler" else "Kullanicilar"
-
-        db.collection(koleksiyon).document(uid).get()
+        (activity as? MainActivity)?.gosterLoading(true)
+        db.collection("Yoneticiler").document(uid).get()
             .addOnSuccessListener { document ->
-                if (_binding != null && document != null && document.exists()) {
+                if (_binding == null) return@addOnSuccessListener
+                if (document != null && document.exists()) {
+                    kullaniciRolu = "YONETICI"
                     val ad = document.getString("ad") ?: document.getString("e-posta")
-                        ?.substringBefore("@") ?: "Kullanıcı"
+                        ?.substringBefore("@") ?: "Yönetici"
                     binding.kullaniciAdiTextView.text = " $ad ($kullaniciRolu)"
+                    requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
+                        .edit().putString("kullanici_rolu", "YONETICI").apply()
+                    arayuzuRoleGoreDuzenle()
+                    (activity as? MainActivity)?.gosterLoading(false)
+                } else {
+                    db.collection("Kullanicilar").document(uid).get()
+                        .addOnSuccessListener { userDoc ->
+                            (activity as? MainActivity)?.gosterLoading(false)
+                            if (_binding == null) return@addOnSuccessListener
+                            if (userDoc.exists()) {
+                                kullaniciRolu = "MUSTERI"
+                                val ad = userDoc.getString("ad") ?: userDoc.getString("e-posta")
+                                    ?.substringBefore("@") ?: "Kullanıcı"
+                                binding.kullaniciAdiTextView.text = " $ad ($kullaniciRolu)"
+                                requireActivity().getSharedPreferences(
+                                    "AskidaYemekPref",
+                                    Context.MODE_PRIVATE
+                                )
+                                    .edit().putString("kullanici_rolu", "MUSTERI").apply()
+                                arayuzuRoleGoreDuzenle()
+                            }
+                        }.addOnFailureListener { (activity as? MainActivity)?.gosterLoading(false) }
                 }
             }
             .addOnFailureListener {
+                (activity as? MainActivity)?.gosterLoading(false)
                 if (_binding != null) binding.kullaniciAdiTextView.text = " Misafir"
             }
     }
@@ -112,26 +180,30 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
                 }
             }
         }
-        adapter.notifyDataSetChanged()
+        listeyiGuncelleVeMesajKontrolEt()
     }
 
     private fun kategoriFiltrele(kategori: String) {
         filtreliListe.clear()
-        if (kategori == "Tümü") {
+        if (kategori.equals("Tümü", ignoreCase = true)) {
             filtreliListe.addAll(tamListe)
         } else {
+            val arananKategori = kategori.lowercase().trim()
             for (item in tamListe) {
-                if (item.urunKategori == kategori) {
+                val dbKategori = item.urunKategori?.lowercase()?.trim() ?: ""
+                if (dbKategori.contains(arananKategori) || arananKategori.contains(dbKategori)) {
                     filtreliListe.add(item)
                 }
             }
         }
-        adapter.notifyDataSetChanged()
+        listeyiGuncelleVeMesajKontrolEt()
     }
 
     private fun verileriGetir() {
+        (activity as? MainActivity)?.gosterLoading(true)
         db.collection("Urunler").orderBy("tarih", Query.Direction.DESCENDING)
             .addSnapshotListener { value, error ->
+                (activity as? MainActivity)?.gosterLoading(false)
                 if (error != null || _binding == null) return@addSnapshotListener
                 if (value != null) {
                     tamListe.clear()
@@ -148,6 +220,7 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
     }
 
     override fun onDestroyView() {
+        (activity as? MainActivity)?.gosterLoading(false)
         super.onDestroyView()
         _binding = null
     }

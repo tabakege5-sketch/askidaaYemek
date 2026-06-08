@@ -1,51 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".view.urunEkleFragment">
+
+    <View
+        android:id="@+id/focusHirsizi"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/urunEkleToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="Ürün Ekle"
+        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/outline_arrow_back_24"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:title="Ürün Ekle Sayfası" />
 
-    <ImageView
-        android:id="@+id/urunFotografiImageView"
+    <FrameLayout
+        android:id="@+id/fotografContainer"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_margin="16dp"
-        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/urunEkleToolbar"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintTop_toBottomOf="@id/urunEkleToolbar">
+
+        <ImageView
+            android:id="@+id/urunFotografiImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/textUrunEkle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/system_accent2_700"
+            android:gravity="center"
+            android:text="Ürün Ekle"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            tools:ignore="NewApi" />
+    </FrameLayout>
 
     <EditText
         android:id="@+id/urunlerEditText"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:focusable="false"
         android:hint="Ürün Kategorisi"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/secImageButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/urunFotografiImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/fotografContainer" />
 
     <ImageButton
         android:id="@+id/secImageButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
         android:src="@android:drawable/arrow_down_float"
         app:layout_constraintBottom_toBottomOf="@+id/urunlerEditText"
-        app:layout_constraintEnd_toEndOf="@+id/urunlerEditText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/urunlerEditText" />
 
     <EditText
@@ -54,6 +86,7 @@
         android:layout_height="50dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="12dp"
+        android:cursorVisible="false"
         android:hint="Ürün Adı"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,8 +100,8 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="12dp"
         android:hint="Miktar Giriniz"
-        android:padding="10dp"
         android:inputType="number"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/urunAdiEditText" />
@@ -100,13 +133,12 @@
         app:layout_constraintTop_toBottomOf="@+id/ekNotEditText" />
 
     <LinearLayout
+        android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
             android:id="@+id/vazgecButton"
@@ -125,5 +157,18 @@
             android:backgroundTint="#4CAF50"
             android:text="YAYINLA" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/kilitKatmani"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:elevation="100dp"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

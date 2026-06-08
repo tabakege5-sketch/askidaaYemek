@@ -2,6 +2,7 @@ package com.example.askidaayemek.view
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.ArrayList
 
 class taleplerFragment : Fragment() {
 
@@ -41,18 +43,22 @@ class taleplerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.taleplerToolBar.post {
-            val params = binding.taleplerToolBar.layoutParams as ViewGroup.MarginLayoutParams
-            params.topMargin = 100
-            binding.taleplerToolBar.layoutParams = params
+            if (_binding != null) {
+                val params = binding.taleplerToolBar.layoutParams as ViewGroup.MarginLayoutParams
+                params.topMargin = 100
+                binding.taleplerToolBar.layoutParams = params
+            }
         }
 
         db = Firebase.firestore
         auth = Firebase.auth
+        yoneticiKorumasiKontrolEt()
+
         binding.taleplerToolBar.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_taleplerFragment_to_urunAnaSayfa)
         }
-
 
         binding.taleplerToolBar.setOnMenuItemClickListener { menuItem ->
             if (menuItem.itemId == R.id.menu_sil || menuItem.title == "Sil") {
@@ -72,90 +78,134 @@ class taleplerFragment : Fragment() {
         }
 
         binding.taleplerRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         adapter = talepAdapter(
             talepListesi = talepListesi,
             onItemClick = { secilenTalep ->
                 secilenAnlikTalep = secilenTalep
                 secilenPosition = talepListesi.indexOf(secilenTalep)
-                Toast.makeText(
-                    requireContext(),
-                    "${secilenTalep.urunAdi} seçildi. Durum: ${secilenTalep.ekNot ?: "Beklemede"}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                qrIsleminiBaslat()
             },
             onOnaylaClick = { onaylanacakTalep ->
-                onaylaVeStokDus(onaylanacakTalep)
+                talebiOnaylaVeMiktariDus(onaylanacakTalep)
             },
             onIptalClick = { iptalEdilecekTalep, position ->
                 silmeOnayIletisimiGoster(iptalEdilecekTalep, position)
             }
         )
         binding.taleplerRecyclerView.adapter = adapter
-        binding.askidaQrAlmaFlootingButton.setOnClickListener {
-            qrIsleminiBaslat()
-        }
+
+        binding.askidaQrAlmaFlootingButton.setOnClickListener { qrIsleminiBaslat() }
 
         verileriGetir()
     }
 
+    private fun talebiOnaylaVeMiktariDus(talep: urun) {
+        val talepId = talep.urunId ?: return
+        val asilIlanId = talep.ekNot
+            ?: ""
+
+        if (asilIlanId.isEmpty()) {
+            Toast.makeText(context, "Asıl ilan kimliği bulunamadı!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        (activity as? MainActivity)?.gosterLoading(true)
+        val asilUrunRef = db.collection("Urunler").document(asilIlanId)
+        val talepRef = db.collection("Talepler").document(talepId)
+
+        db.runTransaction { transaction ->
+            val urunSnapshot = transaction.get(asilUrunRef)
+            if (!urunSnapshot.exists()) {
+                throw Exception("Asıl ilan artık mevcut değil!")
+            }
+
+
+            val mevcutStokLong = urunSnapshot.getLong("miktar")
+            val mevcutStok =
+                mevcutStokLong?.toInt() ?: urunSnapshot.getString("miktar")?.toIntOrNull() ?: 0
+
+
+            val talepEdilenMiktar = talep.miktar?.toIntOrNull() ?: 1
+
+
+            if (mevcutStok < talepEdilenMiktar) {
+                throw Exception("Yetersiz stok! Mevcut: $mevcutStok, İstenen: $talepEdilenMiktar")
+            }
+
+
+            val yeniStok = mevcutStok - talepEdilenMiktar
+
+
+            if (mevcutStokLong != null) {
+                transaction.update(asilUrunRef, "miktar", yeniStok)
+            } else {
+                transaction.update(asilUrunRef, "miktar", yeniStok.toString())
+            }
+
+
+            transaction.update(talepRef, "durum", "Onaylandı")
+
+        }.addOnSuccessListener {
+            (activity as? MainActivity)?.gosterLoading(false)
+            if (_binding != null) {
+                Toast.makeText(
+                    context,
+                    "${talep.urunAdi} onaylandı ve stok güncellendi!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }.addOnFailureListener { e ->
+            (activity as? MainActivity)?.gosterLoading(false)
+            if (_binding != null) {
+                Toast.makeText(context, "İşlem başarısız: ${e.localizedMessage}", Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
+    }
+
+    private fun yoneticiKorumasiKontrolEt() {
+        val uid = auth.currentUser?.uid ?: return
+        db.collection("Yoneticiler").document(uid).get().addOnSuccessListener { doc ->
+            if (_binding == null) return@addOnSuccessListener
+            if (doc.exists()) {
+                Toast.makeText(
+                    context,
+                    "Yöneticiler taleplerim sayfasına erişemez",
+                    Toast.LENGTH_SHORT
+                ).show()
+                findNavController().navigate(R.id.action_urunAnaSayfa_to_urunPaylasanFragment)
+            }
+        }
+    }
+
     private fun silmeOnayIletisimiGoster(talep: urun, position: Int) {
         AlertDialog.Builder(requireContext())
-            .setTitle("Talebi Sil")
-            .setMessage("${talep.urunAdi} talebini silmek istediğinize emin misiniz?")
-            .setPositiveButton("Evet, Sil") { dialog, _ ->
+            .setTitle("Talebi İptal Et")
+            .setMessage("${talep.urunAdi} talebini iptal etmek istediğinize emin misiniz?")
+            .setPositiveButton("Sil") { dialog, _ ->
                 talepIptalEt(talep, position)
                 dialog.dismiss()
             }
-            .setNegativeButton("Vazgeç") { dialog, _ ->
-                dialog.dismiss()
-            }
+            .setNegativeButton("Vazgeç") { dialog, _ -> dialog.dismiss() }
             .create()
             .show()
     }
 
-    private fun onaylaVeStokDus(talep: urun) {
-        val talepId = talep.urunId ?: return
-        val asilIlanId = talep.ekNot ?: ""
-
-        val batch = db.batch()
-        val talepRef = db.collection("Talepler").document(talepId)
-        batch.update(talepRef, "durum", "Onaylandı")
-
-        if (asilIlanId.isNotEmpty()) {
-            val urunRef = db.collection("Urunler").document(asilIlanId)
-            urunRef.get().addOnSuccessListener { doc ->
-                if (doc.exists()) {
-                    val mevcutMiktar = doc.getString("miktar")?.toIntOrNull() ?: 0
-                    val talepMiktari = talep.miktar?.toIntOrNull() ?: 1
-                    val yeniMiktar = mevcutMiktar - talepMiktari
-
-                    if (yeniMiktar <= 0) batch.delete(urunRef)
-                    else batch.update(urunRef, "miktar", yeniMiktar.toString())
-                }
-                batch.commit().addOnSuccessListener {
-                    Toast.makeText(
-                        context,
-                        "Talep Onaylandı, Stok Güncellendi.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        } else {
-            batch.commit()
-        }
-    }
-
     private fun talepIptalEt(talep: urun, position: Int) {
-        talep.urunId?.let { id ->
-            db.collection("Talepler").document(id).delete().addOnSuccessListener {
-                Toast.makeText(context, "Talep başarıyla silindi.", Toast.LENGTH_SHORT).show()
+        val id = talep.urunId ?: return
+        (activity as? MainActivity)?.gosterLoading(true)
+        db.collection("Talepler").document(id).delete().addOnSuccessListener {
+            (activity as? MainActivity)?.gosterLoading(false)
+            if (_binding != null) {
+                Toast.makeText(context, "Talebiniz iptal edildi", Toast.LENGTH_SHORT).show()
                 adapter.siraliElemanSil(position)
                 if (secilenAnlikTalep?.urunId == id) {
                     secilenAnlikTalep = null
                     secilenPosition = -1
                 }
             }
+        }.addOnFailureListener {
+            (activity as? MainActivity)?.gosterLoading(false)
         }
     }
 
@@ -163,56 +213,82 @@ class taleplerFragment : Fragment() {
         if (secilenAnlikTalep == null) {
             Toast.makeText(
                 context,
-                "Lütfen listeden işlem yapmak istediğiniz talebi seçin",
+                "Lütfen işlem yapmak istediğiniz talebi seçin",
                 Toast.LENGTH_SHORT
             ).show()
             return
         }
-        val uid = auth.currentUser?.uid ?: return
-        db.collection("Yoneticiler").document(uid).get().addOnSuccessListener { doc ->
-            val bundle = Bundle().apply {
-                putString("urunId", secilenAnlikTalep?.urunId)
-                putString("urunAdi", secilenAnlikTalep?.urunAdi)
-            }
-            if (doc.exists()) {
-                findNavController().navigate(
-                    R.id.action_taleplerFragment_to_yoneticiQrKodFragment,
-                    bundle
-                )
-            } else {
-                findNavController().navigate(
-                    R.id.action_taleplerFragment_to_musteriQrKodFragment,
-                    bundle
-                )
-            }
+
+        val bundle = Bundle().apply {
+            putString("urunId", secilenAnlikTalep?.urunId)
+            putString("urunAdi", secilenAnlikTalep?.urunAdi)
         }
+        findNavController().navigate(R.id.action_taleplerFragment_to_musteriQrKodFragment, bundle)
     }
 
     private fun verileriGetir() {
         val currentUser = auth.currentUser ?: return
+        (activity as? MainActivity)?.gosterLoading(true)
         db.collection("Talepler")
-            .whereEqualTo("yukleyenUid", currentUser.uid)
+            .whereEqualTo("musteriUid", currentUser.uid)
             .orderBy("tarih", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, error ->
-                if (error != null || _binding == null) return@addSnapshotListener
+                (activity as? MainActivity)?.gosterLoading(false)
+                if (error != null) {
+                    Log.e(
+                        "FIRESTORE_ERROR",
+                        "İndeks hatası, yedek sorguya geçiliyor: ${error.localizedMessage}"
+                    )
+                    yedekSorguCalistir()
+                    return@addSnapshotListener
+                }
+
+                if (_binding == null) return@addSnapshotListener
 
                 talepListesi.clear()
                 snapshot?.documents?.forEach { doc ->
-                    doc.toObject(urun::class.java)?.let {
-                        it.urunId = doc.id
-                        if (doc.getString("durum") == null) {
-                            it.ekNot = "Beklemede"
-                        } else {
-                            it.ekNot = doc.getString("durum")
-                        }
-                        talepListesi.add(it)
+                    val itTalep = urun().apply {
+                        this.urunId = doc.id
+                        this.urunAdi = doc.getString("urunAdi") ?: "İsimsiz Ürün"
+                        this.miktar = doc.getString("miktar") ?: "1"
+                        this.gorselUrl = doc.getString("gorselUrl") ?: ""
+                        this.konum = doc.getString("konum") ?: ""
+                        this.durum = doc.getString("durum") ?: "Beklemede"
+                        this.tarih = doc.getTimestamp("tarih")
+                        this.ekNot = doc.getString("asilIlanId") ?: ""
                     }
+                    talepListesi.add(itTalep)
+                }
+                adapter.notifyDataSetChanged()
+            }
+    }
+
+    private fun yedekSorguCalistir() {
+        val currentUser = auth.currentUser ?: return
+        db.collection("Talepler")
+            .whereEqualTo("musteriUid", currentUser.uid)
+            .addSnapshotListener { snapshot, _ ->
+                if (_binding == null) return@addSnapshotListener
+                talepListesi.clear()
+                snapshot?.documents?.forEach { doc ->
+                    val itTalep = urun().apply {
+                        this.urunId = doc.id
+                        this.urunAdi = doc.getString("urunAdi") ?: "İsimsiz Ürün"
+                        this.miktar = doc.getString("miktar") ?: "1"
+                        this.gorselUrl = doc.getString("gorselUrl") ?: ""
+                        this.konum = doc.getString("konum") ?: ""
+                        this.durum = doc.getString("durum") ?: "Beklemede"
+                        this.tarih = doc.getTimestamp("tarih")
+                        this.ekNot = doc.getString("asilIlanId") ?: ""
+                    }
+                    talepListesi.add(itTalep)
                 }
                 adapter.notifyDataSetChanged()
             }
     }
 
     override fun onDestroyView() {
+        (activity as? MainActivity)?.gosterLoading(false)
         super.onDestroyView()
         _binding = null
     }

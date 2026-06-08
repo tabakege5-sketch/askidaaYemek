@@ -5,14 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.askidaayemek.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -22,33 +24,56 @@ public final class FragmentYoneticiKayitOlBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final EditText yetkiKoduEditText;
+  public final TextInputLayout adSoyadLayout;
+
+  @NonNull
+  public final TextInputLayout emailLayout;
+
+  @NonNull
+  public final TextInputLayout kodLayout;
+
+  @NonNull
+  public final TextInputEditText yetkiKoduEditText;
 
   @NonNull
   public final TextView yoneticiBaslik;
 
   @NonNull
-  public final EditText yoneticiEmailEditText;
+  public final TextInputEditText yoneticiEmailEditText;
 
   @NonNull
   public final Button yoneticiKayitBttonn;
 
   @NonNull
-  public final EditText yoneticiSifreEditText;
+  public final TextInputEditText yoneticiSifreEditText;
 
   @NonNull
-  public final EditText yonetininIsmiSoyIsmiEditText;
+  public final TextInputLayout yoneticiSifreLayout;
+
+  @NonNull
+  public final Toolbar yoneticiToolbar;
+
+  @NonNull
+  public final TextInputEditText yonetininIsmiSoyIsmiEditText;
 
   private FragmentYoneticiKayitOlBinding(@NonNull ConstraintLayout rootView,
-      @NonNull EditText yetkiKoduEditText, @NonNull TextView yoneticiBaslik,
-      @NonNull EditText yoneticiEmailEditText, @NonNull Button yoneticiKayitBttonn,
-      @NonNull EditText yoneticiSifreEditText, @NonNull EditText yonetininIsmiSoyIsmiEditText) {
+      @NonNull TextInputLayout adSoyadLayout, @NonNull TextInputLayout emailLayout,
+      @NonNull TextInputLayout kodLayout, @NonNull TextInputEditText yetkiKoduEditText,
+      @NonNull TextView yoneticiBaslik, @NonNull TextInputEditText yoneticiEmailEditText,
+      @NonNull Button yoneticiKayitBttonn, @NonNull TextInputEditText yoneticiSifreEditText,
+      @NonNull TextInputLayout yoneticiSifreLayout, @NonNull Toolbar yoneticiToolbar,
+      @NonNull TextInputEditText yonetininIsmiSoyIsmiEditText) {
     this.rootView = rootView;
+    this.adSoyadLayout = adSoyadLayout;
+    this.emailLayout = emailLayout;
+    this.kodLayout = kodLayout;
     this.yetkiKoduEditText = yetkiKoduEditText;
     this.yoneticiBaslik = yoneticiBaslik;
     this.yoneticiEmailEditText = yoneticiEmailEditText;
     this.yoneticiKayitBttonn = yoneticiKayitBttonn;
     this.yoneticiSifreEditText = yoneticiSifreEditText;
+    this.yoneticiSifreLayout = yoneticiSifreLayout;
+    this.yoneticiToolbar = yoneticiToolbar;
     this.yonetininIsmiSoyIsmiEditText = yonetininIsmiSoyIsmiEditText;
   }
 
@@ -79,8 +104,26 @@ public final class FragmentYoneticiKayitOlBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.adSoyadLayout;
+      TextInputLayout adSoyadLayout = ViewBindings.findChildViewById(rootView, id);
+      if (adSoyadLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.emailLayout;
+      TextInputLayout emailLayout = ViewBindings.findChildViewById(rootView, id);
+      if (emailLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.kodLayout;
+      TextInputLayout kodLayout = ViewBindings.findChildViewById(rootView, id);
+      if (kodLayout == null) {
+        break missingId;
+      }
+
       id = R.id.yetkiKoduEditText;
-      EditText yetkiKoduEditText = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText yetkiKoduEditText = ViewBindings.findChildViewById(rootView, id);
       if (yetkiKoduEditText == null) {
         break missingId;
       }
@@ -92,7 +135,7 @@ public final class FragmentYoneticiKayitOlBinding implements ViewBinding {
       }
 
       id = R.id.yoneticiEmailEditText;
-      EditText yoneticiEmailEditText = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText yoneticiEmailEditText = ViewBindings.findChildViewById(rootView, id);
       if (yoneticiEmailEditText == null) {
         break missingId;
       }
@@ -104,19 +147,32 @@ public final class FragmentYoneticiKayitOlBinding implements ViewBinding {
       }
 
       id = R.id.yoneticiSifreEditText;
-      EditText yoneticiSifreEditText = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText yoneticiSifreEditText = ViewBindings.findChildViewById(rootView, id);
       if (yoneticiSifreEditText == null) {
         break missingId;
       }
 
+      id = R.id.yoneticiSifreLayout;
+      TextInputLayout yoneticiSifreLayout = ViewBindings.findChildViewById(rootView, id);
+      if (yoneticiSifreLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.yoneticiToolbar;
+      Toolbar yoneticiToolbar = ViewBindings.findChildViewById(rootView, id);
+      if (yoneticiToolbar == null) {
+        break missingId;
+      }
+
       id = R.id.yonetininIsmiSoyIsmiEditText;
-      EditText yonetininIsmiSoyIsmiEditText = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText yonetininIsmiSoyIsmiEditText = ViewBindings.findChildViewById(rootView, id);
       if (yonetininIsmiSoyIsmiEditText == null) {
         break missingId;
       }
 
-      return new FragmentYoneticiKayitOlBinding((ConstraintLayout) rootView, yetkiKoduEditText,
-          yoneticiBaslik, yoneticiEmailEditText, yoneticiKayitBttonn, yoneticiSifreEditText,
+      return new FragmentYoneticiKayitOlBinding((ConstraintLayout) rootView, adSoyadLayout,
+          emailLayout, kodLayout, yetkiKoduEditText, yoneticiBaslik, yoneticiEmailEditText,
+          yoneticiKayitBttonn, yoneticiSifreEditText, yoneticiSifreLayout, yoneticiToolbar,
           yonetininIsmiSoyIsmiEditText);
     }
     String missingId = rootView.getResources().getResourceName(id);

@@ -28,7 +28,7 @@ public final class FragmentMusteriQrKodBinding implements ViewBinding {
   public final TextView askDanQrAlmaTextView;
 
   @NonNull
-  public final Button btnTeslimatiOnayla;
+  public final Button buttonnTeslimatiOnayla;
 
   @NonNull
   public final TextView isimSoyIsimTextView;
@@ -49,13 +49,13 @@ public final class FragmentMusteriQrKodBinding implements ViewBinding {
   public final TextView urununIsmi;
 
   private FragmentMusteriQrKodBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView askDanQrAlmaTextView, @NonNull Button btnTeslimatiOnayla,
+      @NonNull TextView askDanQrAlmaTextView, @NonNull Button buttonnTeslimatiOnayla,
       @NonNull TextView isimSoyIsimTextView, @NonNull LinearLayout kategoriLinearLayout,
       @NonNull MaterialToolbar musteriQrKodOkutmaToolBar, @NonNull CardView qrCardView,
       @NonNull ImageView qrKodOkuyucusu, @NonNull TextView urununIsmi) {
     this.rootView = rootView;
     this.askDanQrAlmaTextView = askDanQrAlmaTextView;
-    this.btnTeslimatiOnayla = btnTeslimatiOnayla;
+    this.buttonnTeslimatiOnayla = buttonnTeslimatiOnayla;
     this.isimSoyIsimTextView = isimSoyIsimTextView;
     this.kategoriLinearLayout = kategoriLinearLayout;
     this.musteriQrKodOkutmaToolBar = musteriQrKodOkutmaToolBar;
@@ -97,9 +97,9 @@ public final class FragmentMusteriQrKodBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.btnTeslimatiOnayla;
-      Button btnTeslimatiOnayla = ViewBindings.findChildViewById(rootView, id);
-      if (btnTeslimatiOnayla == null) {
+      id = R.id.buttonnTeslimatiOnayla;
+      Button buttonnTeslimatiOnayla = ViewBindings.findChildViewById(rootView, id);
+      if (buttonnTeslimatiOnayla == null) {
         break missingId;
       }
 
@@ -140,8 +140,8 @@ public final class FragmentMusteriQrKodBinding implements ViewBinding {
       }
 
       return new FragmentMusteriQrKodBinding((ConstraintLayout) rootView, askDanQrAlmaTextView,
-          btnTeslimatiOnayla, isimSoyIsimTextView, kategoriLinearLayout, musteriQrKodOkutmaToolBar,
-          qrCardView, qrKodOkuyucusu, urununIsmi);
+          buttonnTeslimatiOnayla, isimSoyIsimTextView, kategoriLinearLayout,
+          musteriQrKodOkutmaToolBar, qrCardView, qrKodOkuyucusu, urununIsmi);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

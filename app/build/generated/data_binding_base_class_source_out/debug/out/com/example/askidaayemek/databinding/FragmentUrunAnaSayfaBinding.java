@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -45,7 +46,13 @@ public final class FragmentUrunAnaSayfaBinding implements ViewBinding {
   public final TextView kullaniciAdiTextView;
 
   @NonNull
+  public final ImageView qrGitButton;
+
+  @NonNull
   public final RecyclerView siraliRecyclerView;
+
+  @NonNull
+  public final TextView sonucBulunamadiTextView;
 
   @NonNull
   public final MaterialButton tumuButton;
@@ -69,7 +76,8 @@ public final class FragmentUrunAnaSayfaBinding implements ViewBinding {
       @NonNull MaterialToolbar anaSayfaToolbAR, @NonNull MaterialButton bebekEsyasiButton,
       @NonNull MaterialButton beyazEsyaButton, @NonNull TextView hosgeldinYazisiTextView,
       @NonNull MaterialButton kiyafetlerButton, @NonNull TextView kullaniciAdiTextView,
-      @NonNull RecyclerView siraliRecyclerView, @NonNull MaterialButton tumuButton,
+      @NonNull ImageView qrGitButton, @NonNull RecyclerView siraliRecyclerView,
+      @NonNull TextView sonucBulunamadiTextView, @NonNull MaterialButton tumuButton,
       @NonNull EditText urunAraEditText, @NonNull LinearLayout urunAraLinearLayouts,
       @NonNull FloatingActionButton urunDetayaGitFloatingActionButton,
       @NonNull HorizontalScrollView yanaKaydRmalKategoriView,
@@ -81,7 +89,9 @@ public final class FragmentUrunAnaSayfaBinding implements ViewBinding {
     this.hosgeldinYazisiTextView = hosgeldinYazisiTextView;
     this.kiyafetlerButton = kiyafetlerButton;
     this.kullaniciAdiTextView = kullaniciAdiTextView;
+    this.qrGitButton = qrGitButton;
     this.siraliRecyclerView = siraliRecyclerView;
+    this.sonucBulunamadiTextView = sonucBulunamadiTextView;
     this.tumuButton = tumuButton;
     this.urunAraEditText = urunAraEditText;
     this.urunAraLinearLayouts = urunAraLinearLayouts;
@@ -153,9 +163,21 @@ public final class FragmentUrunAnaSayfaBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.qrGitButton;
+      ImageView qrGitButton = ViewBindings.findChildViewById(rootView, id);
+      if (qrGitButton == null) {
+        break missingId;
+      }
+
       id = R.id.siraliRecyclerView;
       RecyclerView siraliRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (siraliRecyclerView == null) {
+        break missingId;
+      }
+
+      id = R.id.sonucBulunamadiTextView;
+      TextView sonucBulunamadiTextView = ViewBindings.findChildViewById(rootView, id);
+      if (sonucBulunamadiTextView == null) {
         break missingId;
       }
 
@@ -197,9 +219,9 @@ public final class FragmentUrunAnaSayfaBinding implements ViewBinding {
 
       return new FragmentUrunAnaSayfaBinding((ConstraintLayout) rootView, anaSayfaToolbAR,
           bebekEsyasiButton, beyazEsyaButton, hosgeldinYazisiTextView, kiyafetlerButton,
-          kullaniciAdiTextView, siraliRecyclerView, tumuButton, urunAraEditText,
-          urunAraLinearLayouts, urunDetayaGitFloatingActionButton, yanaKaydRmalKategoriView,
-          yemeklerButton);
+          kullaniciAdiTextView, qrGitButton, siraliRecyclerView, sonucBulunamadiTextView,
+          tumuButton, urunAraEditText, urunAraLinearLayouts, urunDetayaGitFloatingActionButton,
+          yanaKaydRmalKategoriView, yemeklerButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

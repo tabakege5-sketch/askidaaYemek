@@ -309,6 +309,10 @@ attr circularflow_defaultAngle
 attr circularflow_defaultRadius
 attr circularflow_radiusInDP
 attr circularflow_viewCenter
+attr civ_border_color
+attr civ_border_overlay
+attr civ_border_width
+attr civ_circle_background_color
 attr clearTop
 attr clearsTag
 attr clickAction
@@ -1464,6 +1468,16 @@ attr windowNoTitle
 attr yearSelectedStyle
 attr yearStyle
 attr yearTodayStyle
+attr zxing_framing_rect_height
+attr zxing_framing_rect_width
+attr zxing_possible_result_points
+attr zxing_preview_scaling_strategy
+attr zxing_result_view
+attr zxing_scanner_layout
+attr zxing_use_texture_view
+attr zxing_viewfinder_laser
+attr zxing_viewfinder_laser_visibility
+attr zxing_viewfinder_mask
 bool abc_action_bar_embed_tabs
 bool abc_config_actionMenuItemAllCaps
 bool mtrl_btn_textappearance_all_caps
@@ -2262,6 +2276,16 @@ color tooltip_background_dark
 color tooltip_background_light
 color transparent
 color white
+color zxing_custom_possible_result_points
+color zxing_custom_result_view
+color zxing_custom_viewfinder_laser
+color zxing_custom_viewfinder_mask
+color zxing_possible_result_points
+color zxing_result_view
+color zxing_status_text
+color zxing_transparent
+color zxing_viewfinder_laser
+color zxing_viewfinder_mask
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -3197,6 +3221,7 @@ drawable design_snackbar_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_arrow_back_black_24
+drawable ic_as_text_white
 drawable ic_call_answer
 drawable ic_call_answer_low
 drawable ic_call_answer_video
@@ -3215,6 +3240,9 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_other_sign_in
+drawable ic_passkey
+drawable ic_password
 drawable ic_search_black_24
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -3309,10 +3337,12 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable outline_add_home_24
 drawable outline_add_location_24
+drawable outline_admin_panel_settings_24
 drawable outline_arrow_back_24
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable urun_ekle_yazisi
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -3379,6 +3409,7 @@ id action_girisLoginFragment_to_kayitOlFragment
 id action_girisLoginFragment_to_parolaFragment
 id action_girisLoginFragment_to_urunAnaSayfa
 id action_girisLoginFragment_to_yoneticiKayitOl
+id action_haritaFragment_to_urunEkleFragment
 id action_image
 id action_kayitOlFragment_to_girisLoginFragment
 id action_menu_divider
@@ -3387,20 +3418,25 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_musteriQrKodFragment_to_urunAnaSayfa
+id action_profilFragment_to_girisLoginFragment
 id action_taleplerFragment_to_musteriQrKodFragment
 id action_taleplerFragment_to_urunAnaSayfa
 id action_taleplerFragment_to_yoneticiQrKodFragment
 id action_tarihVeZamanFragment_to_taleplerFragment
 id action_text
+id action_text_yoneticiKayitOl_to_urunAnaSayfa
+id action_urunAnaSayfa_to_musteriQrKodFragment
 id action_urunAnaSayfa_to_taleplerFragment
 id action_urunAnaSayfa_to_urunDetayfragment
 id action_urunAnaSayfa_to_urunPaylasanFragment
+id action_urunAnaSayfa_to_yoneticiQrKodFragment
 id action_urunDetayfragment_to_haritaFragment
 id action_urunDetayfragment_to_musteriQrKodFragment
 id action_urunDetayfragment_to_taleplerFragment
 id action_urunDetayfragment_to_tarihVeZamanFragment
 id action_urunDetayfragment_to_urunEkleFragment
 id action_urunDetayfragment_to_yoneticiQrKodFragment
+id action_urunEkleFragment_to_haritaFragment
 id action_urunEkleFragment_to_urunPaylasanFragment
 id action_urunPaylasanFragment_to_urunAnaSayfa
 id action_urunPaylasanFragment_to_urunEkleFragment
@@ -3409,10 +3445,11 @@ id action_yonetenListeFragment_to_taleplerFragment
 id action_yonetenListeFragment_to_yoneticiQrKodFragment
 id action_yoneticiKayitOl_to_girisLoginFragment
 id action_yoneticiKayitOl_to_urunAnaSayfa
+id action_yoneticiQrKodFragment_to_urunAnaSayfa
 id actions
 id activity_chooser_view_content
 id adSoyadEditTextView
-id adSoyadTextView
+id adSoyadLayout
 id add
 id adjust_height
 id adjust_width
@@ -3462,10 +3499,11 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
-id btnTeslimatiOnayla
 id butonNavigasyon
+id buttonContainer
 id buttonPanel
 id buttonTeslimEt
+id buttonnTeslimatiOnayla
 id cache_measures
 id callMeasure
 id cancel_button
@@ -3481,6 +3519,7 @@ id chains
 id checkbox
 id checked
 id chronometer
+id cikisYapButtonn
 id circle_center
 id clear_text
 id clip_horizontal
@@ -3551,6 +3590,7 @@ id edit_query
 id edit_text_id
 id ekNotEditText
 id elastic
+id emailLayout
 id embed
 id end
 id endToStart
@@ -3572,7 +3612,9 @@ id fitXY
 id fixed
 id flip
 id floating
+id focusHirsizi
 id forever
+id fotografContainer
 id fragmentKonteynrView
 id fragment_container_view_tag
 id frost
@@ -3585,7 +3627,7 @@ id girisLoginFragment
 id glide_custom_view_target_tag
 id gonderButton
 id gone
-id googleInfoSection
+id googleLinearLayout
 id googleTextView
 id graph
 id graph_wrap
@@ -3612,7 +3654,6 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
-id imageView
 id immediateStop
 id included
 id indeterminate
@@ -3634,10 +3675,16 @@ id kategoriUrunlerRecyclerVirew
 id kaydolButton
 id kayitOlButton
 id kayitOlFragment
+id kayitOlToolBar
+id kilitKatmani
 id kisiselBilgilerTextView
 id kiyafetlerButton
+id kodLayout
 id konumTextView
+id koyuModSvitch
 id kullaniciAdiTextView
+id kullaniciEmailTextView
+id kullaniciRolTextView
 id kıyafetMenu
 id labeled
 id layout
@@ -3651,11 +3698,14 @@ id linear
 id listMode
 id list_item
 id listeReceyclerVew
+id loadingBar
 id locale
 id loginGiris
+id logoTextView
 id ltr
 id m3_side_sheet
-id main
+id mainLayout
+id mainRoot
 id marquee
 id masked
 id match_constraint
@@ -3725,6 +3775,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id musteriAdTextView
 id musteriQrKodFragment
 id musteriQrKodOkutmaToolBar
 id musterininAdSoyad
@@ -3775,9 +3826,9 @@ id parent
 id parentPanel
 id parentRelative
 id parent_matrix
-id parolaEditText
 id parolaFragment
-id parolaTextView
+id parolaLayout
+id parolalarEditText
 id parolamıSifirlaTextView
 id password_toggle
 id path
@@ -3789,10 +3840,14 @@ id pin
 id position
 id postLayout
 id pressed
-id profilTipiTextView
+id profilFragment
+id profilKartiView
+id profilResmi
+id profilTipiLayout
 id progress_circular
 id progress_horizontal
 id qrCardView
+id qrGitButton
 id qrKodImageView
 id qrKodOkuyucusu
 id quarKodFloatingActionButton
@@ -3835,7 +3890,6 @@ id search_plate
 id search_src_text
 id search_voice_btn
 id secImageButton
-id secenekButton
 id secimiKaydetButton
 id select_dialog_listview
 id selected
@@ -3846,6 +3900,7 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id sifreLayout
 id sifremiUnuttumTextView
 id sin
 id siraliRecyclerView
@@ -3858,6 +3913,7 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id sonucBulunamadiTextView
 id south
 id spacer
 id special_effects_controller_view_tag
@@ -3912,9 +3968,9 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textUrunEkle
 id textView
 id textView4
-id textViewEposta
 id textViewTarih
 id text_input_end_icon
 id text_input_error_icon
@@ -3950,6 +4006,7 @@ id urunAdiEditText
 id urunAnaSayfa
 id urunAraEditText
 id urunAraLinearLayouts
+id urunBilgiTextView
 id urunDetayToolbar
 id urunDetayaGitFloatingActionButton
 id urunDetayfragment
@@ -3995,16 +4052,33 @@ id yemeklerButton
 id yemeklerMenu
 id yetkiKoduEditText
 id yonetenListeFragment
+id yonetenListeRecyclerView
 id yoneticiBaslik
 id yoneticiEmailEditText
 id yoneticiKayitBttonn
 id yoneticiKayitOl
+id yoneticiListeToolbar
 id yoneticiOlButton
 id yoneticiQrKodFragment
 id yoneticiQrToolbar
 id yoneticiSifreEditText
+id yoneticiSifreLayout
+id yoneticiToolbar
 id yonetininIsmiSoyIsmiEditText
 id zamanRadioGroups
+id zxing_back_button
+id zxing_barcode_scanner
+id zxing_barcode_surface
+id zxing_camera_closed
+id zxing_camera_error
+id zxing_decode
+id zxing_decode_failed
+id zxing_decode_succeeded
+id zxing_possible_result_points
+id zxing_preview_failed
+id zxing_prewiew_size_ready
+id zxing_status_view
+id zxing_viewfinder_view
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -4146,6 +4220,7 @@ layout fragment_harita
 layout fragment_kayit_ol
 layout fragment_musteri_qr_kod
 layout fragment_parola
+layout fragment_profil
 layout fragment_talepler
 layout fragment_tarih_ve_zaman
 layout fragment_urun_ana_sayfa
@@ -4224,7 +4299,10 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 layout talep_layout
+layout talepler_recycler_row
 layout urun_recycler_row
+layout zxing_barcode_scanner
+layout zxing_capture
 menu detay_menuler
 menu iptal_menu
 menu musteri_menu
@@ -4232,10 +4310,12 @@ menu onay_iptal_menuler
 menu urunler_menu
 menu yonetici_menuler
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 navigation nav_graph
 plurals mtrl_badge_content_description
 raw firebase_common_keep
+raw zxing_beep
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -4263,8 +4343,11 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string android_credentials_TYPE_PASSWORD_CREDENTIAL
+string androidx_credentials_TYPE_PUBLIC_KEY_CREDENTIAL
 string androidx_startup
 string app_name
+string app_version
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
 string bottomsheet_action_collapse
@@ -4303,6 +4386,7 @@ string common_signin_button_text
 string common_signin_button_text_long
 string copy_toast_msg
 string default_web_client_id
+string define_zxingandroidembedded
 string dest_title
 string error_a11y_label
 string error_icon_content_description
@@ -4321,6 +4405,15 @@ string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string item_view_role_description
+string library_zxingandroidembedded_author
+string library_zxingandroidembedded_authorWebsite
+string library_zxingandroidembedded_isOpenSource
+string library_zxingandroidembedded_libraryDescription
+string library_zxingandroidembedded_libraryName
+string library_zxingandroidembedded_libraryVersion
+string library_zxingandroidembedded_libraryWebsite
+string library_zxingandroidembedded_licenseId
+string library_zxingandroidembedded_repositoryLink
 string m3_exceed_max_badge_text_suffix
 string m3_ref_typeface_brand_medium
 string m3_ref_typeface_brand_regular
@@ -4443,6 +4536,10 @@ string searchview_navigation_content_description
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
+string zxing_app_name
+string zxing_button_ok
+string zxing_msg_camera_framework_bug
+string zxing_msg_default_status
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -4734,6 +4831,7 @@ style Base_Widget_MaterialComponents_TextView
 style CardView
 style CardView_Dark
 style CardView_Light
+style CircleImageView
 style MaterialAlertDialog_Material3
 style MaterialAlertDialog_Material3_Animation
 style MaterialAlertDialog_Material3_Body_Text
@@ -4996,6 +5094,7 @@ style Theme_Design_Light
 style Theme_Design_Light_BottomSheetDialog
 style Theme_Design_Light_NoActionBar
 style Theme_Design_NoActionBar
+style Theme_Hidden
 style Theme_Material3_Dark
 style Theme_Material3_Dark_BottomSheetDialog
 style Theme_Material3_Dark_Dialog
@@ -5562,6 +5661,7 @@ style Widget_MaterialComponents_Toolbar_Surface
 style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
 style maplibre_LocationComponent
+style zxing_CaptureTheme
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
@@ -5596,6 +5696,7 @@ styleable Carousel carousel_alignment carousel_backwardTransition carousel_empty
 styleable CheckedTextView android_checkMark checkMarkCompat checkMarkTint checkMarkTintMode
 styleable Chip android_textAppearance android_textSize android_textColor android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconTint checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipMinTouchTargetSize chipStartPadding chipStrokeColor chipStrokeWidth chipSurfaceColor closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible ensureMinTouchTargetSize hideMotionSpec iconEndPadding iconStartPadding rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical selectionRequired singleLine singleSelection
+styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_circle_background_color
 styleable CircularProgressIndicator indicatorDirectionCircular indicatorInset indicatorSize
 styleable ClockFaceView clockFaceBackgroundColor clockNumberTextColor
 styleable ClockHandView clockHandColor materialCircleRadius selectorSize
@@ -5736,6 +5837,9 @@ styleable include constraintSet
 styleable maplibre_BubbleLayout maplibre_bl_arrowDirection maplibre_bl_arrowHeight maplibre_bl_arrowPosition maplibre_bl_arrowWidth maplibre_bl_bubbleColor maplibre_bl_cornersRadius maplibre_bl_strokeColor maplibre_bl_strokeWidth
 styleable maplibre_LocationComponent maplibre_accuracyAlpha maplibre_accuracyAnimationEnabled maplibre_accuracyColor maplibre_backgroundDrawable maplibre_backgroundDrawableStale maplibre_backgroundStaleTintColor maplibre_backgroundTintColor maplibre_bearingDrawable maplibre_bearingTintColor maplibre_compassAnimationEnabled maplibre_elevation maplibre_enableStaleState maplibre_foregroundDrawable maplibre_foregroundDrawableStale maplibre_foregroundStaleTintColor maplibre_foregroundTintColor maplibre_gpsDrawable maplibre_iconPaddingBottom maplibre_iconPaddingLeft maplibre_iconPaddingRight maplibre_iconPaddingTop maplibre_layer_above maplibre_layer_below maplibre_maxZoomIconScale maplibre_minZoomIconScale maplibre_pulsingLocationCircleAlpha maplibre_pulsingLocationCircleColor maplibre_pulsingLocationCircleDuration maplibre_pulsingLocationCircleEnabled maplibre_pulsingLocationCircleFadeEnabled maplibre_pulsingLocationCircleInterpolator maplibre_pulsingLocationCircleRadius maplibre_staleStateTimeout maplibre_trackingAnimationDurationMultiplier maplibre_trackingGesturesManagement maplibre_trackingInitialMoveThreshold maplibre_trackingMultiFingerMoveThreshold
 styleable maplibre_MapView maplibre_apiBaseUri maplibre_apiBaseUrl maplibre_cameraBearing maplibre_cameraPitchMax maplibre_cameraPitchMin maplibre_cameraTargetLat maplibre_cameraTargetLng maplibre_cameraTilt maplibre_cameraZoom maplibre_cameraZoomMax maplibre_cameraZoomMin maplibre_cross_source_collisions maplibre_enableTilePrefetch maplibre_enableZMediaOverlay maplibre_foregroundLoadColor maplibre_localIdeographEnabled maplibre_localIdeographFontFamilies maplibre_localIdeographFontFamily maplibre_pixelRatio maplibre_prefetchZoomDelta maplibre_renderTextureMode maplibre_renderTextureTranslucentSurface maplibre_uiAttribution maplibre_uiAttributionGravity maplibre_uiAttributionMarginBottom maplibre_uiAttributionMarginLeft maplibre_uiAttributionMarginRight maplibre_uiAttributionMarginTop maplibre_uiAttributionTintColor maplibre_uiCompass maplibre_uiCompassDrawable maplibre_uiCompassFadeFacingNorth maplibre_uiCompassGravity maplibre_uiCompassMarginBottom maplibre_uiCompassMarginLeft maplibre_uiCompassMarginRight maplibre_uiCompassMarginTop maplibre_uiDoubleTapGestures maplibre_uiHorizontalScrollGestures maplibre_uiLogo maplibre_uiLogoGravity maplibre_uiLogoMarginBottom maplibre_uiLogoMarginLeft maplibre_uiLogoMarginRight maplibre_uiLogoMarginTop maplibre_uiQuickZoomGestures maplibre_uiRotateGestures maplibre_uiScrollGestures maplibre_uiTiltGestures maplibre_uiZoomGestures
+styleable zxing_camera_preview zxing_framing_rect_height zxing_framing_rect_width zxing_preview_scaling_strategy zxing_use_texture_view
+styleable zxing_finder zxing_possible_result_points zxing_result_view zxing_viewfinder_laser zxing_viewfinder_laser_visibility zxing_viewfinder_mask
+styleable zxing_view zxing_scanner_layout
 xml backup_rules
 xml data_extraction_rules
 xml ga_ad_services_config

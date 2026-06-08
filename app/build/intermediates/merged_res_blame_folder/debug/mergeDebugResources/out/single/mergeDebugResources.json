@@ -1,186 +1,230 @@
 [
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_giris_login.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_giris_login.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_yonetici_kayit_ol.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_yonetici_kayit_ol.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_parola.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_parola.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_musteri_qr_kod.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_musteri_qr_kod.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_talepler.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_talepler.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_yonetici_qr_kod.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_yonetici_qr_kod.xml"
+        "merged": "com.example.askidaayemek.app-debug-62:/layout_fragment_yoneten_liste.xml.flat",
+        "source": "com.example.askidaayemek.app-main-64:/layout/fragment_yoneten_liste.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_paylasim_listesi.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/paylasim_listesi.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/drawable_outline_add_location_24.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/drawable/outline_add_location_24.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/menu_yonetici_menuler.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/menu/yonetici_menuler.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/menu_yonetici_menuler.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/menu/yonetici_menuler.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_harita.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_harita.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_giris_login.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_giris_login.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_kayit_ol.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_kayit_ol.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_urun_paylasan.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_paylasan.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_flooting_action_buttons.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/flooting_action_buttons.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/xml_backup_rules.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/xml/backup_rules.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/menu_musteri_menu.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/menu/musteri_menu.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_urun_ekle.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_ekle.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_talepler.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_talepler.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/drawable_outline_add_location_24.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/drawable/outline_add_location_24.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_urun_detayfragment.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_detayfragment.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_urun_detayfragment.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_detayfragment.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/drawable/ic_launcher_foreground.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_item_resim_kaydirma.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/item_resim_kaydirma.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/drawable/ic_launcher_background.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_profil.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_profil.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/menu_onay_iptal_menuler.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/menu/onay_iptal_menuler.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/drawable_outline_arrow_back_24.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/drawable/outline_arrow_back_24.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_urun_recycler_row.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/urun_recycler_row.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/drawable_ic_as_text_white.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/drawable/ic_as_text_white.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/drawable_outline_add_home_24.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/drawable/outline_add_home_24.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_tarih_ve_zaman.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_tarih_ve_zaman.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_activity_main.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/activity_main.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-mdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_talep_layout.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/talep_layout.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/drawable_outline_add_home_24.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/drawable/outline_add_home_24.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_yoneten_liste.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_yoneten_liste.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/menu_urunler_menu.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/menu/urunler_menu.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/xml_backup_rules.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/xml/backup_rules.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_urun_recycler_row.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/urun_recycler_row.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/menu_urunler_menu.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/menu/urunler_menu.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_tarih_ve_zaman.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_tarih_ve_zaman.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/menu_onay_iptal_menuler.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/menu/onay_iptal_menuler.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/xml/data_extraction_rules.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/menu_iptal_menu.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/menu/iptal_menu.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/menu_iptal_menu.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/menu/iptal_menu.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/drawable_urun_ekle_yazisi.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/drawable/urun_ekle_yazisi.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_flooting_action_buttons.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/flooting_action_buttons.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/menu_detay_menuler.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/menu/detay_menuler.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_item_resim_kaydirma.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/item_resim_kaydirma.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_musteri_qr_kod.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_musteri_qr_kod.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/menu_musteri_menu.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/menu/musteri_menu.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_harita.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_harita.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_yonetici_qr_kod.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_yonetici_qr_kod.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_yonetici_kayit_ol.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_yonetici_kayit_ol.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_paylasim_listesi.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/paylasim_listesi.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/drawable_outline_arrow_back_24.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/drawable/outline_arrow_back_24.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_activity_main.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/activity_main.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/navigation_nav_graph.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/navigation/nav_graph.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_kayit_ol.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_kayit_ol.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-xxhdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_urun_paylasan.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_paylasan.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_parola.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_parola.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/menu_detay_menuler.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/menu/detay_menuler.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_urun_ekle.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_ekle.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_talepler_recycler_row.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/talepler_recycler_row.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/layout_fragment_urun_ana_sayfa.xml.flat",
-        "source": "com.example.askidaayemek.app-main-60:/layout/fragment_urun_ana_sayfa.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_urun_ana_sayfa.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_ana_sayfa.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-debug-58:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.askidaayemek.app-main-60:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/navigation_nav_graph.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/drawable_outline_admin_panel_settings_24.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/drawable/outline_admin_panel_settings_24.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-xhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_fragment_yoneten_liste.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_yoneten_liste.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/layout_talep_layout.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/talep_layout.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-debug-62:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/mipmap-hdpi/ic_launcher_foreground.webp"
     }
 ]
