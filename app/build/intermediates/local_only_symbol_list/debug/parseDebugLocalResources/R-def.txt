@@ -12,6 +12,7 @@ drawable outline_add_home_24
 drawable outline_add_location_24
 drawable outline_admin_panel_settings_24
 drawable outline_arrow_back_24
+drawable outline_circle_notifications_24
 drawable urun_ekle_yazisi
 id aciklamaTextView
 id action_girisLoginFragment_to_kayitOlFragment

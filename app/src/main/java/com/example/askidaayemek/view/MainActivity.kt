@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                     destination.id == R.id.musteriQrKodFragment ||
                     destination.id == R.id.parolaFragment ||
                     destination.id == R.id.yoneticiQrKodFragment ||
+                    destination.id == R.id.haritaFragment ||
                     destination.id == R.id.yoneticiKayitOl
 
             bottomNav.visibility = if (gizle) View.GONE else View.VISIBLE
@@ -118,8 +119,9 @@ class MainActivity : AppCompatActivity() {
                     R.id.taleplerFragment -> R.id.taleplerFragment
                     R.id.urunPaylasanFragment -> R.id.urunEkleFragment
                     R.id.yonetenListeFragment -> R.id.yonetenListeFragment
-                    R.id.rezervasyonFragment -> R.id.rezervasyonFragment // Müşteri rezerve sayfasındayken alt menüde butonu aktif tutar
+                    R.id.rezervasyonFragment -> R.id.rezervasyonFragment
                     R.id.profilFragment -> R.id.profilFragment
+                    R.id.haritaFragment -> R.id.haritaFragment
                     else -> -1
                 }
                 if (menuId != -1) {

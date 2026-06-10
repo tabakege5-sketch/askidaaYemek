@@ -1,4 +1,4 @@
-#Wed Jun 10 11:19:53 TRT 2026
+#Wed Jun 10 13:43:11 TRT 2026
 base.0=/Users/stajyer/AndroidStudioProjects/askidaaYemek/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/Users/stajyer/AndroidStudioProjects/askidaaYemek/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.2=/Users/stajyer/AndroidStudioProjects/askidaaYemek/app/build/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex

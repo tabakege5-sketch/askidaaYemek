@@ -102,7 +102,7 @@ class haritaFragment : Fragment(R.layout.fragment_harita) {
             mapLibreMap = map
 
             if (!isYonetici) {
-                map.uiSettings.isScrollGesturesEnabled = false
+                map.uiSettings.isScrollGesturesEnabled = true
                 map.uiSettings.isZoomGesturesEnabled = true
                 map.uiSettings.isTiltGesturesEnabled = false
                 map.uiSettings.isRotateGesturesEnabled = false
