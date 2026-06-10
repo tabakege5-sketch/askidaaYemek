@@ -21,6 +21,19 @@ public class urunDetayfragmentDirections private constructor() {
       }
   }
 
+  private data class ActionUrunDetayfragmentToYoneticiQrKodFragment(
+    public val qrVerisi: String? = null,
+  ) : NavDirections {
+    public override val actionId: Int = R.id.action_urunDetayfragment_to_yoneticiQrKodFragment
+
+    public override val arguments: Bundle
+      get() {
+        val result = Bundle()
+        result.putString("qr_verisi", this.qrVerisi)
+        return result
+      }
+  }
+
   private data class ActionUrunDetayfragmentToUrunEkleFragment(
     public val urunId: String? = null,
   ) : NavDirections {
@@ -41,8 +54,8 @@ public class urunDetayfragmentDirections private constructor() {
     public fun actionUrunDetayfragmentToTaleplerFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_urunDetayfragment_to_taleplerFragment)
 
-    public fun actionUrunDetayfragmentToYoneticiQrKodFragment(): NavDirections =
-        ActionOnlyNavDirections(R.id.action_urunDetayfragment_to_yoneticiQrKodFragment)
+    public fun actionUrunDetayfragmentToYoneticiQrKodFragment(qrVerisi: String? = null):
+        NavDirections = ActionUrunDetayfragmentToYoneticiQrKodFragment(qrVerisi)
 
     public fun actionUrunDetayfragmentToMusteriQrKodFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_urunDetayfragment_to_musteriQrKodFragment)
@@ -52,5 +65,8 @@ public class urunDetayfragmentDirections private constructor() {
 
     public fun actionUrunDetayfragmentToHaritaFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_urunDetayfragment_to_haritaFragment)
+
+    public fun actionUrunDetayfragmentToRezervasyonFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_urunDetayfragment_to_rezervasyonFragment)
   }
 }

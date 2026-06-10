@@ -39,7 +39,7 @@ class profilFragment : Fragment(R.layout.fragment_profil) {
         binding.cikisYapButtonn.setOnClickListener {
             android.app.AlertDialog.Builder(requireContext())
                 .setTitle("Çıkış Yap")
-                .setMessage("Hesabınızdan çıkış yapmak istediğinize emin misin Reiss")
+                .setMessage("Hesabınızdan çıkış yapmak istediğinize emin misiniz")
                 .setPositiveButton("Çıkış Yap") { _, _ ->
                     (activity as? MainActivity)?.gosterLoading(true)
 

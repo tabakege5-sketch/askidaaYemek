@@ -12,7 +12,6 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.askidaayemek.R;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -22,19 +21,14 @@ public final class FragmentTaleplerBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final FloatingActionButton askidaQrAlmaFlootingButton;
-
-  @NonNull
   public final RecyclerView taleplerRecyclerView;
 
   @NonNull
   public final MaterialToolbar taleplerToolBar;
 
   private FragmentTaleplerBinding(@NonNull ConstraintLayout rootView,
-      @NonNull FloatingActionButton askidaQrAlmaFlootingButton,
       @NonNull RecyclerView taleplerRecyclerView, @NonNull MaterialToolbar taleplerToolBar) {
     this.rootView = rootView;
-    this.askidaQrAlmaFlootingButton = askidaQrAlmaFlootingButton;
     this.taleplerRecyclerView = taleplerRecyclerView;
     this.taleplerToolBar = taleplerToolBar;
   }
@@ -66,12 +60,6 @@ public final class FragmentTaleplerBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.askidaQrAlmaFlootingButton;
-      FloatingActionButton askidaQrAlmaFlootingButton = ViewBindings.findChildViewById(rootView, id);
-      if (askidaQrAlmaFlootingButton == null) {
-        break missingId;
-      }
-
       id = R.id.taleplerRecyclerView;
       RecyclerView taleplerRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (taleplerRecyclerView == null) {
@@ -84,8 +72,8 @@ public final class FragmentTaleplerBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentTaleplerBinding((ConstraintLayout) rootView, askidaQrAlmaFlootingButton,
-          taleplerRecyclerView, taleplerToolBar);
+      return new FragmentTaleplerBinding((ConstraintLayout) rootView, taleplerRecyclerView,
+          taleplerToolBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

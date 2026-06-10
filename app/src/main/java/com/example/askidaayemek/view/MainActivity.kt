@@ -56,7 +56,12 @@ class MainActivity : AppCompatActivity() {
                     }
                     true
                 }
-
+                R.id.rezervasyonFragment -> {
+                    if (navController.currentDestination?.id != R.id.rezervasyonFragment) {
+                        navController.navigate(R.id.rezervasyonFragment)
+                    }
+                    true
+                }
                 R.id.profilFragment -> {
                     if (navController.currentDestination?.id != R.id.profilFragment) {
                         navController.navigate(R.id.profilFragment)
@@ -113,10 +118,17 @@ class MainActivity : AppCompatActivity() {
                     R.id.taleplerFragment -> R.id.taleplerFragment
                     R.id.urunPaylasanFragment -> R.id.urunEkleFragment
                     R.id.yonetenListeFragment -> R.id.yonetenListeFragment
+                    R.id.rezervasyonFragment -> R.id.rezervasyonFragment // Müşteri rezerve sayfasındayken alt menüde butonu aktif tutar
                     R.id.profilFragment -> R.id.profilFragment
                     else -> -1
                 }
-                if (menuId != -1) bottomNav.menu.findItem(menuId)?.isChecked = true
+                if (menuId != -1) {
+                    try {
+                        bottomNav.menu.findItem(menuId)?.isChecked = true
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
             }
         }
     }

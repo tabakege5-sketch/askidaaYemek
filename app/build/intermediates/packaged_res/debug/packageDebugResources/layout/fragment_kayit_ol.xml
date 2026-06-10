@@ -9,11 +9,14 @@
         android:id="@+id/kayitOlToolBar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        app:title="Kayıt Sayfası"
-        app:titleTextColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/outline_arrow_back_24"
+        app:title="Kayıt Sayfası"
+        app:titleTextColor="@color/black" />
 
     <ScrollView
         android:layout_width="match_parent"

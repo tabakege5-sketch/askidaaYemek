@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -24,6 +23,9 @@ public final class FragmentYoneticiQrKodBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final TextView acKlamaTextView;
+
+  @NonNull
   public final LinearLayout bilgiLayout;
 
   @NonNull
@@ -33,7 +35,10 @@ public final class FragmentYoneticiQrKodBinding implements ViewBinding {
   public final TextView musterininAdSoyad;
 
   @NonNull
-  public final ImageView qrKodImageView;
+  public final TextView musterininEmail;
+
+  @NonNull
+  public final TextView saatTextViewView;
 
   @NonNull
   public final TextView talepBilgileriTextView;
@@ -45,15 +50,18 @@ public final class FragmentYoneticiQrKodBinding implements ViewBinding {
   public final MaterialToolbar yoneticiQrToolbar;
 
   private FragmentYoneticiQrKodBinding(@NonNull ConstraintLayout rootView,
-      @NonNull LinearLayout bilgiLayout, @NonNull Button buttonTeslimEt,
-      @NonNull TextView musterininAdSoyad, @NonNull ImageView qrKodImageView,
+      @NonNull TextView acKlamaTextView, @NonNull LinearLayout bilgiLayout,
+      @NonNull Button buttonTeslimEt, @NonNull TextView musterininAdSoyad,
+      @NonNull TextView musterininEmail, @NonNull TextView saatTextViewView,
       @NonNull TextView talepBilgileriTextView, @NonNull TextView textView,
       @NonNull MaterialToolbar yoneticiQrToolbar) {
     this.rootView = rootView;
+    this.acKlamaTextView = acKlamaTextView;
     this.bilgiLayout = bilgiLayout;
     this.buttonTeslimEt = buttonTeslimEt;
     this.musterininAdSoyad = musterininAdSoyad;
-    this.qrKodImageView = qrKodImageView;
+    this.musterininEmail = musterininEmail;
+    this.saatTextViewView = saatTextViewView;
     this.talepBilgileriTextView = talepBilgileriTextView;
     this.textView = textView;
     this.yoneticiQrToolbar = yoneticiQrToolbar;
@@ -86,6 +94,12 @@ public final class FragmentYoneticiQrKodBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.acıklamaTextView;
+      TextView acKlamaTextView = ViewBindings.findChildViewById(rootView, id);
+      if (acKlamaTextView == null) {
+        break missingId;
+      }
+
       id = R.id.bilgiLayout;
       LinearLayout bilgiLayout = ViewBindings.findChildViewById(rootView, id);
       if (bilgiLayout == null) {
@@ -104,9 +118,15 @@ public final class FragmentYoneticiQrKodBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.qrKodImageView;
-      ImageView qrKodImageView = ViewBindings.findChildViewById(rootView, id);
-      if (qrKodImageView == null) {
+      id = R.id.musterininEmail;
+      TextView musterininEmail = ViewBindings.findChildViewById(rootView, id);
+      if (musterininEmail == null) {
+        break missingId;
+      }
+
+      id = R.id.saatTextViewView;
+      TextView saatTextViewView = ViewBindings.findChildViewById(rootView, id);
+      if (saatTextViewView == null) {
         break missingId;
       }
 
@@ -128,9 +148,9 @@ public final class FragmentYoneticiQrKodBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentYoneticiQrKodBinding((ConstraintLayout) rootView, bilgiLayout,
-          buttonTeslimEt, musterininAdSoyad, qrKodImageView, talepBilgileriTextView, textView,
-          yoneticiQrToolbar);
+      return new FragmentYoneticiQrKodBinding((ConstraintLayout) rootView, acKlamaTextView,
+          bilgiLayout, buttonTeslimEt, musterininAdSoyad, musterininEmail, saatTextViewView,
+          talepBilgileriTextView, textView, yoneticiQrToolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

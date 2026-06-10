@@ -51,9 +51,6 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
   public final LinearLayout loginGiris;
 
   @NonNull
-  public final TextView logoTextView;
-
-  @NonNull
   public final TextInputLayout sifreLayout;
 
   @NonNull
@@ -70,9 +67,9 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
       @NonNull TextInputLayout emailLayout, @NonNull Button girisButton,
       @NonNull LinearLayout girisLinearLayout, @NonNull TextView googleTextView,
       @NonNull TextView hosgeldinTextView, @NonNull Button kayitOlButton,
-      @NonNull LinearLayout loginGiris, @NonNull TextView logoTextView,
-      @NonNull TextInputLayout sifreLayout, @NonNull TextView sifremiUnuttumTextView,
-      @NonNull LinearLayout veyaLayout, @NonNull Button yoneticiOlButton) {
+      @NonNull LinearLayout loginGiris, @NonNull TextInputLayout sifreLayout,
+      @NonNull TextView sifremiUnuttumTextView, @NonNull LinearLayout veyaLayout,
+      @NonNull Button yoneticiOlButton) {
     this.rootView = rootView;
     this.eMailText = eMailText;
     this.editTextSifre = editTextSifre;
@@ -83,7 +80,6 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
     this.hosgeldinTextView = hosgeldinTextView;
     this.kayitOlButton = kayitOlButton;
     this.loginGiris = loginGiris;
-    this.logoTextView = logoTextView;
     this.sifreLayout = sifreLayout;
     this.sifremiUnuttumTextView = sifremiUnuttumTextView;
     this.veyaLayout = veyaLayout;
@@ -171,12 +167,6 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.logoTextView;
-      TextView logoTextView = ViewBindings.findChildViewById(rootView, id);
-      if (logoTextView == null) {
-        break missingId;
-      }
-
       id = R.id.sifreLayout;
       TextInputLayout sifreLayout = ViewBindings.findChildViewById(rootView, id);
       if (sifreLayout == null) {
@@ -203,7 +193,7 @@ public final class FragmentGirisLoginBinding implements ViewBinding {
 
       return new FragmentGirisLoginBinding((ScrollView) rootView, eMailText, editTextSifre,
           emailLayout, girisButton, girisLinearLayout, googleTextView, hosgeldinTextView,
-          kayitOlButton, loginGiris, logoTextView, sifreLayout, sifremiUnuttumTextView, veyaLayout,
+          kayitOlButton, loginGiris, sifreLayout, sifremiUnuttumTextView, veyaLayout,
           yoneticiOlButton);
     }
     String missingId = rootView.getResources().getResourceName(id);

@@ -4,12 +4,56 @@
         "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_yonetici_kayit_ol.xml"
     },
     {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_qr.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_qr.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/talepler_recycler_row.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/talepler_recycler_row.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_urun_detayfragment.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_detayfragment.xml"
+    },
+    {
+        "merged": "com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_giris_login.xml",
+        "source": "com.example.askidaayemek.app-main-64:/layout/fragment_giris_login.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/urun_recycler_row.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/urun_recycler_row.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/flooting_action_buttons.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/flooting_action_buttons.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_urun_paylasan.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_paylasan.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_rezervasyon.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_rezervasyon.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_urun_ana_sayfa.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_ana_sayfa.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_yonetici_qr_kod.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_yonetici_qr_kod.xml"
+    },
+    {
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_urun_ekle.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_ekle.xml"
+    },
+    {
         "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/talep_layout.xml",
         "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/talep_layout.xml"
     },
     {
-        "merged": "com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_yoneten_liste.xml",
-        "source": "com.example.askidaayemek.app-main-64:/layout/fragment_yoneten_liste.xml"
+        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/item_rezervasyon_satir.xml",
+        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/item_rezervasyon_satir.xml"
     },
     {
         "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/activity_main.xml",
@@ -24,16 +68,8 @@
         "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/item_resim_kaydirma.xml"
     },
     {
-        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/talepler_recycler_row.xml",
-        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/talepler_recycler_row.xml"
-    },
-    {
         "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_kayit_ol.xml",
         "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_kayit_ol.xml"
-    },
-    {
-        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_urun_detayfragment.xml",
-        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_detayfragment.xml"
     },
     {
         "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_musteri_qr_kod.xml",
@@ -52,10 +88,6 @@
         "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_yoneten_liste.xml"
     },
     {
-        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/urun_recycler_row.xml",
-        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/urun_recycler_row.xml"
-    },
-    {
         "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_parola.xml",
         "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_parola.xml"
     },
@@ -64,31 +96,11 @@
         "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_profil.xml"
     },
     {
-        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/flooting_action_buttons.xml",
-        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/flooting_action_buttons.xml"
-    },
-    {
-        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_urun_paylasan.xml",
-        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_paylasan.xml"
-    },
-    {
-        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_urun_ana_sayfa.xml",
-        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_ana_sayfa.xml"
-    },
-    {
         "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/paylasim_listesi.xml",
         "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/paylasim_listesi.xml"
     },
     {
-        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_yonetici_qr_kod.xml",
-        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_yonetici_qr_kod.xml"
-    },
-    {
         "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_harita.xml",
         "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_harita.xml"
-    },
-    {
-        "merged": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-mergeDebugResources-61:/layout/fragment_urun_ekle.xml",
-        "source": "/Users/stajyer/.gradle/daemon/8.10.2/com.example.askidaayemek.app-main-64:/layout/fragment_urun_ekle.xml"
     }
 ]

@@ -11,9 +11,9 @@
         android:id="@+id/haritaToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/outline_arrow_back_24"
-        app:title="Konum Seç"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:title="Konum Seç" />
 
     <org.maplibre.android.maps.MapView
         android:id="@+id/haritaView"
@@ -21,43 +21,22 @@
         android:layout_height="0dp"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonKonumuKaydet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/haritaToolbar" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/kartGorunum"
+    <Button
+        android:id="@+id/buttonKonumuKaydet"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="8dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="24dp"
+        android:text="KAYDET"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/haritaToolbar">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="16dp">
-
-            <ImageView
-                android:id="@+id/aramaButonu"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@android:drawable/ic_menu_search" />
-
-            <EditText
-                android:id="@+id/aramaEditText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:background="@android:color/transparent"
-                android:hint="Dükkan arayın"
-                android:inputType="text" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

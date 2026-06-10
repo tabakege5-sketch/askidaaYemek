@@ -11,6 +11,7 @@
         android:id="@+id/urunDetayToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/outline_arrow_back_24"
         app:title="Ürün Detayı" />
@@ -81,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Kaç adet alacan">
+            android:hint="Kaç adet alınacak:">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/miktarTextInput"
                 android:layout_width="match_parent"

@@ -108,7 +108,7 @@
                     }
                 },
                 {
-                    "source": "/Users/stajyer/.gradle/caches/8.10.2/transforms/725864b60d66c5959d514edbd13a6815/transformed/play-services-base-18.1.0/res/values-b+sr+Latn/values.xml",
+                    "source": "/Users/stajyer/.gradle/caches/8.10.2/transforms/59a328ceeb87c85ffbb61066f494903b/transformed/play-services-base-18.3.0/res/values-b+sr+Latn/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",

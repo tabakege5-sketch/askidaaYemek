@@ -64,18 +64,21 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-database-ktx")
     implementation("com.google.android.gms:play-services-auth:21.0.0")
+    implementation("com.google.android.gms:play-services-location:21.2.0")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     // Harita ve QR
-    // Sadece SDK'yı tutuyoruz, plugin'i sildik çünkü hata veriyordu
     implementation("org.maplibre.gl:android-sdk:11.0.0")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
 
     implementation("com.google.android.gms:play-services-code-scanner:16.1.0")
     implementation("com.google.zxing:core:3.5.3")
+
+    // İnternet üzerinden Rota Çizimi için OkHttp Kütüphanesi (Yeni Eklendi)
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     // Test
     testImplementation("junit:junit:4.13.2")

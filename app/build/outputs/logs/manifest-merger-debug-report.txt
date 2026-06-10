@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:2:1-50:12
-INJECTED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:2:1-50:12
-INJECTED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:2:1-50:12
-INJECTED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:2:1-50:12
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:2:1-51:12
 MERGED from [androidx.databinding:viewbinding:8.7.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/a194bfe16e807b5a3cef63b9c5a17972/transformed/viewbinding-8.7.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.navigation:navigation-common:2.7.7] /Users/stajyer/.gradle/caches/8.10.2/transforms/36e1b197551a3ffaa7149ad187020d26/transformed/navigation-common-2.7.7/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /Users/stajyer/.gradle/caches/8.10.2/transforms/b5cead0823295b64e7a3581ee3682f25/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:2:1-7:12
@@ -25,6 +25,7 @@ MERGED from [com.google.android.gms:play-services-auth:21.0.0] /Users/stajyer/.g
 MERGED from [com.github.bumptech.glide:glide:4.16.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/a659c9c680994024e699bf679c2c26d8/transformed/glide-4.16.0/AndroidManifest.xml:2:1-9:12
 MERGED from [org.maplibre.gl:android-sdk:11.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/215b44473136d243d35ec0b3c3471dce/transformed/android-sdk-11.0.0/AndroidManifest.xml:2:1-20:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/bc810b92875a2a69267bf7fb3939e9b6/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-location:21.2.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d24c13599a1af169342e6892c8ad3f60/transformed/play-services-location-21.2.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-code-scanner:16.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/950ba23cc556578122cff1ed6d2f0e6e/transformed/play-services-code-scanner-16.1.0/AndroidManifest.xml:2:1-23:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] /Users/stajyer/.gradle/caches/8.10.2/transforms/dbb7a2f97eca7f263e6a5f38d96c2468/transformed/play-services-auth-api-phone-18.0.2/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.10] /Users/stajyer/.gradle/caches/8.10.2/transforms/5e1196055cdd8da4ca2670640a75d1fe/transformed/play-services-auth-base-18.0.10/AndroidManifest.xml:2:1-7:12
@@ -38,8 +39,7 @@ MERGED from [com.google.firebase:firebase-firestore:25.0.0] /Users/stajyer/.grad
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/f9f0d11caa22b2c33f8579026372733a/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:15:1-23:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/stajyer/.gradle/caches/8.10.2/transforms/dd6611452ab77aef0506106cc90bbf6b/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/8862cae8f64f3da9160760e86087b33e/transformed/play-services-fido-20.1.0/AndroidManifest.xml:2:1-10:12
-MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/725864b60d66c5959d514edbd13a6815/transformed/play-services-base-18.1.0/AndroidManifest.xml:16:1-24:12
-MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/stajyer/.gradle/caches/8.10.2/transforms/118b971a0678dcb7d888a458166ccfd4/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-base:18.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/59a328ceeb87c85ffbb61066f494903b/transformed/play-services-base-18.3.0/AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.firebase:firebase-analytics-ktx:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d937ffacf38bc2c37ea8073c72cabb9b/transformed/firebase-analytics-ktx-22.0.0/AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.firebase:firebase-analytics:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/69a989bdd8f8b4b3bf7332d2d4bbb395/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-measurement-api:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/09b588918b73c1545f895fee92c26361/transformed/play-services-measurement-api-22.0.0/AndroidManifest.xml:17:1-43:12
@@ -47,11 +47,12 @@ MERGED from [com.google.firebase:firebase-installations:18.0.0] /Users/stajyer/.
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/e9c2f1a47f682c8b45e287f06561a20f/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:2:1-18:12
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/09109d9307c5d9818812af90128a1a3f/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/478a14d479ab3915774974c5f9d9a31e/transformed/firebase-common-21.0.0/AndroidManifest.xml:15:1-41:12
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/ee758fc777c671d12cd6a6f208cbf9f7/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:17:1-46:12
-MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/7463294a6e86579cd5b71bf301a68e7a/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/stajyer/.gradle/caches/8.10.2/transforms/118b971a0678dcb7d888a458166ccfd4/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity-ktx:1.8.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/f8233d86b293b7b1bae81fe99303563b/transformed/activity-ktx-1.8.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.activity:activity:1.8.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/71ea3e1ec744bba3706f6ec1fb6cff5b/transformed/activity-1.8.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/1e4a912cc1c4086b41afba3667535a37/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/ee758fc777c671d12cd6a6f208cbf9f7/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:17:1-46:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/7463294a6e86579cd5b71bf301a68e7a/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/3f33014107a1ea3ae69a7215ab421463/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:17:1-32:12
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] /Users/stajyer/.gradle/caches/8.10.2/transforms/c083085c803ef52a680be602fabd672a/transformed/play-services-stats-17.0.2/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/770f02dbba471120ba81dfbcac282735/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -200,31 +201,35 @@ MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/stajyer/.gradl
 MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/61716bf05e754c474342e732f125cde7/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:22:5-65
 	android:name
 		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:11:22-62
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:12:5-77
+	android:name
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:12:22-74
 uses-permission#android.permission.READ_MEDIA_IMAGES
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:12:5-76
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:13:5-76
 	android:name
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:12:22-73
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:13:22-73
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:13:5-107
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:14:5-107
 	android:maxSdkVersion
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:13:78-104
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:14:78-104
 	android:name
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:13:22-77
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:14:22-77
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:14:5-79
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:15:5-79
 MERGED from [org.maplibre.gl:android-sdk:11.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/215b44473136d243d35ec0b3c3471dce/transformed/android-sdk-11.0.0/AndroidManifest.xml:18:5-79
 MERGED from [org.maplibre.gl:android-sdk:11.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/215b44473136d243d35ec0b3c3471dce/transformed/android-sdk-11.0.0/AndroidManifest.xml:18:5-79
 	android:name
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:14:22-76
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:15:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:15:5-81
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:16:5-81
 MERGED from [org.maplibre.gl:android-sdk:11.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/215b44473136d243d35ec0b3c3471dce/transformed/android-sdk-11.0.0/AndroidManifest.xml:17:5-81
 MERGED from [org.maplibre.gl:android-sdk:11.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/215b44473136d243d35ec0b3c3471dce/transformed/android-sdk-11.0.0/AndroidManifest.xml:17:5-81
 	android:name
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:15:22-78
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:16:22-78
 application
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:17:5-49:19
-INJECTED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:17:5-49:19
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:18:5-50:19
+INJECTED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:18:5-50:19
 MERGED from [com.google.android.material:material:1.11.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/748070455c6343398ffce161a7690de8/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/748070455c6343398ffce161a7690de8/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/stajyer/.gradle/caches/8.10.2/transforms/fe1f39482157633b93babf2e05b48e32/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -237,6 +242,8 @@ MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Us
 MERGED from [androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/stajyer/.gradle/caches/8.10.2/transforms/f99458a9eea3a0531bdbec52a2c07f5f/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:23:5-42:19
 MERGED from [com.google.android.gms:play-services-auth:21.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/5529e184f427cd925111d63caecbe94a/transformed/play-services-auth-21.0.0/AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-auth:21.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/5529e184f427cd925111d63caecbe94a/transformed/play-services-auth-21.0.0/AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-location:21.2.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d24c13599a1af169342e6892c8ad3f60/transformed/play-services-location-21.2.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:21.2.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d24c13599a1af169342e6892c8ad3f60/transformed/play-services-location-21.2.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-code-scanner:16.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/950ba23cc556578122cff1ed6d2f0e6e/transformed/play-services-code-scanner-16.1.0/AndroidManifest.xml:8:5-21:19
 MERGED from [com.google.android.gms:play-services-code-scanner:16.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/950ba23cc556578122cff1ed6d2f0e6e/transformed/play-services-code-scanner-16.1.0/AndroidManifest.xml:8:5-21:19
 MERGED from [com.google.mlkit:vision-common:17.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/4066e8ab6fb2dbd05b64bc36d444d9f6/transformed/vision-common-17.0.0/AndroidManifest.xml:8:5-16:19
@@ -255,8 +262,8 @@ MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/stajye
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/f9f0d11caa22b2c33f8579026372733a/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:21:5-20
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/8862cae8f64f3da9160760e86087b33e/transformed/play-services-fido-20.1.0/AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/8862cae8f64f3da9160760e86087b33e/transformed/play-services-fido-20.1.0/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/725864b60d66c5959d514edbd13a6815/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
-MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/725864b60d66c5959d514edbd13a6815/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/59a328ceeb87c85ffbb61066f494903b/transformed/play-services-base-18.3.0/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/59a328ceeb87c85ffbb61066f494903b/transformed/play-services-base-18.3.0/AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.firebase:firebase-analytics-ktx:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d937ffacf38bc2c37ea8073c72cabb9b/transformed/firebase-analytics-ktx-22.0.0/AndroidManifest.xml:7:5-15:19
 MERGED from [com.google.firebase:firebase-analytics-ktx:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d937ffacf38bc2c37ea8073c72cabb9b/transformed/firebase-analytics-ktx-22.0.0/AndroidManifest.xml:7:5-15:19
 MERGED from [com.google.firebase:firebase-analytics:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/69a989bdd8f8b4b3bf7332d2d4bbb395/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:7:5-20
@@ -324,72 +331,72 @@ MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/stajyer/.gradle/c
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.12.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/7e4b2aec89d253d77ac71e6ac9dbd311/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:24:9-35
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:25:9-35
 	android:label
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:22:9-41
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:23:9-41
 	android:fullBackupContent
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:20:9-54
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:21:9-54
 	android:roundIcon
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:23:9-54
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:24:9-54
 	android:icon
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:21:9-43
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:22:9-43
 	android:allowBackup
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:18:9-35
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:19:9-35
 	android:theme
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:27:9-50
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:28:9-50
 	android:enableOnBackInvokedCallback
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:26:9-51
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:27:9-51
 	android:dataExtractionRules
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:19:9-65
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:20:9-65
 	android:usesCleartextTraffic
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:25:9-44
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:26:9-44
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:29:9-31:69
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:30:9-32:69
 	android:value
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:31:13-67
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:32:13-67
 	android:name
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:30:13-69
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:31:13-69
 activity#com.journeyapps.barcodescanner.CaptureActivity
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:33:9-37:40
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:34:9-38:40
 MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/61716bf05e754c474342e732f125cde7/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:47:9-53:63
 MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/61716bf05e754c474342e732f125cde7/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:47:9-53:63
 	android:clearTaskOnLaunch
 		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/61716bf05e754c474342e732f125cde7/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:49:13-45
 	android:screenOrientation
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:35:13-51
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:36:13-51
 		REJECTED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/61716bf05e754c474342e732f125cde7/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:50:13-56
 	android:stateNotNeeded
 		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/61716bf05e754c474342e732f125cde7/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:51:13-42
 	android:hardwareAccelerated
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:36:13-47
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:37:13-47
 	android:windowSoftInputMode
 		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/61716bf05e754c474342e732f125cde7/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:53:13-60
 	android:exported
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:37:13-37
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:38:13-37
 	android:theme
 		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/61716bf05e754c474342e732f125cde7/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:52:13-54
 	tools:replace
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:36:49-90
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:37:49-90
 	android:name
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:34:13-74
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:35:13-74
 activity#com.example.askidaayemek.view.MainActivity
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:39:9-47:20
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:40:9-48:20
 	android:windowSoftInputMode
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:42:13-54
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:43:13-54
 	android:exported
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:41:13-36
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:42:13-36
 	android:name
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:40:13-46
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:41:13-46
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:43:13-46:29
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:44:13-47:29
 action#android.intent.action.MAIN
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:44:17-69
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:45:17-69
 	android:name
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:44:25-66
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:45:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:45:17-77
+ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:46:17-77
 	android:name
-		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:45:27-74
+		ADDED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml:46:27-74
 uses-sdk
 INJECTED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/stajyer/AndroidStudioProjects/askidaaYemek/app/src/main/AndroidManifest.xml
@@ -436,6 +443,8 @@ MERGED from [org.maplibre.gl:android-sdk:11.0.0] /Users/stajyer/.gradle/caches/8
 MERGED from [org.maplibre.gl:android-sdk:11.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/215b44473136d243d35ec0b3c3471dce/transformed/android-sdk-11.0.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/bc810b92875a2a69267bf7fb3939e9b6/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/bc810b92875a2a69267bf7fb3939e9b6/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-location:21.2.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d24c13599a1af169342e6892c8ad3f60/transformed/play-services-location-21.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:21.2.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d24c13599a1af169342e6892c8ad3f60/transformed/play-services-location-21.2.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-code-scanner:16.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/950ba23cc556578122cff1ed6d2f0e6e/transformed/play-services-code-scanner-16.1.0/AndroidManifest.xml:6:5-44
 MERGED from [com.google.android.gms:play-services-code-scanner:16.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/950ba23cc556578122cff1ed6d2f0e6e/transformed/play-services-code-scanner-16.1.0/AndroidManifest.xml:6:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] /Users/stajyer/.gradle/caches/8.10.2/transforms/dbb7a2f97eca7f263e6a5f38d96c2468/transformed/play-services-auth-api-phone-18.0.2/AndroidManifest.xml:5:5-44
@@ -462,10 +471,8 @@ MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/sta
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/stajyer/.gradle/caches/8.10.2/transforms/dd6611452ab77aef0506106cc90bbf6b/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/8862cae8f64f3da9160760e86087b33e/transformed/play-services-fido-20.1.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-fido:20.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/8862cae8f64f3da9160760e86087b33e/transformed/play-services-fido-20.1.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/725864b60d66c5959d514edbd13a6815/transformed/play-services-base-18.1.0/AndroidManifest.xml:18:5-43
-MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/725864b60d66c5959d514edbd13a6815/transformed/play-services-base-18.1.0/AndroidManifest.xml:18:5-43
-MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/stajyer/.gradle/caches/8.10.2/transforms/118b971a0678dcb7d888a458166ccfd4/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/stajyer/.gradle/caches/8.10.2/transforms/118b971a0678dcb7d888a458166ccfd4/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:18.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/59a328ceeb87c85ffbb61066f494903b/transformed/play-services-base-18.3.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-base:18.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/59a328ceeb87c85ffbb61066f494903b/transformed/play-services-base-18.3.0/AndroidManifest.xml:18:5-43
 MERGED from [com.google.firebase:firebase-analytics-ktx:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d937ffacf38bc2c37ea8073c72cabb9b/transformed/firebase-analytics-ktx-22.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics-ktx:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d937ffacf38bc2c37ea8073c72cabb9b/transformed/firebase-analytics-ktx-22.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/69a989bdd8f8b4b3bf7332d2d4bbb395/transformed/firebase-analytics-22.0.0/AndroidManifest.xml:5:5-44
@@ -480,16 +487,18 @@ MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/stajyer/.g
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/09109d9307c5d9818812af90128a1a3f/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/478a14d479ab3915774974c5f9d9a31e/transformed/firebase-common-21.0.0/AndroidManifest.xml:19:5-44
 MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/478a14d479ab3915774974c5f9d9a31e/transformed/firebase-common-21.0.0/AndroidManifest.xml:19:5-44
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/ee758fc777c671d12cd6a6f208cbf9f7/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/ee758fc777c671d12cd6a6f208cbf9f7/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/7463294a6e86579cd5b71bf301a68e7a/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/7463294a6e86579cd5b71bf301a68e7a/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/stajyer/.gradle/caches/8.10.2/transforms/118b971a0678dcb7d888a458166ccfd4/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/stajyer/.gradle/caches/8.10.2/transforms/118b971a0678dcb7d888a458166ccfd4/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity-ktx:1.8.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/f8233d86b293b7b1bae81fe99303563b/transformed/activity-ktx-1.8.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity-ktx:1.8.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/f8233d86b293b7b1bae81fe99303563b/transformed/activity-ktx-1.8.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity:1.8.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/71ea3e1ec744bba3706f6ec1fb6cff5b/transformed/activity-1.8.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.8.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/71ea3e1ec744bba3706f6ec1fb6cff5b/transformed/activity-1.8.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/1e4a912cc1c4086b41afba3667535a37/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/1e4a912cc1c4086b41afba3667535a37/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/ee758fc777c671d12cd6a6f208cbf9f7/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/ee758fc777c671d12cd6a6f208cbf9f7/transformed/play-services-measurement-22.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/7463294a6e86579cd5b71bf301a68e7a/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/7463294a6e86579cd5b71bf301a68e7a/transformed/play-services-measurement-sdk-22.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/3f33014107a1ea3ae69a7215ab421463/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-impl:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/3f33014107a1ea3ae69a7215ab421463/transformed/play-services-measurement-impl-22.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] /Users/stajyer/.gradle/caches/8.10.2/transforms/c083085c803ef52a680be602fabd672a/transformed/play-services-stats-17.0.2/AndroidManifest.xml:5:5-44
@@ -871,13 +880,13 @@ ADDED from [com.google.firebase:firebase-firestore:25.0.0] /Users/stajyer/.gradl
 	android:name
 		ADDED from [com.google.firebase:firebase-firestore:25.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/2cce7f7ad2b5bff882e95592436dbb33/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:21:17-111
 activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/725864b60d66c5959d514edbd13a6815/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
+ADDED from [com.google.android.gms:play-services-base:18.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/59a328ceeb87c85ffbb61066f494903b/transformed/play-services-base-18.3.0/AndroidManifest.xml:20:9-22:45
 	android:exported
-		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/725864b60d66c5959d514edbd13a6815/transformed/play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+		ADDED from [com.google.android.gms:play-services-base:18.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/59a328ceeb87c85ffbb61066f494903b/transformed/play-services-base-18.3.0/AndroidManifest.xml:22:19-43
 	android:theme
-		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/725864b60d66c5959d514edbd13a6815/transformed/play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+		ADDED from [com.google.android.gms:play-services-base:18.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/59a328ceeb87c85ffbb61066f494903b/transformed/play-services-base-18.3.0/AndroidManifest.xml:21:19-78
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/725864b60d66c5959d514edbd13a6815/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:19-85
+		ADDED from [com.google.android.gms:play-services-base:18.3.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/59a328ceeb87c85ffbb61066f494903b/transformed/play-services-base-18.3.0/AndroidManifest.xml:20:19-85
 meta-data#com.google.firebase.components:com.google.firebase.analytics.ktx.FirebaseAnalyticsLegacyRegistrar
 ADDED from [com.google.firebase:firebase-analytics-ktx:22.0.0] /Users/stajyer/.gradle/caches/8.10.2/transforms/d937ffacf38bc2c37ea8073c72cabb9b/transformed/firebase-analytics-ktx-22.0.0/AndroidManifest.xml:11:13-13:85
 	android:value

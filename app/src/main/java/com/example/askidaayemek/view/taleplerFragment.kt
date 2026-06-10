@@ -54,6 +54,8 @@ class taleplerFragment : Fragment() {
 
         db = Firebase.firestore
         auth = Firebase.auth
+
+
         yoneticiKorumasiKontrolEt()
 
         binding.taleplerToolBar.setNavigationOnClickListener {
@@ -93,16 +95,12 @@ class taleplerFragment : Fragment() {
             }
         )
         binding.taleplerRecyclerView.adapter = adapter
-
-        binding.askidaQrAlmaFlootingButton.setOnClickListener { qrIsleminiBaslat() }
-
         verileriGetir()
     }
 
     private fun talebiOnaylaVeMiktariDus(talep: urun) {
         val talepId = talep.urunId ?: return
-        val asilIlanId = talep.ekNot
-            ?: ""
+        val asilIlanId = talep.ekNot ?: ""
 
         if (asilIlanId.isEmpty()) {
             Toast.makeText(context, "Asıl ilan kimliği bulunamadı!", Toast.LENGTH_SHORT).show()
@@ -118,30 +116,21 @@ class taleplerFragment : Fragment() {
             if (!urunSnapshot.exists()) {
                 throw Exception("Asıl ilan artık mevcut değil!")
             }
-
-
-            val mevcutStokLong = urunSnapshot.getLong("miktar")
-            val mevcutStok =
-                mevcutStokLong?.toInt() ?: urunSnapshot.getString("miktar")?.toIntOrNull() ?: 0
-
+            val guncelStokStr = urunSnapshot.get("miktar")?.toString() ?: "0"
+            val mevcutStok = guncelStokStr.toIntOrNull() ?: 0
 
             val talepEdilenMiktar = talep.miktar?.toIntOrNull() ?: 1
-
 
             if (mevcutStok < talepEdilenMiktar) {
                 throw Exception("Yetersiz stok! Mevcut: $mevcutStok, İstenen: $talepEdilenMiktar")
             }
 
-
             val yeniStok = mevcutStok - talepEdilenMiktar
-
-
-            if (mevcutStokLong != null) {
+            if (urunSnapshot.get("miktar") is Number) {
                 transaction.update(asilUrunRef, "miktar", yeniStok)
             } else {
                 transaction.update(asilUrunRef, "miktar", yeniStok.toString())
             }
-
 
             transaction.update(talepRef, "durum", "Onaylandı")
 
@@ -170,10 +159,11 @@ class taleplerFragment : Fragment() {
             if (doc.exists()) {
                 Toast.makeText(
                     context,
-                    "Yöneticiler taleplerim sayfasına erişemez",
+                    "Yönetici Paneline Yönlendiriliyorsunuz...",
                     Toast.LENGTH_SHORT
                 ).show()
-                findNavController().navigate(R.id.action_urunAnaSayfa_to_urunPaylasanFragment)
+                // NavGraph'ındaki action_taleplerFragment_to_yonetenListeFragment rotasını tetikliyoruz.
+                findNavController().navigate(R.id.action_taleplerFragment_to_yonetenListeFragment)
             }
         }
     }
@@ -222,6 +212,8 @@ class taleplerFragment : Fragment() {
         val bundle = Bundle().apply {
             putString("urunId", secilenAnlikTalep?.urunId)
             putString("urunAdi", secilenAnlikTalep?.urunAdi)
+            putString("asilIlanId", secilenAnlikTalep?.ekNot)
+            putString("miktar", secilenAnlikTalep?.miktar)
         }
         findNavController().navigate(R.id.action_taleplerFragment_to_musteriQrKodFragment, bundle)
     }
@@ -250,7 +242,8 @@ class taleplerFragment : Fragment() {
                     val itTalep = urun().apply {
                         this.urunId = doc.id
                         this.urunAdi = doc.getString("urunAdi") ?: "İsimsiz Ürün"
-                        this.miktar = doc.getString("miktar") ?: "1"
+                        this.miktar = doc.get("miktar")?.toString() ?: "1"
+
                         this.gorselUrl = doc.getString("gorselUrl") ?: ""
                         this.konum = doc.getString("konum") ?: ""
                         this.durum = doc.getString("durum") ?: "Beklemede"
@@ -274,7 +267,8 @@ class taleplerFragment : Fragment() {
                     val itTalep = urun().apply {
                         this.urunId = doc.id
                         this.urunAdi = doc.getString("urunAdi") ?: "İsimsiz Ürün"
-                        this.miktar = doc.getString("miktar") ?: "1"
+                        this.miktar = doc.get("miktar")?.toString() ?: "1"
+
                         this.gorselUrl = doc.getString("gorselUrl") ?: ""
                         this.konum = doc.getString("konum") ?: ""
                         this.durum = doc.getString("durum") ?: "Beklemede"

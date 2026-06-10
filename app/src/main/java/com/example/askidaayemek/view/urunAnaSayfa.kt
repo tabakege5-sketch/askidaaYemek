@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,6 +43,7 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
                 binding.anaSayfaToolbAR.layoutParams = params
             }
         }
+
         db = Firebase.firestore
         auth = Firebase.auth
 
@@ -54,14 +56,16 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
 
         binding.siraliRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = urunAnaSayfaAdapter(filtreliListe) { secilenUrun ->
-            val bundle = Bundle().apply {
-                putString("urunId", secilenUrun.urunId)
-            }
+            val bundle = Bundle().apply { putString("urunId", secilenUrun.urunId) }
             findNavController().navigate(R.id.action_urunAnaSayfa_to_urunDetayfragment, bundle)
         }
         binding.siraliRecyclerView.adapter = adapter
-
         verileriGetir()
+
+
+        binding.qrGitButton.setOnClickListener {
+            findNavController().navigate(R.id.action_urunAnaSayfa_to_qrFragment2)
+        }
 
         binding.urunAraEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -81,25 +85,20 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
         binding.urunDetayaGitFloatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_urunAnaSayfa_to_urunPaylasanFragment)
         }
-
-
-        binding.qrGitButton.setOnClickListener {
-            findNavController().navigate(R.id.action_urunAnaSayfa_to_yoneticiQrKodFragment)
-        }
     }
+
+
 
     private fun listeyiGuncelleVeMesajKontrolEt() {
         adapter.notifyDataSetChanged()
-        if (filtreliListe.isEmpty()) {
-            binding.sonucBulunamadiTextView.visibility = View.VISIBLE
-        } else {
-            binding.sonucBulunamadiTextView.visibility = View.GONE
-        }
+        binding.sonucBulunamadiTextView.visibility =
+            if (filtreliListe.isEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun arayuzuRoleGoreDuzenle() {
         if (_binding == null) return
         binding.anaSayfaToolbAR.menu.clear()
+
         if (kullaniciRolu == "YONETICI") {
             binding.urunDetayaGitFloatingActionButton.visibility = View.VISIBLE
             binding.qrGitButton.visibility = View.VISIBLE
@@ -113,13 +112,11 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
         binding.anaSayfaToolbAR.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.taleplerFragment -> {
-                    findNavController().navigate(R.id.action_urunAnaSayfa_to_taleplerFragment)
-                    true
+                    findNavController().navigate(R.id.action_urunAnaSayfa_to_taleplerFragment); true
                 }
 
                 R.id.urunEkleFragment -> {
-                    findNavController().navigate(R.id.action_urunAnaSayfa_to_urunPaylasanFragment)
-                    true
+                    findNavController().navigate(R.id.action_urunAnaSayfa_to_urunPaylasanFragment); true
                 }
 
                 else -> false
@@ -130,10 +127,11 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
     private fun kullaniciBilgisiniGetir() {
         val uid = auth.currentUser?.uid ?: return
         (activity as? MainActivity)?.gosterLoading(true)
+
         db.collection("Yoneticiler").document(uid).get()
             .addOnSuccessListener { document ->
                 if (_binding == null) return@addOnSuccessListener
-                if (document != null && document.exists()) {
+                if (document.exists()) {
                     kullaniciRolu = "YONETICI"
                     val ad = document.getString("ad") ?: document.getString("e-posta")
                         ?.substringBefore("@") ?: "Yönetici"
@@ -162,10 +160,7 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
                         }.addOnFailureListener { (activity as? MainActivity)?.gosterLoading(false) }
                 }
             }
-            .addOnFailureListener {
-                (activity as? MainActivity)?.gosterLoading(false)
-                if (_binding != null) binding.kullaniciAdiTextView.text = " Misafir"
-            }
+            .addOnFailureListener { (activity as? MainActivity)?.gosterLoading(false) }
     }
 
     private fun aramaYap(text: String) {
@@ -175,9 +170,7 @@ class urunAnaSayfa : Fragment(R.layout.fragment_urun_ana_sayfa) {
             filtreliListe.addAll(tamListe)
         } else {
             for (item in tamListe) {
-                if (item.urunAdi?.lowercase()?.contains(query) == true) {
-                    filtreliListe.add(item)
-                }
+                if (item.urunAdi?.lowercase()?.contains(query) == true) filtreliListe.add(item)
             }
         }
         listeyiGuncelleVeMesajKontrolEt()

@@ -2,6 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://tools.android.com/tools"
+    xmlns:tools2="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/urunAnaSayfa">
 
@@ -70,6 +71,9 @@
         <action
             android:id="@+id/action_urunAnaSayfa_to_yoneticiQrKodFragment"
             app:destination="@id/yoneticiQrKodFragment" />
+        <action
+            android:id="@+id/action_urunAnaSayfa_to_qrFragment2"
+            app:destination="@id/qrFragment2" />
     </fragment>
 
     <fragment
@@ -99,6 +103,9 @@
         <action
             android:id="@+id/action_urunDetayfragment_to_haritaFragment"
             app:destination="@id/haritaFragment" />
+        <action
+            android:id="@+id/action_urunDetayfragment_to_rezervasyonFragment"
+            app:destination="@id/rezervasyonFragment" />
     </fragment>
 
     <fragment
@@ -149,6 +156,9 @@
         <action
             android:id="@+id/action_tarihVeZamanFragment_to_taleplerFragment"
             app:destination="@id/taleplerFragment" />
+        <action
+            android:id="@+id/action_tarihVeZamanFragment_to_rezervasyonFragment"
+            app:destination="@id/rezervasyonFragment" />
     </fragment>
 
     <fragment
@@ -165,6 +175,9 @@
         <action
             android:id="@+id/action_taleplerFragment_to_yoneticiQrKodFragment"
             app:destination="@id/yoneticiQrKodFragment" />
+        <action
+            android:id="@+id/action_taleplerFragment_to_yonetenListeFragment"
+            app:destination="@id/yonetenListeFragment" />
     </fragment>
 
     <fragment
@@ -185,6 +198,12 @@
         android:name="com.example.askidaayemek.view.yoneticiQrKodFragment"
         android:label="Yönetici QR"
         tools:layout="@layout/fragment_yonetici_qr_kod">
+
+        <argument
+            android:name="qr_verisi"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <action
             android:id="@+id/action_yoneticiQrKodFragment_to_urunAnaSayfa"
             app:destination="@id/urunAnaSayfa"
@@ -226,6 +245,25 @@
         <action
             android:id="@+id/action_profilFragment_to_girisLoginFragment"
             app:destination="@id/girisLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rezervasyonFragment"
+        android:name="com.example.askidaayemek.view.rezervasyonFragment"
+        android:label="fragment_rezervasyon"
+        tools2:layout="@layout/fragment_rezervasyon" >
+        <action
+            android:id="@+id/action_rezervasyonFragment_to_musteriQrKodFragment"
+            app:destination="@id/musteriQrKodFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/qrFragment2"
+        android:name="com.example.askidaayemek.view.qrFragment"
+        android:label="QR Tarayıcı"
+        tools:layout="@layout/fragment_qr" >
+
+        <action
+            android:id="@+id/action_qrFragment2_to_yoneticiQrKodFragment"
+            app:destination="@id/yoneticiQrKodFragment" />
     </fragment>
 
 </navigation>

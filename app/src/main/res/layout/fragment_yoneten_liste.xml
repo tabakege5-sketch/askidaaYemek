@@ -9,9 +9,10 @@
         android:id="@+id/yoneticiListeToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="Yapılan Talepler Listesi"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/outline_arrow_back_24"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:title="Yapılan Talepler Listesi" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/yonetenListeRecyclerView"

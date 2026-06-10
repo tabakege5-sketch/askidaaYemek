@@ -4,12 +4,10 @@ package com.example.askidaayemek.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -24,10 +22,7 @@ public final class FragmentHaritaBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ImageView aramaButonu;
-
-  @NonNull
-  public final EditText aramaEditText;
+  public final Button buttonKonumuKaydet;
 
   @NonNull
   public final Toolbar haritaToolbar;
@@ -35,18 +30,13 @@ public final class FragmentHaritaBinding implements ViewBinding {
   @NonNull
   public final MapView haritaView;
 
-  @NonNull
-  public final CardView kartGorunum;
-
-  private FragmentHaritaBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView aramaButonu,
-      @NonNull EditText aramaEditText, @NonNull Toolbar haritaToolbar, @NonNull MapView haritaView,
-      @NonNull CardView kartGorunum) {
+  private FragmentHaritaBinding(@NonNull ConstraintLayout rootView,
+      @NonNull Button buttonKonumuKaydet, @NonNull Toolbar haritaToolbar,
+      @NonNull MapView haritaView) {
     this.rootView = rootView;
-    this.aramaButonu = aramaButonu;
-    this.aramaEditText = aramaEditText;
+    this.buttonKonumuKaydet = buttonKonumuKaydet;
     this.haritaToolbar = haritaToolbar;
     this.haritaView = haritaView;
-    this.kartGorunum = kartGorunum;
   }
 
   @Override
@@ -76,15 +66,9 @@ public final class FragmentHaritaBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.aramaButonu;
-      ImageView aramaButonu = ViewBindings.findChildViewById(rootView, id);
-      if (aramaButonu == null) {
-        break missingId;
-      }
-
-      id = R.id.aramaEditText;
-      EditText aramaEditText = ViewBindings.findChildViewById(rootView, id);
-      if (aramaEditText == null) {
+      id = R.id.buttonKonumuKaydet;
+      Button buttonKonumuKaydet = ViewBindings.findChildViewById(rootView, id);
+      if (buttonKonumuKaydet == null) {
         break missingId;
       }
 
@@ -100,14 +84,8 @@ public final class FragmentHaritaBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.kartGorunum;
-      CardView kartGorunum = ViewBindings.findChildViewById(rootView, id);
-      if (kartGorunum == null) {
-        break missingId;
-      }
-
-      return new FragmentHaritaBinding((ConstraintLayout) rootView, aramaButonu, aramaEditText,
-          haritaToolbar, haritaView, kartGorunum);
+      return new FragmentHaritaBinding((ConstraintLayout) rootView, buttonKonumuKaydet,
+          haritaToolbar, haritaView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

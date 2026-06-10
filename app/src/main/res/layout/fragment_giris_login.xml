@@ -21,26 +21,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <androidx.cardview.widget.CardView
+
+            <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                app:cardBackgroundColor="@android:color/transparent"
                 app:cardCornerRadius="60dp"
-                app:cardElevation="0dp">
-
-                <TextView
-                    android:id="@+id/logoTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/ic_as_text_white"
-                    android:gravity="center"
-                    android:text="ASKIDA\nYEMEK"
-                    android:textAlignment="center"
-                    android:textColor="@color/design_default_color_secondary_variant"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
-
-            </androidx.cardview.widget.CardView>
+                app:cardElevation="0dp"
+                app:srcCompat="@drawable/ic_launcher_foreground">
+            </ImageView>
         </LinearLayout>
 
         <TextView

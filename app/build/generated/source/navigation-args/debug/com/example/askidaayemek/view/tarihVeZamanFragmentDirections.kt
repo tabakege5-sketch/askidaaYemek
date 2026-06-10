@@ -8,5 +8,8 @@ public class tarihVeZamanFragmentDirections private constructor() {
   public companion object {
     public fun actionTarihVeZamanFragmentToTaleplerFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_tarihVeZamanFragment_to_taleplerFragment)
+
+    public fun actionTarihVeZamanFragmentToRezervasyonFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_tarihVeZamanFragment_to_rezervasyonFragment)
   }
 }

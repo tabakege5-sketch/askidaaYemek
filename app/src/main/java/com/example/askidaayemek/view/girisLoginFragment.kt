@@ -3,6 +3,8 @@ package com.example.askidaayemek.view
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -31,6 +33,7 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentGirisLoginBinding.bind(view)
+
         auth = Firebase.auth
         db = Firebase.firestore
 
@@ -45,9 +48,19 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
             val sifre = binding.editTextSifre.text.toString().trim()
 
             if (email.isEmpty() || sifre.isEmpty()) {
-                Toast.makeText(context, "Lütfen tüm boşlukları doldur!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Lütfen e-mail ve şifreyi girin",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
+
+            if (!isInternetAvailable()) {
+                hataGoster("Bağlantı Hatası", "İnternet bağlantınızı kontrol edin.")
+                return@setOnClickListener
+            }
+
             binding.girisButton.isEnabled = false
             (activity as? MainActivity)?.gosterLoading(true)
 
@@ -57,23 +70,12 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
                     if (uid != null) {
                         kullaniciTipiniKontrolEtVeYonlendir(uid)
                     } else {
-                        (activity as? MainActivity)?.gosterLoading(false)
-                        binding.girisButton.isEnabled = true
+                        girisTamamlandi()
                     }
                 }
                 .addOnFailureListener { e ->
-                    (activity as? MainActivity)?.gosterLoading(false)
-                    binding.girisButton.isEnabled = true
-
-                    val hataMesaji = when (e) {
-                        is FirebaseAuthInvalidUserException -> "Bu e-posta adresi sistemde kayıtlı değil"
-                        is FirebaseAuthInvalidCredentialsException -> "Şifreniz hatalı"
-                        is FirebaseAuthEmailException -> "Geçersiz e-posta formatı"
-                        is FirebaseAuthWeakPasswordException -> "Şifreniz çok zayıf"
-                        is FirebaseAuthUserCollisionException -> "Bu e-posta ile zaten bir hesap var"
-                        else -> "Giriş yapılamadı: ${e.localizedMessage}"
-                    }
-                    hataGoster("Giriş Hatası", hataMesaji)
+                    girisTamamlandi()
+                    handleLoginError(e)
                 }
         }
 
@@ -91,6 +93,43 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
         }
     }
 
+    private fun handleLoginError(e: Exception) {
+        val mesaj = when {
+            e is FirebaseAuthInvalidUserException ->
+                "Bu e-posta adresiyle kayıtlı bir hesap bulunamadı"
+
+            e is FirebaseAuthInvalidCredentialsException -> {
+                val errorMsg = e.message?.lowercase() ?: ""
+                when {
+                    errorMsg.contains("password") -> "Şifreniz hatalı Lütfen tekrar deneyin"
+                    errorMsg.contains("user") || errorMsg.contains("email") -> "E-posta adresi hatalı veya kayıtlı değil"
+                    else -> "e-mail veya şifre hatalı"
+                }
+            }
+
+            e is FirebaseAuthEmailException ->
+                "yanlış e-mail"
+
+            e is FirebaseAuthWeakPasswordException ->
+                "Yanlış Şifre"
+
+            else -> {
+                if (e.message?.contains("network", ignoreCase = true) == true) {
+                    "İnternet bağlantınızı kontrol edin"
+                } else {
+                    "Giriş yapılamadı Bilgilerinizi kontrol edin"
+                }
+            }
+        }
+
+        hataGoster("Giriş Hatası", mesaj)
+    }
+
+    private fun girisTamamlandi() {
+        (activity as? MainActivity)?.gosterLoading(false)
+        binding.girisButton.isEnabled = true
+    }
+
     private fun hataGoster(baslik: String, mesaj: String) {
         AlertDialog.Builder(requireContext())
             .setTitle(baslik)
@@ -100,30 +139,30 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
     }
 
     private fun kullaniciTipiniKontrolEtVeYonlendir(uid: String) {
-        val sharedPref =
-            requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
-
         db.collection("Yoneticiler").document(uid).get()
             .addOnSuccessListener { adminDoc ->
                 if (adminDoc.exists()) {
-                    (activity as? MainActivity)?.gosterLoading(false)
-                    sharedPref.edit().putString("kullanici_rolu", "YONETICI").apply()
+                    requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
+                        .edit().putString("kullanici_rolu", "YONETICI").apply()
                     findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
                 } else {
                     db.collection("Kullanicilar").document(uid).get()
                         .addOnSuccessListener { userDoc ->
-                            (activity as? MainActivity)?.gosterLoading(false)
                             if (userDoc.exists()) {
-                                sharedPref.edit().putString("kullanici_rolu", "MUSTERI").apply()
+                                requireActivity().getSharedPreferences(
+                                    "AskidaYemekPref",
+                                    Context.MODE_PRIVATE
+                                )
+                                    .edit().putString("kullanici_rolu", "MUSTERI").apply()
                                 findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
                             } else {
                                 varsayilanKullaniciOlustur(uid)
                             }
                         }
-                        .addOnFailureListener { (activity as? MainActivity)?.gosterLoading(false) }
+                        .addOnFailureListener { varsayilanKullaniciOlustur(uid) }
                 }
             }
-            .addOnFailureListener { (activity as? MainActivity)?.gosterLoading(false) }
+            .addOnFailureListener { varsayilanKullaniciOlustur(uid) }
     }
 
     private fun varsayilanKullaniciOlustur(uid: String) {
@@ -133,13 +172,19 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
             "uid" to uid
         )
         db.collection("Kullanicilar").document(uid).set(yeniKullanici)
-            .addOnSuccessListener {
-                (activity as? MainActivity)?.gosterLoading(false)
+            .addOnCompleteListener {
                 requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
                     .edit().putString("kullanici_rolu", "MUSTERI").apply()
                 findNavController().navigate(R.id.action_girisLoginFragment_to_urunAnaSayfa)
             }
-            .addOnFailureListener { (activity as? MainActivity)?.gosterLoading(false) }
+    }
+
+    private fun isInternetAvailable(): Boolean {
+        val connectivityManager =
+            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -149,11 +194,16 @@ class girisLoginFragment : Fragment(R.layout.fragment_giris_login) {
             try {
                 val account = task.getResult(ApiException::class.java)!!
                 val credential = GoogleAuthProvider.getCredential(account.idToken!!, null)
-                auth.signInWithCredential(credential).addOnCompleteListener {
-                    if (it.isSuccessful) kullaniciTipiniKontrolEtVeYonlendir(auth.currentUser!!.uid)
-                }
+                auth.signInWithCredential(credential)
+                    .addOnSuccessListener {
+                        kullaniciTipiniKontrolEtVeYonlendir(auth.currentUser!!.uid)
+                    }
+                    .addOnFailureListener { e ->
+                        hataGoster("Google Giriş Hatası", "Google ile giriş yapılamadı")
+                    }
             } catch (e: Exception) {
-                binding.girisButton.isEnabled = true
+                Toast.makeText(requireContext(), "Google girişi iptal edildi", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }

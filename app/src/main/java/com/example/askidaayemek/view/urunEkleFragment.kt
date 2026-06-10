@@ -63,9 +63,9 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
 
         @Suppress("DEPRECATION")
         guncellenecekUrun = arguments?.getParcelable("duzenlenecekUrun")
-
         registerLaunchers()
         setupListeners()
+        haritadanGelenKonumuDinle()
 
         if (guncellenecekUrun != null) {
             setupEditMode(guncellenecekUrun!!)
@@ -84,7 +84,13 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
 
         binding.mevcutKonumTextView.setOnClickListener {
             if (binding.mevcutKonumTextView.isEnabled) {
-                findNavController().navigate(R.id.action_urunEkleFragment_to_haritaFragment)
+                val bundle = Bundle().apply {
+                    putBoolean("isYonetici", true)
+                }
+                findNavController().navigate(
+                    R.id.action_urunEkleFragment_to_haritaFragment,
+                    bundle
+                )
             }
         }
 
@@ -101,6 +107,15 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
                 yayinlaIslemi()
             }
         }
+    }
+
+    private fun haritadanGelenKonumuDinle() {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("secilenKonum")
+            ?.observe(viewLifecycleOwner) { konumMetni ->
+                if (!konumMetni.isNullOrEmpty()) {
+                    binding.mevcutKonumTextView.text = konumMetni
+                }
+            }
     }
 
     private fun setupEditMode(urun: urun) {
@@ -157,7 +172,8 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
         permissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
                 if (isGranted) gorselSec()
-                else Toast.makeText(requireContext(), "Galeri izni gerekli", Toast.LENGTH_SHORT).show()
+                else Toast.makeText(requireContext(), "Galeri izni gerekli", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 
@@ -193,7 +209,8 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
             }
             .addOnFailureListener { e ->
                 (activity as? MainActivity)?.gosterLoading(false)
-                Toast.makeText(context, "Güncelleme başarısız: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Güncelleme başarısız: ${e.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 
@@ -210,7 +227,11 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
         val konum = binding.mevcutKonumTextView.text.toString().trim()
 
         if (kategori.isEmpty() || ad.isEmpty()) {
-            Toast.makeText(requireContext(), "Lütfen kategori ve ürün adını doldurun", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Lütfen kategori ve ürün adını doldurun",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
@@ -259,7 +280,11 @@ class urunEkleFragment : Fragment(R.layout.fragment_urun_ekle) {
             .addOnFailureListener { e ->
                 (activity as? MainActivity)?.gosterLoading(false)
                 binding.yayNlaButton.isEnabled = true
-                Toast.makeText(requireContext(), "Kayıt başarısız: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Kayıt başarısız: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
     }
 

@@ -4,6 +4,7 @@ package com.example.askidaayemek.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,12 +24,17 @@ public final class TaleplerRecyclerRowBinding implements ViewBinding {
   public final TextView musteriAdTextView;
 
   @NonNull
+  public final ImageView rowUrunImageView;
+
+  @NonNull
   public final TextView urunBilgiTextView;
 
   private TaleplerRecyclerRowBinding(@NonNull CardView rootView,
-      @NonNull TextView musteriAdTextView, @NonNull TextView urunBilgiTextView) {
+      @NonNull TextView musteriAdTextView, @NonNull ImageView rowUrunImageView,
+      @NonNull TextView urunBilgiTextView) {
     this.rootView = rootView;
     this.musteriAdTextView = musteriAdTextView;
+    this.rowUrunImageView = rowUrunImageView;
     this.urunBilgiTextView = urunBilgiTextView;
   }
 
@@ -65,6 +71,12 @@ public final class TaleplerRecyclerRowBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.rowUrunImageView;
+      ImageView rowUrunImageView = ViewBindings.findChildViewById(rootView, id);
+      if (rowUrunImageView == null) {
+        break missingId;
+      }
+
       id = R.id.urunBilgiTextView;
       TextView urunBilgiTextView = ViewBindings.findChildViewById(rootView, id);
       if (urunBilgiTextView == null) {
@@ -72,7 +84,7 @@ public final class TaleplerRecyclerRowBinding implements ViewBinding {
       }
 
       return new TaleplerRecyclerRowBinding((CardView) rootView, musteriAdTextView,
-          urunBilgiTextView);
+          rowUrunImageView, urunBilgiTextView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -4,13 +4,11 @@ package com.example.askidaayemek.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -28,7 +26,7 @@ public final class FragmentMusteriQrKodBinding implements ViewBinding {
   public final TextView askDanQrAlmaTextView;
 
   @NonNull
-  public final Button buttonnTeslimatiOnayla;
+  public final TextView emailTextView;
 
   @NonNull
   public final TextView isimSoyIsimTextView;
@@ -40,26 +38,22 @@ public final class FragmentMusteriQrKodBinding implements ViewBinding {
   public final MaterialToolbar musteriQrKodOkutmaToolBar;
 
   @NonNull
-  public final CardView qrCardView;
-
-  @NonNull
   public final ImageView qrKodOkuyucusu;
 
   @NonNull
   public final TextView urununIsmi;
 
   private FragmentMusteriQrKodBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView askDanQrAlmaTextView, @NonNull Button buttonnTeslimatiOnayla,
+      @NonNull TextView askDanQrAlmaTextView, @NonNull TextView emailTextView,
       @NonNull TextView isimSoyIsimTextView, @NonNull LinearLayout kategoriLinearLayout,
-      @NonNull MaterialToolbar musteriQrKodOkutmaToolBar, @NonNull CardView qrCardView,
-      @NonNull ImageView qrKodOkuyucusu, @NonNull TextView urununIsmi) {
+      @NonNull MaterialToolbar musteriQrKodOkutmaToolBar, @NonNull ImageView qrKodOkuyucusu,
+      @NonNull TextView urununIsmi) {
     this.rootView = rootView;
     this.askDanQrAlmaTextView = askDanQrAlmaTextView;
-    this.buttonnTeslimatiOnayla = buttonnTeslimatiOnayla;
+    this.emailTextView = emailTextView;
     this.isimSoyIsimTextView = isimSoyIsimTextView;
     this.kategoriLinearLayout = kategoriLinearLayout;
     this.musteriQrKodOkutmaToolBar = musteriQrKodOkutmaToolBar;
-    this.qrCardView = qrCardView;
     this.qrKodOkuyucusu = qrKodOkuyucusu;
     this.urununIsmi = urununIsmi;
   }
@@ -97,9 +91,9 @@ public final class FragmentMusteriQrKodBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.buttonnTeslimatiOnayla;
-      Button buttonnTeslimatiOnayla = ViewBindings.findChildViewById(rootView, id);
-      if (buttonnTeslimatiOnayla == null) {
+      id = R.id.emailTextView;
+      TextView emailTextView = ViewBindings.findChildViewById(rootView, id);
+      if (emailTextView == null) {
         break missingId;
       }
 
@@ -121,12 +115,6 @@ public final class FragmentMusteriQrKodBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.qrCardView;
-      CardView qrCardView = ViewBindings.findChildViewById(rootView, id);
-      if (qrCardView == null) {
-        break missingId;
-      }
-
       id = R.id.qrKodOkuyucusu;
       ImageView qrKodOkuyucusu = ViewBindings.findChildViewById(rootView, id);
       if (qrKodOkuyucusu == null) {
@@ -140,8 +128,8 @@ public final class FragmentMusteriQrKodBinding implements ViewBinding {
       }
 
       return new FragmentMusteriQrKodBinding((ConstraintLayout) rootView, askDanQrAlmaTextView,
-          buttonnTeslimatiOnayla, isimSoyIsimTextView, kategoriLinearLayout,
-          musteriQrKodOkutmaToolBar, qrCardView, qrKodOkuyucusu, urununIsmi);
+          emailTextView, isimSoyIsimTextView, kategoriLinearLayout, musteriQrKodOkutmaToolBar,
+          qrKodOkuyucusu, urununIsmi);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

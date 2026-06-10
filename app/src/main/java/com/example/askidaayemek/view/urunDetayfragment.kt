@@ -45,6 +45,7 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
             mevcutUrun?.konum?.let { konumString ->
                 val bundle = Bundle().apply {
                     putString("hedefKonum", konumString)
+                    putBoolean("isYonetici", false)
                 }
                 findNavController().navigate(
                     R.id.action_urunDetayfragment_to_haritaFragment,
@@ -56,9 +57,16 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
         val sharedPref =
             requireActivity().getSharedPreferences("AskidaYemekPref", Context.MODE_PRIVATE)
         val rol = sharedPref.getString("kullanici_rolu", "MUSTERI")
-
-        binding.duzenleSilPaylasImageButton.visibility =
-            if (rol == "YONETICI") View.VISIBLE else View.GONE
+        if (rol == "YONETICI") {
+            binding.askDanAllButton.visibility = View.GONE
+            binding.zamanRadioGroups.visibility = View.GONE
+            binding.miktarInputLayout.visibility = View.GONE
+        } else {
+            binding.askDanAllButton.visibility = View.VISIBLE
+            binding.zamanRadioGroups.visibility = View.VISIBLE
+            binding.miktarInputLayout.visibility = View.VISIBLE
+        }
+        binding.duzenleSilPaylasImageButton.visibility = View.GONE
 
         val gelenUrunId = arguments?.getString("urunId")
 
@@ -72,13 +80,18 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
                         mevcutUrun = doc.toObject(urun::class.java)?.apply {
                             urunId = doc.id
                         }
-
                         mevcutUrun?.let { urun ->
                             binding.urunDetayToolbar.title = urun.urunAdi ?: "Ürün Detayı"
                             binding.miktarTextView.text = "Stok: ${urun.miktar ?: "0"}"
                             binding.aciklamaTextView.text = "Açıklama: ${urun.ekNot ?: "Bilgi yok"}"
                             binding.konumTextView.text = urun.konum ?: "Konum: Belirtilmemiş"
                             resimYukle(urun.gorselUrl)
+                            val currentUid = auth.currentUser?.uid
+                            if (rol == "YONETICI" && !currentUid.isNullOrEmpty() && urun.yukleyenUid == currentUid) {
+                                binding.duzenleSilPaylasImageButton.visibility = View.VISIBLE
+                            } else {
+                                binding.duzenleSilPaylasImageButton.visibility = View.GONE
+                            }
                         }
                     }
                 }
@@ -126,7 +139,7 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
         binding.askDanAllButton.setOnClickListener {
             val currentUser = auth.currentUser
             if (currentUser == null) {
-                Toast.makeText(context, "Önce giriş yapmalısın!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Önce giriş yapmalısın", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -139,7 +152,7 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
             mevcutUrun?.let { urun ->
                 val stok = urun.miktar?.toIntOrNull() ?: 0
                 if (talepEdilenMiktar > stok) {
-                    Toast.makeText(context, "Stok yetersiz! (Mevcut: $stok)", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, "Stok yetersiz (Mevcut: $stok)", Toast.LENGTH_SHORT)
                         .show()
                     return@setOnClickListener
                 }
@@ -168,12 +181,12 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
                                 "Talep oluşturuldu QR kod açılıyor",
                                 Toast.LENGTH_SHORT
                             ).show()
+
                             val bundle = Bundle().apply {
-                                putString(
-                                    "urunId",
-                                    docReference.id
-                                )
+                                putString("urunId", docReference.id)
+                                putString("asilIlanId", urun.urunId)
                                 putString("urunAdi", urun.urunAdi)
+                                putString("miktar", talepEdilenMiktar.toString())
                             }
                             findNavController().navigate(
                                 R.id.action_urunDetayfragment_to_musteriQrKodFragment,
@@ -188,6 +201,7 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
                 } else {
                     val bundle = Bundle().apply {
                         putString("urunId", urun.urunId)
+                        putString("girilenMiktar", talepEdilenMiktar.toString())
                     }
                     findNavController().navigate(
                         R.id.action_urunDetayfragment_to_tarihVeZamanFragment,
@@ -204,18 +218,22 @@ class urunDetayfragment : Fragment(R.layout.fragment_urun_detayfragment) {
             .setTitle("Ürünü Sil")
             .setMessage("$urunAdi silmek istediğinize emin misiniz?")
             .setPositiveButton("Sil") { _, _ ->
-                mevcutUrun?.urunId?.let { id ->
-                    (activity as? MainActivity)?.gosterLoading(true)
-                    db.collection("Urunler").document(id).delete()
-                        .addOnSuccessListener {
-                            (activity as? MainActivity)?.gosterLoading(false)
-                            Toast.makeText(context, "Ürün silindi", Toast.LENGTH_SHORT).show()
-                            findNavController().popBackStack()
-                        }
-                        .addOnFailureListener {
-                            (activity as? MainActivity)?.gosterLoading(false)
-                            Toast.makeText(context, "Ürün silinemedi", Toast.LENGTH_SHORT).show()
-                        }
+                mevcutUrun?.let { urun ->
+                    val id = urun.urunId
+                    if (!id.isNullOrEmpty()) {
+                        (activity as? MainActivity)?.gosterLoading(true)
+                        db.collection("Urunler").document(id).delete()
+                            .addOnSuccessListener {
+                                (activity as? MainActivity)?.gosterLoading(false)
+                                Toast.makeText(context, "Ürün silindi", Toast.LENGTH_SHORT).show()
+                                findNavController().popBackStack()
+                            }
+                            .addOnFailureListener {
+                                (activity as? MainActivity)?.gosterLoading(false)
+                                Toast.makeText(context, "Ürün silinemedi", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                    }
                 }
             }
             .setNegativeButton("Vazgeç", null)

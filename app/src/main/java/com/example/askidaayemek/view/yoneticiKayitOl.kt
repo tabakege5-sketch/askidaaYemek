@@ -40,7 +40,7 @@ class yoneticiKayitOl : Fragment(R.layout.fragment_yonetici_kayit_ol) {
             val girilenKod = binding.yetkiKoduEditText.text.toString().trim()
 
             if (adSoyad.isEmpty() || email.isEmpty() || sifre.isEmpty() || girilenKod.isEmpty()) {
-                Toast.makeText(context, "Eksik bilgi bırakma kardes", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Eksik Bilgi", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
